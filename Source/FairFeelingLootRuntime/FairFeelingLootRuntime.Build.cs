@@ -1,8 +1,8 @@
 using UnrealBuildTool;
 
-public class LTGenericGraphRuntime : ModuleRules
+public class FairFeelingLootRuntime : ModuleRules
 {
-	public LTGenericGraphRuntime(ReadOnlyTargetRules Target) : base(Target)
+	public FairFeelingLootRuntime(ReadOnlyTargetRules Target) : base(Target)
     {
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 		bLegacyPublicIncludePaths = false;
@@ -16,8 +16,8 @@ public class LTGenericGraphRuntime : ModuleRules
 
 		PrivateIncludePaths.AddRange(
 			new string[] {
-				"LTGenericGraphRuntime/Private",
-				"LTGenericGraphRuntime/Public",
+				"FairFeelingLootRuntime/Public",
+				"FairFeelingLootRuntime/Private"
 				// ... add other private include paths required here ...
 			}
 			);
@@ -28,18 +28,15 @@ public class LTGenericGraphRuntime : ModuleRules
 				"Core",
 				"CoreUObject",
                 "Engine",
-				// ... add other public dependencies that you statically link with here ...
+				"GameplayTags"
 			}
 			);
 
 		PrivateDependencyModuleNames.AddRange(
 			new string[]
 			{
-				// ... add private dependencies that you statically link with here ...
-                "Slate",
-                "SlateCore",
-                "GameplayTags"
-            }
+				"LTGenericGraphRuntime",
+			}
 			);
 
 		DynamicallyLoadedModuleNames.AddRange(

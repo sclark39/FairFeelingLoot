@@ -9,25 +9,25 @@
 	"CreatedByURL": "http://skylerclark.com",
 	"DocsURL": "",
 	"SupportURL": "https://twitter.com/sclark39",
-	"CanContainContent": false,
+	"CanContainContent": true,
 	"IsBetaVersion": true,
 	"IsExperimentalVersion": false,
 	"Installed": false,
 	"Modules": [
+    {
+      "Name": "FairFeelingLootRuntime",
+      "Type": "Runtime",
+      "LoadingPhase": "Default",
+      "WhitelistPlatforms": [
+        "Win64",
+        "Win32",
+        "XboxOne",
+        "PS4",
+        "Switch"
+      ]
+    },
 		{
-			"Name": "FairFeelingLoot",
-			"Type": "Runtime",
-			"LoadingPhase": "Default",
-			"WhitelistPlatforms": [
-				"Win64",
-				"Win32",
-				"XboxOne",
-				"PS4",
-				"Switch"
-			]
-		},
-		{
-			"Name": "LTGenericGraph",
+			"Name": "LTGenericGraphRuntime",
 			"Type": "Runtime",
 			"LoadingPhase": "Default",
 			"WhitelistPlatforms": [

@@ -1,6 +1,6 @@
 ﻿#include "AssetTypeActions_LootTableDefinition.h"
 #include "LootTableDefinition.h"
-#include "GenericGraphAssetEditor/AssetEditor_GenericGraph.h"
+#include "LTGenericGraphAssetEditor/AssetEditor_LTGenericGraph.h"
 
 #define LOCTEXT_NAMESPACE "AssetTypeActions_FairRandom"
 
@@ -32,8 +32,8 @@ void FAssetTypeActions_LootTableDefinition::OpenAssetEditor(const TArray<UObject
 	{
 		if (ULootTableDefinition* Graph = Cast<ULootTableDefinition>(*ObjIt))
 		{
-			TSharedRef<FAssetEditor_GenericGraph> NewGraphEditor(new FAssetEditor_GenericGraph());
-			NewGraphEditor->InitGenericGraphAssetEditor(Mode, EditWithinLevelEditor, Graph);
+			TSharedRef<FAssetEditor_LTGenericGraph> NewGraphEditor(new FAssetEditor_LTGenericGraph());
+			NewGraphEditor->InitLTGenericGraphAssetEditor(Mode, EditWithinLevelEditor, Graph);
 		}
 	}
 }
