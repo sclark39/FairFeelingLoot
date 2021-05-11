@@ -93,6 +93,10 @@ bool ULTGenericGraphNode::CanCreateConnectionFrom(ULTGenericGraphNode* Other, in
 	return true;
 }
 
+const FSlateBrush* ULTGenericGraphNode::GetNodeIcon() const
+{
+	return FEditorStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Icon"));
+}
 
 #endif
 

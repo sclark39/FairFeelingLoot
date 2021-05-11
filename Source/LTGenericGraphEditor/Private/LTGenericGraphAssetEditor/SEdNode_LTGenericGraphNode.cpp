@@ -97,7 +97,7 @@ void SEdNode_LTGenericGraphNode::UpdateGraphNode()
 	RightNodeBox.Reset();
 	LeftNodeBox.Reset();
 
-	const FSlateBrush *NodeTypeIcon = GetNameIcon();
+	const FSlateBrush *NodeTypeIcon = GetNodeIcon();
 
 	FLinearColor TitleShadowColor(0.6f, 0.6f, 0.6f);
 	TSharedPtr<SErrorText> ErrorText;
@@ -331,9 +331,10 @@ EVisibility SEdNode_LTGenericGraphNode::GetDragOverMarkerVisibility() const
 	return EVisibility::Visible;
 }
 
-const FSlateBrush* SEdNode_LTGenericGraphNode::GetNameIcon() const
+const FSlateBrush* SEdNode_LTGenericGraphNode::GetNodeIcon() const
 {
-	return FEditorStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Icon"));
+	UEdNode_LTGenericGraphNode* MyNode = CastChecked<UEdNode_LTGenericGraphNode>(GraphNode);
+	return MyNode ? MyNode->GetNodeIcon() : FEditorStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Icon"));
 }
 
 #undef LOCTEXT_NAMESPACE

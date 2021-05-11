@@ -63,7 +63,12 @@ void UEdNode_LTGenericGraphNode::SetLTGenericGraphNode(ULTGenericGraphNode* InNo
 
 FLinearColor UEdNode_LTGenericGraphNode::GetBackgroundColor() const
 {
-	return LTGenericGraphNode == nullptr ? FLinearColor::Black : LTGenericGraphNode->GetBackgroundColor();
+	return LTGenericGraphNode? LTGenericGraphNode->GetBackgroundColor() : FLinearColor::Black;
+}
+
+const FSlateBrush *UEdNode_LTGenericGraphNode::GetNodeIcon() const
+{
+	return LTGenericGraphNode? LTGenericGraphNode->GetNodeIcon() : FEditorStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Icon"));
 }
 
 UEdGraphPin* UEdNode_LTGenericGraphNode::GetInputPin() const

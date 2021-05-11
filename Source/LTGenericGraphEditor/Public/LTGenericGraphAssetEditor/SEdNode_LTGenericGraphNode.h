@@ -25,7 +25,7 @@ public:
 
 	virtual EVisibility GetDragOverMarkerVisibility() const;
 
-	virtual const FSlateBrush* GetNameIcon() const;
+	virtual const FSlateBrush* GetNodeIcon() const;
 
 protected:
 };

@@ -92,6 +92,8 @@ public:
 
 	virtual void SetNodeTitle(const FText& NewTitle);
 
+	virtual const FSlateBrush* GetNodeIcon() const;
+
 	virtual bool CanCreateConnection(ULTGenericGraphNode* Other, FText& ErrorMessage);
 
 	virtual bool CanCreateConnectionTo(ULTGenericGraphNode* Other, int32 NumberOfChildrenNodes, FText& ErrorMessage);
