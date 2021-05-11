@@ -20,6 +20,9 @@ public:
 	FName ParamName;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Loot Table")
+	float DefaultValue = 0;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Loot Table")
 	EAddParamLTType WriteMode;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Loot Table")

@@ -19,6 +19,8 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Switch")
 	FName ParamName;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Switch")
+	FName DefaultValue;
 
 	virtual const ULTGenericGraphNode* PickChild(FLootTable &LootTable, const FEntropyState &State) const override;
 	

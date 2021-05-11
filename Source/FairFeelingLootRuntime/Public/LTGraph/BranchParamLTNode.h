@@ -15,9 +15,12 @@ class FAIRFEELINGLOOTRUNTIME_API UBranchParamLTNode : public ULTGraphNode
 public:
 	UBranchParamLTNode();
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Loot Table")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Float Param")
 	FName ParamName = NAME_None;
-	
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Float Param")
+	float DefaultValue;
+
 	virtual const ULTGraphNode* TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const override;
 #if WITH_EDITOR
 	virtual TSubclassOf<ULTGenericGraphEdge> GetEdgeType() const override;

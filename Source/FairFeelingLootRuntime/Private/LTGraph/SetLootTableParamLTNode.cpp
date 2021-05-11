@@ -16,7 +16,7 @@ const ULTGraphNode* USetLootTableParamLTNode::TraverseNodesAndCollectLoot(FLootT
 {
 	float rand = State.RNG->FRandRange(ValueRange.X, ValueRange.Y);
 	
-	float &Param = LootTable.FloatParams.FindOrAdd(ParamName);
+	float &Param = LootTable.FloatParams.FindOrAdd(ParamName, DefaultValue);
 
 	if (WriteMode == EAddParamLTType::Add)
 		rand = Param + rand;

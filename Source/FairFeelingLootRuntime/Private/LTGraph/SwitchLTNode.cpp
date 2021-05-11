@@ -17,19 +17,17 @@ USwitchLTNode::USwitchLTNode()
 
 const ULTGenericGraphNode* USwitchLTNode::PickChild(FLootTable &LootTable, const FEntropyState &State) const
 {
-	FName *NameParam = LootTable.NameParams.Find(ParamName);
+	FName NameParam = LootTable.GetNameParam(ParamName,DefaultValue);
 	const ULTGenericGraphNode *DefaultNode = nullptr;
-	if (NameParam)
+
+	for (const auto *Node : ChildrenNodes)
 	{
-		for (const auto *Node : ChildrenNodes)
+		if (const UNamedLTEdge *Edge = Cast<const UNamedLTEdge>(GetEdge(Node)))
 		{
-			if (const UNamedLTEdge *Edge = Cast<const UNamedLTEdge>(GetEdge(Node)))
-			{
-				if (Edge->Value == *NameParam)
-					return Node;
-				else if (Edge->Value == DefaultName)
-					DefaultNode = Node;
-			}
+			if (Edge->Value == NameParam)
+				return Node;
+			else if (Edge->Value == DefaultName)
+				DefaultNode = Node;
 		}
 	}
 

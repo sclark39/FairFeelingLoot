@@ -75,14 +75,14 @@ public:
 	
 	float GetFloatParam(FName ParamName, float DefaultValue = 0.0f)
 	{
-		float *Lookup = FloatParams.Find(ParamName);
-		return Lookup ? *Lookup : DefaultValue;
+		float &Lookup = FloatParams.FindOrAdd(ParamName, DefaultValue);
+		return Lookup;
 	}
 
 	FName GetNameParam(FName ParamName, FName DefaultName = NAME_None)
 	{
-		FName *Lookup = NameParams.Find(ParamName);
-		return Lookup ? *Lookup : DefaultName;
+		FName &Lookup = NameParams.FindOrAdd(ParamName, DefaultName);
+		return Lookup;
 	}
 
 	virtual ~FLootTable() {};
