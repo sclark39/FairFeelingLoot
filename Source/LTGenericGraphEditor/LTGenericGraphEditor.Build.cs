@@ -13,7 +13,7 @@ public class LTGenericGraphEditor : ModuleRules
 			{
 				"GGS_BASE_NAME=\"Loot Table\"",
 				"GGS_GRAPH_CORNERTEXT=\"Loot Table\"",
-				"GGS_RESOURCES_DIRECTORY=\"LTGenericGraph/Resources\"",
+				"GGS_RESOURCES_DIRECTORY=\"FairFeelingLoot/Resources\"",
 
 				"GG_SHOULD_REGISTER_ASSET_TYPE=0"
 			}
