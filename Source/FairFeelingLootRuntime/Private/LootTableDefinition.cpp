@@ -85,7 +85,7 @@ UNoopLTGraphNode::UNoopLTGraphNode()
 #if WITH_EDITORONLY_DATA
 	ContextMenuName = LOCTEXT("NoopNode", "No-Op");
 	ContextMenuCategory = LTCATEGORY_MISC;
-	ChildrenLimitType = ENodeLimit::Forbidden;
+	ChildrenLimitType = ELTGenericGraphNodeLimit::Forbidden;
 #endif // #if WITH_EDITORONLY_DATA
 }
 
@@ -94,7 +94,7 @@ URootLTGraphNode::URootLTGraphNode()
 {
 #if WITH_EDITORONLY_DATA
 	ContextMenuName = LOCTEXT("RootNode", "Start");
-	ParentLimitType = ENodeLimit::Forbidden; 
+	ParentLimitType = ELTGenericGraphNodeLimit::Forbidden;
 #endif // #if WITH_EDITORONLY_DATA
 }
 

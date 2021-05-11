@@ -3,6 +3,8 @@
 #include "LTGenericGraphAssetEditor/EditorCommands_LTGenericGraph.h"
 #include "LTGenericGraphAssetEditor/LTGenericGraphEditorStyle.h"
 
+#include "LTGenericGraphEditorStrings.h"
+
 #define LOCTEXT_NAMESPACE "AssetEditorToolbar_LTGenericGraph"
 
 void FAssetEditorToolbar_LTGenericGraph::AddLTGenericGraphToolbar(TSharedPtr<FExtender> Extender)
@@ -20,7 +22,7 @@ void FAssetEditorToolbar_LTGenericGraph::FillLTGenericGraphToolbar(FToolBarBuild
 	check(LTGenericGraphEditor.IsValid());
 	TSharedPtr<FAssetEditor_LTGenericGraph> LTGenericGraphEditorPtr = LTGenericGraphEditor.Pin();
 
-	ToolbarBuilder.BeginSection("Generic Graph");
+	ToolbarBuilder.BeginSection(GGS_TOOLBAR_SECTION);
 	{
 		ToolbarBuilder.AddToolBarButton(FEditorCommands_LTGenericGraph::Get().GraphSettings,
 			NAME_None,

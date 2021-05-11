@@ -11,7 +11,7 @@ UNegentropyLTNode::UNegentropyLTNode()
 #if WITH_EDITORONLY_DATA
 	ContextMenuName = LOCTEXT("Negentropy", "Negentropy Branch");
 	ContextMenuCategory = LTCATEGORY_RANDOM;
-	ChildrenLimitType = ENodeLimit::Limited;
+	ChildrenLimitType = ELTGenericGraphNodeLimit::Limited;
 	ChildrenLimit = 2;
 #endif // #if WITH_EDITORONLY_DATA
 }

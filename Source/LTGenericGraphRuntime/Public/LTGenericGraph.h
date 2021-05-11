@@ -6,7 +6,7 @@
 #include "GameplayTagContainer.h"
 #include "LTGenericGraph.generated.h"
 
-UCLASS(Blueprintable)
+UCLASS()
 class LTGENERICGRAPHRUNTIME_API ULTGenericGraph : public UObject
 {
 	GENERATED_BODY()

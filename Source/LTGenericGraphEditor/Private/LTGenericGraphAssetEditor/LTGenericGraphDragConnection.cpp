@@ -93,7 +93,7 @@ void FLTGenericGraphDragConnection::HoverTargetChanged()
 			else
 			{
 #define LOCTEXT_NAMESPACE "AssetSchema_LTGenericGraph"
-				Response = FPinConnectionResponse(CONNECT_RESPONSE_DISALLOW, LOCTEXT("PinError", "Not a valid ULTGenericGraphEdNode"));
+				Response = FPinConnectionResponse(CONNECT_RESPONSE_DISALLOW, LOCTEXT("PinError", "Not a valid Node"));
 #undef LOCTEXT_NAMESPACE
 			}
 

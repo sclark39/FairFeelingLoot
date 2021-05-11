@@ -11,7 +11,7 @@ URepeatLTNode::URepeatLTNode()
 #if WITH_EDITORONLY_DATA
 	ContextMenuName = LOCTEXT("RepeatNode", "Repeat Multiple");
 	ContextMenuCategory = LTCATEGORY_FLOW;
-	ChildrenLimitType = ENodeLimit::Limited;
+	ChildrenLimitType = ELTGenericGraphNodeLimit::Limited;
 	ChildrenLimit = 1;
 #endif // #if WITH_EDITORONLY_DATA
 }

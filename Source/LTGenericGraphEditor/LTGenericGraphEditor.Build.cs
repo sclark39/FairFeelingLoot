@@ -8,6 +8,18 @@ public class LTGenericGraphEditor : ModuleRules
 		bLegacyPublicIncludePaths = false;
 		ShadowVariableWarningLevel = WarningLevel.Error;
 
+		PrivateDefinitions.AddRange(
+			new string[]
+			{
+				"GGS_BASE_NAME=\"Loot Table\"",
+				"GGS_GRAPH_CORNERTEXT=\"Loot Table\"",
+				"GGS_RESOURCES_DIRECTORY=\"LTGenericGraph/Resources\"",
+
+				"GG_SHOULD_REGISTER_ASSET_TYPE=0"
+			}
+		);
+
+
 		PublicIncludePaths.AddRange(
 			new string[] {
 				// ... add public include paths required here ...

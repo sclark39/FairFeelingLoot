@@ -61,13 +61,13 @@ bool ULTGenericGraphNode::CanCreateConnection(ULTGenericGraphNode* Other, FText&
 
 bool ULTGenericGraphNode::CanCreateConnectionTo(ULTGenericGraphNode* Other, int32 NumberOfChildrenNodes, FText& ErrorMessage)
 {
-	if (ChildrenLimitType == ENodeLimit::Forbidden || (ChildrenLimitType == ENodeLimit::Limited && ChildrenLimit <= 0))
+	if (ChildrenLimitType == ELTGenericGraphNodeLimit::Forbidden || (ChildrenLimitType == ELTGenericGraphNodeLimit::Limited && ChildrenLimit <= 0))
 	{
 		ErrorMessage = FText::FromString("Node can not have children");
 		return false;
 	}
 
-	if (ChildrenLimitType == ENodeLimit::Limited && NumberOfChildrenNodes >= ChildrenLimit)
+	if (ChildrenLimitType == ELTGenericGraphNodeLimit::Limited && NumberOfChildrenNodes >= ChildrenLimit)
 	{
 		ErrorMessage = FText::FromString("Children limit exceeded");
 		return false;
@@ -78,13 +78,13 @@ bool ULTGenericGraphNode::CanCreateConnectionTo(ULTGenericGraphNode* Other, int3
 
 bool ULTGenericGraphNode::CanCreateConnectionFrom(ULTGenericGraphNode* Other, int32 NumberOfParentNodes, FText& ErrorMessage)
 {
-	if (ParentLimitType == ENodeLimit::Forbidden || (ParentLimitType == ENodeLimit::Limited && ParentLimit <= 0))
+	if (ParentLimitType == ELTGenericGraphNodeLimit::Forbidden || (ParentLimitType == ELTGenericGraphNodeLimit::Limited && ParentLimit <= 0))
 	{
 		ErrorMessage = FText::FromString("Node can not have parents");
 		return false;
 	}
 
-	if (ParentLimitType == ENodeLimit::Limited && NumberOfParentNodes >= ParentLimit)
+	if (ParentLimitType == ELTGenericGraphNodeLimit::Limited && NumberOfParentNodes >= ParentLimit)
 	{
 		ErrorMessage = FText::FromString("Parent limit exceeded");
 		return false;

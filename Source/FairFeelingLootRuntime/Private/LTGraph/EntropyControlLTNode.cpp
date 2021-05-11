@@ -10,7 +10,7 @@ UEntropyControlLTNode::UEntropyControlLTNode()
 #if WITH_EDITORONLY_DATA
 	ContextMenuName = LOCTEXT("EntropyControlNode", "Entropy Control");
 	ContextMenuCategory = LTCATEGORY_MISC;
-	ChildrenLimitType = ENodeLimit::Limited;
+	ChildrenLimitType = ELTGenericGraphNodeLimit::Limited;
 	ChildrenLimit = 1;
 #endif // #if WITH_EDITORONLY_DATA
 }

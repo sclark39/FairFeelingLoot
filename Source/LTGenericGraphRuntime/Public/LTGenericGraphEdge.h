@@ -6,7 +6,7 @@
 
 class ULTGenericGraph;
 
-UCLASS(Blueprintable)
+UCLASS()
 class LTGENERICGRAPHRUNTIME_API ULTGenericGraphEdge : public UObject
 {
 	GENERATED_BODY()

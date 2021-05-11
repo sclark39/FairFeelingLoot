@@ -9,6 +9,8 @@
 #include "LTGenericGraphAssetEditor/EdNode_LTGenericGraphEdge.h"
 #include "LTGenericGraphAssetEditor/ConnectionDrawingPolicy_LTGenericGraph.h"
 
+#include "LTGenericGraphEditorStrings.h"
+
 #define LOCTEXT_NAMESPACE "SLTGenericGraphEdge"
 
 void SEdNode_LTGenericGraphEdge::Construct(const FArguments& InArgs, UEdNode_LTGenericGraphEdge* InNode)
@@ -56,7 +58,7 @@ void SEdNode_LTGenericGraphEdge::OnNameTextCommited(const FText& InText, ETextCo
 
 	if (MyNode != nullptr && MyNode->LTGenericGraphEdge != nullptr)
 	{
-		const FScopedTransaction Transaction(LOCTEXT("LTGenericGraphEditorRenameEdge", "Generic Graph Editor: Rename Edge"));
+		const FScopedTransaction Transaction(LOCTEXT("LTGenericGraphEditorRenameEdge", GGS_RENAME_EDGE));
 		MyNode->Modify();
 		MyNode->LTGenericGraphEdge->SetNodeTitle(InText);
 		UpdateGraphNode();

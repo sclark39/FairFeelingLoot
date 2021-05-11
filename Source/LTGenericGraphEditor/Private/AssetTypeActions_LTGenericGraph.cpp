@@ -1,6 +1,7 @@
 #include "AssetTypeActions_LTGenericGraph.h"
 #include "LTGenericGraphEditorPCH.h"
 #include "LTGenericGraphAssetEditor/AssetEditor_LTGenericGraph.h"
+#include "LTGenericGraphEditorStrings.h"
 
 #define LOCTEXT_NAMESPACE "AssetTypeActions_LTGenericGraph"
 
@@ -11,7 +12,7 @@ FAssetTypeActions_LTGenericGraph::FAssetTypeActions_LTGenericGraph(EAssetTypeCat
 
 FText FAssetTypeActions_LTGenericGraph::GetName() const
 {
-	return LOCTEXT("FLTGenericGraphAssetTypeActionsName", "Generic Graph");
+	return LOCTEXT("FLTGenericGraphAssetTypeActionsName", GGS_GRAPH_ASSET_TYPE);
 }
 
 FColor FAssetTypeActions_LTGenericGraph::GetTypeColor() const

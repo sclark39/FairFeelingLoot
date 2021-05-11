@@ -4,6 +4,8 @@
 #include "LTGenericGraphAssetEditor/EdNode_LTGenericGraphNode.h"
 #include "LTGenericGraphAssetEditor/EdNode_LTGenericGraphEdge.h"
 
+#include "LTGenericGraphEditorStrings.h"
+
 UEdGraph_LTGenericGraph::UEdGraph_LTGenericGraph()
 {
 
@@ -16,7 +18,7 @@ UEdGraph_LTGenericGraph::~UEdGraph_LTGenericGraph()
 
 void UEdGraph_LTGenericGraph::RebuildLTGenericGraph()
 {
-	LOG_INFO(TEXT("ULTGenericGraphEdGraph::RebuildLTGenericGraph has been called"));
+	LOG_INFO(TEXT(GGS_REBUILD_GRAPH_LOG));
 
 	ULTGenericGraph* Graph = GetLTGenericGraph();
 
@@ -66,7 +68,7 @@ void UEdGraph_LTGenericGraph::RebuildLTGenericGraph()
 					}
 					else
 					{
-						LOG_ERROR(TEXT("UEdGraph_LTGenericGraph::RebuildLTGenericGraph can't find child node"));
+						LOG_ERROR(TEXT(GGS_REBUILD_GRAPH_ERR_NO_NODE));
 					}
 				}
 			}
@@ -79,7 +81,7 @@ void UEdGraph_LTGenericGraph::RebuildLTGenericGraph()
 
 			if (StartNode == nullptr || EndNode == nullptr || Edge == nullptr)
 			{
-				LOG_ERROR(TEXT("UEdGraph_LTGenericGraph::RebuildLTGenericGraph add edge failed."));
+				LOG_ERROR(TEXT(GGS_REBUILD_GRAPH_ERR_BAD_EDGE));
 				continue;
 			}
 

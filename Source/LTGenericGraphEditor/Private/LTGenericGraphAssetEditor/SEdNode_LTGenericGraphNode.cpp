@@ -10,6 +10,8 @@
 #include "LTGenericGraphAssetEditor/EdNode_LTGenericGraphNode.h"
 #include "LTGenericGraphAssetEditor/LTGenericGraphDragConnection.h"
 
+#include "LTGenericGraphEditorStrings.h"
+
 #define LOCTEXT_NAMESPACE "EdNode_LTGenericGraph"
 
 //////////////////////////////////////////////////////////////////////////
@@ -305,7 +307,7 @@ void SEdNode_LTGenericGraphNode::OnNameTextCommited(const FText& InText, ETextCo
 
 	if (MyNode != nullptr && MyNode->LTGenericGraphNode != nullptr)
 	{
-		const FScopedTransaction Transaction(LOCTEXT("LTGenericGraphEditorRenameNode", "Generic Graph Editor: Rename Node"));
+		const FScopedTransaction Transaction(LOCTEXT("LTGenericGraphEditorRenameNode", GGS_RENAME_NODE));
 		MyNode->Modify();
 		MyNode->LTGenericGraphNode->Modify();
 		MyNode->LTGenericGraphNode->SetNodeTitle(InText);

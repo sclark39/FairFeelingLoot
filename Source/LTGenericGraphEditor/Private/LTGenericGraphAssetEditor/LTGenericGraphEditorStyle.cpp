@@ -3,6 +3,8 @@
 #include "Styling/SlateTypes.h"
 #include "Misc/Paths.h"
 
+#include "LTGenericGraphEditorStrings.h"
+
 TSharedPtr<FSlateStyleSet> FLTGenericGraphEditorStyle::StyleSet = nullptr;
 
 #define IMAGE_BRUSH( RelativePath, ... ) FSlateImageBrush( StyleSet->RootToContentDir( RelativePath, TEXT(".png") ), __VA_ARGS__ )
@@ -24,7 +26,7 @@ void FLTGenericGraphEditorStyle::Initialize()
 
 	StyleSet = MakeShareable(new FSlateStyleSet("LTGenericGraphEditorStyle"));
 
-	StyleSet->SetContentRoot(FPaths::ProjectPluginsDir() / TEXT("LTGenericGraph/Resources"));
+	StyleSet->SetContentRoot(FPaths::ProjectPluginsDir() / TEXT(GGS_RESOURCES_DIRECTORY));
 
 	StyleSet->Set("LTGenericGraphEditor.AutoArrange", new IMAGE_BRUSH("AutoArrangeIcon", Icon40x40));
 	StyleSet->Set("LTGenericGraphEditor.AutoArrange.Small", new IMAGE_BRUSH( "AutoArrangeIcon", Icon20x20 ) );

@@ -11,14 +11,16 @@ void FLTGenericGraphEditor::StartupModule()
 {
 	FLTGenericGraphEditorStyle::Initialize();
 
+	// Make Node Factory
 	GraphPanelNodeFactory_LTGenericGraph = MakeShareable(new FGraphPanelNodeFactory_LTGenericGraph());
 	FEdGraphUtilities::RegisterVisualNodeFactory(GraphPanelNodeFactory_LTGenericGraph);
 
-	//IAssetTools& AssetTools = FModuleManager::LoadModuleChecked<FAssetToolsModule>("AssetTools").Get();
-	//
-	//LTGenericGraphAssetCategoryBit = AssetTools.RegisterAdvancedAssetCategory(FName(TEXT("LTGenericGraph")), LOCTEXT("LTGenericGraphAssetCategory", "LTGenericGraph"));
-	//
-	//RegisterAssetTypeAction(AssetTools, MakeShareable(new FAssetTypeActions_LTGenericGraph(LTGenericGraphAssetCategoryBit)));
+	// Add to New Asset Context Menu
+#if GG_SHOULD_REGISTER_ASSET_TYPE
+	IAssetTools& AssetTools = FModuleManager::LoadModuleChecked<FAssetToolsModule>("AssetTools").Get();
+	LTGenericGraphAssetCategoryBit = AssetTools.RegisterAdvancedAssetCategory(FName(TEXT("LTGenericGraph")), LOCTEXT("LTGenericGraphAssetCategory", "LTGenericGraph"));
+	RegisterAssetTypeAction(AssetTools, MakeShareable(new FAssetTypeActions_LTGenericGraph(LTGenericGraphAssetCategoryBit)));
+#endif // #if GG_SHOULD_ADD_TO_CONTEXTMENU
 }
 
 

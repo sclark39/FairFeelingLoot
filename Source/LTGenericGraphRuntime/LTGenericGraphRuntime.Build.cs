@@ -17,7 +17,6 @@ public class LTGenericGraphRuntime : ModuleRules
 		PrivateIncludePaths.AddRange(
 			new string[] {
 				"LTGenericGraphRuntime/Private",
-				"LTGenericGraphRuntime/Public",
 				// ... add other private include paths required here ...
 			}
 			);

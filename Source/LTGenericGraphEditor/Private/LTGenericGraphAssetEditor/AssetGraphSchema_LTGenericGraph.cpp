@@ -9,6 +9,8 @@
 #include "AutoLayout/LTForceDirectedLayoutStrategy.h"
 #include "AutoLayout/LTTreeLayoutStrategy.h"
 
+#include "LTGenericGraphEditorStrings.h"
+
 #define LOCTEXT_NAMESPACE "AssetSchema_LTGenericGraph"
 
 int32 UAssetGraphSchema_LTGenericGraph::CurrentCacheRefreshID = 0;
@@ -72,7 +74,7 @@ UEdGraphNode* FAssetSchemaAction_LTGenericGraph_NewNode::PerformAction(class UEd
 
 	if (NodeTemplate != nullptr)
 	{
-		const FScopedTransaction Transaction(LOCTEXT("LTGenericGraphEditorNewNode", "Generic Graph Editor: New Node"));
+		const FScopedTransaction Transaction(LOCTEXT("LTGenericGraphEditorNewNode", GGS_NEW_NODE));
 		ParentGraph->Modify();
 		if (FromPin != nullptr)
 			FromPin->Modify();
@@ -109,7 +111,7 @@ UEdGraphNode* FAssetSchemaAction_LTGenericGraph_NewEdge::PerformAction(class UEd
 
 	if (NodeTemplate != nullptr)
 	{
-		const FScopedTransaction Transaction(LOCTEXT("LTGenericGraphEditorNewEdge", "Generic Graph Editor: New Edge"));
+		const FScopedTransaction Transaction(LOCTEXT("LTGenericGraphEditorNewEdge", GGS_NEW_EDGE));
 		ParentGraph->Modify();
 		if (FromPin != nullptr)
 			FromPin->Modify();
@@ -274,7 +276,7 @@ void UAssetGraphSchema_LTGenericGraph::GetGraphContextActions(FGraphContextMenuB
 
 			FText Category = DefaultObject->ContextMenuCategory;
 			if (Category.IsEmpty())
-				Category = LOCTEXT("LTGenericGraphNodeAction", "Generic Graph Node");
+				Category = LOCTEXT("LTGenericGraphNodeAction", GGS_NODE_CONTEXTMENU_CAT);
 
 			TSharedPtr<FAssetSchemaAction_LTGenericGraph_NewNode> Action(new FAssetSchemaAction_LTGenericGraph_NewNode(Category, Desc, AddToolTip, 0));
 			Action->NodeTemplate = NewObject<UEdNode_LTGenericGraphNode>(ContextMenuBuilder.OwnerOfTemporaries);			
@@ -346,7 +348,7 @@ const FPinConnectionResponse UAssetGraphSchema_LTGenericGraph::CanCreateConnecti
 
 	if (EdNode_Out == nullptr || EdNode_In == nullptr)
 	{
-		return FPinConnectionResponse(CONNECT_RESPONSE_DISALLOW, LOCTEXT("PinError", "Not a valid ULTGenericGraphEdNode"));
+		return FPinConnectionResponse(CONNECT_RESPONSE_DISALLOW, LOCTEXT("PinError", "Not a valid Node"));
 	}
 		
 	//Determine if we can have cycles or not
