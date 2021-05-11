@@ -52,6 +52,12 @@ FLinearColor UEntropyControlLTNode::GetBackgroundColor() const
 {
 	return FLinearColor(0.5f, 0.01f, 0.01f);
 }
+
+const FSlateBrush*  UEntropyControlLTNode::GetNodeIcon() const
+{
+	return FEditorStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Composite.Selector.Icon"));
+}
+
 #endif
 
 #undef LOCTEXT_NAMESPACE 

@@ -43,6 +43,10 @@ FText USetLootTableParamLTNode::GetNodeTitle() const
 	return FText::Format(LOCTEXT("NestedTableNodeTitle", "{Name}{Mode} {Range}"), Args);
 }
 
+const FSlateBrush*  USetLootTableParamLTNode::GetNodeIcon() const
+{
+	return FEditorStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Decorator.NonConditional.Icon"));
+}
 
 FLinearColor USetLootTableParamLTNode::GetBackgroundColor() const
 {

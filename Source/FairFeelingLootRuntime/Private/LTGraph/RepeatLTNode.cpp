@@ -36,6 +36,11 @@ FText URepeatLTNode::GetNodeTitle() const
 	return FText::Format(LOCTEXT("NestedTableNodeTitle", "Repeat {Range}"), Args); 
 }
 
+const FSlateBrush*  URepeatLTNode::GetNodeIcon() const
+{
+	return FEditorStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Decorator.Loop.Icon"));
+}
+
 FLinearColor URepeatLTNode::GetBackgroundColor() const
 {
 	return FLinearColor::White;

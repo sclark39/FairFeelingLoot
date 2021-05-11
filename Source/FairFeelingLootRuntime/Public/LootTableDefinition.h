@@ -94,6 +94,10 @@ class FAIRFEELINGLOOTRUNTIME_API UNoopLTGraphNode : public ULTGraphNode
 	GENERATED_BODY()
 public:
 	UNoopLTGraphNode();
+
+#if WITH_EDITOR
+	virtual const FSlateBrush* GetNodeIcon() const override;
+#endif // #if WITH_EDITOR
 };
 
 
@@ -109,6 +113,7 @@ public:
 #if WITH_EDITOR
 	virtual TSubclassOf<ULTGenericGraphEdge> GetEdgeType() const override;
 	virtual FLinearColor GetBackgroundColor() const override;
+	virtual const FSlateBrush* GetNodeIcon() const override;
 #endif
 };
 

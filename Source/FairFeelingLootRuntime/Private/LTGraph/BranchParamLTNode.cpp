@@ -9,7 +9,7 @@ UBranchParamLTNode::UBranchParamLTNode()
 {
 
 #if WITH_EDITORONLY_DATA
-	ContextMenuName = LOCTEXT("BranchNode", "Branch on Param");
+	ContextMenuName = LOCTEXT("BranchNode", "Test Float Param");
 	ContextMenuCategory = LTCATEGORY_FLOW;
 #endif // #if WITH_EDITORONLY_DATA
 }
@@ -48,6 +48,11 @@ FText UBranchParamLTNode::GetNodeTitle() const
 	FFormatNamedArguments Args;
 	Args.Add(TEXT("Param"), FText::FromName(ParamName));
 	return FText::Format(LOCTEXT("NestedTableNodeTitle", "Test: {Param}"), Args);
+}
+
+const FSlateBrush*  UBranchParamLTNode::GetNodeIcon() const
+{
+	return FEditorStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Decorator.DoesPathExist.Icon"));
 }
 
 #endif // #if WITH_EDITOR

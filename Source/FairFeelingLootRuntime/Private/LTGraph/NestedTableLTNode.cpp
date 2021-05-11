@@ -51,6 +51,11 @@ FText UNestedTableLTNode::GetNodeTitle() const
 	return ContextMenuName;
 }
 
+const FSlateBrush*  UNestedTableLTNode::GetNodeIcon() const
+{
+	return FEditorStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Decorator.Optional.Icon"));
+}
+
 FLinearColor UNestedTableLTNode::GetBackgroundColor() const
 {
 	return FLinearColor::White;

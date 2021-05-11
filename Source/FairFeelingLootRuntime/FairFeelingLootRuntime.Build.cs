@@ -28,7 +28,8 @@ public class FairFeelingLootRuntime : ModuleRules
 				"Core",
 				"CoreUObject",
                 "Engine",
-				"GameplayTags"
+				"GameplayTags",
+				"EditorStyle"
 			}
 			);
 

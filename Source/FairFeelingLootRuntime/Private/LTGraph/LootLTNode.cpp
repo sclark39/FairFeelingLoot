@@ -38,6 +38,11 @@ void ULootLTNode::SetNodeTitle(const FText& NewTitle)
 	LootType = FName(NewTitle.ToString());
 }
 
+const FSlateBrush*  ULootLTNode::GetNodeIcon() const
+{
+	return FEditorStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Decorator.ForceSuccess.Icon"));
+}
+
 bool ULootLTNode::IsNameEditable() const
 {
 	return true;

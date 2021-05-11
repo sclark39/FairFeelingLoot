@@ -26,6 +26,7 @@ public:
 
 #if WITH_EDITOR
 	virtual FText GetNodeTitle() const override;
+	virtual const FSlateBrush* GetNodeIcon() const override;
 	virtual void SetNodeTitle(const FText& NewTitle) override;
 	virtual bool IsNameEditable() const override;
 	virtual FLinearColor GetBackgroundColor() const override;

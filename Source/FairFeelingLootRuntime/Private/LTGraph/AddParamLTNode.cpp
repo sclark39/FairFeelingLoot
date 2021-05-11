@@ -54,6 +54,11 @@ FText UAddParamLTNode::GetNodeTitle() const
 	return FText::Format(LOCTEXT("NestedTableNodeTitle", "{Name}{Mode} {Range}"), Args);
 }
 
+const FSlateBrush*  UAddParamLTNode::GetNodeIcon() const
+{
+	return FEditorStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Task.Icon"));
+}
+
 FLinearColor UAddParamLTNode::GetBackgroundColor() const
 {
 	return FLinearColor(0.0f, 0.354f, 0.578f);

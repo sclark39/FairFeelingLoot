@@ -59,10 +59,17 @@ const ULTGraphNode* USequenceLTNode::TraverseNodesAndCollectLoot(FLootTable &Loo
 }
 
 #if WITH_EDITOR
+
 TSubclassOf<ULTGenericGraphEdge> USequenceLTNode::GetEdgeType() const
 {
 	return UPriorityLTEdge::StaticClass();
 }
+
+const FSlateBrush*  USequenceLTNode::GetNodeIcon() const
+{
+	return FEditorStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Composite.Sequence.Icon"));
+}
+
 #endif
 
 #undef LOCTEXT_NAMESPACE 

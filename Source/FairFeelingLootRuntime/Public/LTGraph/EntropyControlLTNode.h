@@ -34,5 +34,6 @@ public:
 
 #if WITH_EDITOR
 	virtual FLinearColor GetBackgroundColor() const override;
+	virtual const FSlateBrush* GetNodeIcon() const override;
 #endif
 };

@@ -90,6 +90,16 @@ UNoopLTGraphNode::UNoopLTGraphNode()
 }
 
 
+#if WITH_EDITOR
+
+const FSlateBrush*  UNoopLTGraphNode::GetNodeIcon() const
+{
+	return FEditorStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Task.Wait.Icon"));
+}
+
+#endif // #if WITH_EDITOR
+
+
 URootLTGraphNode::URootLTGraphNode()
 {
 #if WITH_EDITORONLY_DATA
@@ -110,6 +120,12 @@ FLinearColor URootLTGraphNode::GetBackgroundColor() const
 {
 	return FLinearColor::White;
 }
+
+const FSlateBrush*  URootLTGraphNode::GetNodeIcon() const
+{
+	return FEditorStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Index"));
+}
+
 #endif // #if WITH_EDITOR
 
 

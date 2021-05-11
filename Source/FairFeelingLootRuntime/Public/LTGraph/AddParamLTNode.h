@@ -29,6 +29,7 @@ public:
 
 #if WITH_EDITOR
 	virtual FText GetNodeTitle() const override;
+	virtual const FSlateBrush* GetNodeIcon() const override;
 	virtual FLinearColor GetBackgroundColor() const override;
 #endif
 };

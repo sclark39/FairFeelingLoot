@@ -37,6 +37,11 @@ FText UCallbackLTNode::GetNodeTitle() const
 	return FText::Format(LOCTEXT("CallbackNodeTitle", "Callback: {Spec}"), Args);
 }
 
+const FSlateBrush*  UCallbackLTNode::GetNodeIcon() const
+{
+	return FEditorStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Task.RunEQSQuery.Icon"));
+}
+
 FLinearColor UCallbackLTNode::GetBackgroundColor() const
 {
 	return FLinearColor(0.5f, 0.01f, 0.01f);

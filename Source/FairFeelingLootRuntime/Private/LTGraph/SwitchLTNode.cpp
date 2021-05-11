@@ -10,7 +10,7 @@ static const FName DefaultName(TEXT("Default"));
 USwitchLTNode::USwitchLTNode()
 {
 #if WITH_EDITORONLY_DATA
-	ContextMenuName = LOCTEXT("SwitchNode", "Switch on Param");
+	ContextMenuName = LOCTEXT("SwitchNode", "Switch on Name Param");
 	ContextMenuCategory = LTCATEGORY_FLOW;
 #endif // #if WITH_EDITORONLY_DATA
 }
@@ -45,6 +45,11 @@ FText USwitchLTNode::GetNodeTitle() const
 	FFormatNamedArguments Args;
 	Args.Add(TEXT("Name"), FText::FromName(ParamName));
 	return FText::Format(LOCTEXT("SwitchNodeTitle", "Switch on {Name}"), Args);
+}
+
+const FSlateBrush*  USwitchLTNode::GetNodeIcon() const
+{
+	return FEditorStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Decorator.DoesPathExist.Icon"));
 }
 
 TSubclassOf<ULTGenericGraphEdge> USwitchLTNode::GetEdgeType() const

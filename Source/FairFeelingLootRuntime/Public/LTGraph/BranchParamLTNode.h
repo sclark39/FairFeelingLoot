@@ -22,5 +22,6 @@ public:
 #if WITH_EDITOR
 	virtual TSubclassOf<ULTGenericGraphEdge> GetEdgeType() const override;
 	virtual FText GetNodeTitle() const override;
+	virtual const FSlateBrush* GetNodeIcon() const override;
 #endif // #if WITH_EDITOR
 };
