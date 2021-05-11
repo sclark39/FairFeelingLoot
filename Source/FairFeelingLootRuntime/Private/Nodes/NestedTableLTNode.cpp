@@ -1,6 +1,6 @@
 ﻿// Copyright 2021 Skyler Clark. All Rights Reserved.
 
-#include "LTGraph/NestedTableLTNode.h"
+#include "NestedTableLTNode.h"
 
 #define LOCTEXT_NAMESPACE "LootTableDefinition"
 

@@ -17,7 +17,11 @@ public class FairFeelingLootRuntime : ModuleRules
 		PrivateIncludePaths.AddRange(
 			new string[] {
 				"FairFeelingLootRuntime/Public",
-				"FairFeelingLootRuntime/Private"
+				"FairFeelingLootRuntime/Public/Edges",
+				"FairFeelingLootRuntime/Public/Nodes",
+				"FairFeelingLootRuntime/Private",
+				"FairFeelingLootRuntime/Private/Edges",
+				"FairFeelingLootRuntime/Private/Nodes",
 				// ... add other private include paths required here ...
 			}
 			);

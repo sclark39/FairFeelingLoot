@@ -1,7 +1,7 @@
 ﻿// Copyright 2021 Skyler Clark. All Rights Reserved.
 
-#include "LTGraph/ShufflebagLTNode.h"
-#include "LTGraph/IntWeightLTEdge.h"
+#include "ShufflebagLTNode.h"
+#include "IntWeightLTEdge.h"
 
 #define LOCTEXT_NAMESPACE "LootTableDefinition"
 

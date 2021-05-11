@@ -1,7 +1,7 @@
 ﻿// Copyright 2021 Skyler Clark. All Rights Reserved.
 
-#include "LTGraph/RandomLTNode.h"
-#include "LTGraph/WeightedLTEdge.h"
+#include "RandomLTNode.h"
+#include "WeightedLTEdge.h"
 
 #define LOCTEXT_NAMESPACE "LootTableDefinition"
 

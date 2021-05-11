@@ -1,7 +1,7 @@
 ﻿// Copyright 2021 Skyler Clark. All Rights Reserved.
 
-#include "LTGraph/NegentropyLTNode.h"
-#include "LTGraph/WeightedLTEdge.h"
+#include "NegentropyLTNode.h"
+#include "WeightedLTEdge.h"
 
 #define LOCTEXT_NAMESPACE "LootTableDefinition"
 

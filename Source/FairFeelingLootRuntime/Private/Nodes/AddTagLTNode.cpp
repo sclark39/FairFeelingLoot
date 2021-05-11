@@ -1,6 +1,6 @@
 ﻿// Copyright 2021 Skyler Clark. All Rights Reserved.
 
-#include "LTGraph/AddTagLTNode.h"
+#include "AddTagLTNode.h"
 
 #define LOCTEXT_NAMESPACE "LootTableDefinition"
 

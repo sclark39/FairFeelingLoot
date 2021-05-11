@@ -1,7 +1,7 @@
 ﻿// Copyright 2021 Skyler Clark. All Rights Reserved.
 
-#include "LTGraph/SequenceLTNode.h"
-#include "LTGraph/PriorityLTEdge.h"
+#include "SequenceLTNode.h"
+#include "PriorityLTEdge.h"
 
 #define LOCTEXT_NAMESPACE "LootTableDefinition"
 

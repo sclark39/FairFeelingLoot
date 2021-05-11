@@ -1,11 +1,13 @@
 ﻿// Copyright 2021 Skyler Clark. All Rights Reserved.
 
-#include "LTGraph/IntWeightLTEdge.h"
+#include "NamedLTEdge.h"
+#include "LootTableDefinition.h"
 
 #define LOCTEXT_NAMESPACE "LootTableDefinition"
 
-UIntWeightLTEdge::UIntWeightLTEdge()
+UNamedLTEdge::UNamedLTEdge()
 {
+	Value = NAME_None;
 #if WITH_EDITORONLY_DATA
 	bShouldDrawTitle = true;
 #endif // #if WITH_EDITORONLY_DATA
@@ -13,16 +15,19 @@ UIntWeightLTEdge::UIntWeightLTEdge()
 
 #if WITH_EDITOR
 
-FText UIntWeightLTEdge::GetNodeTitle() const
+FText UNamedLTEdge::GetNodeTitle() const
 {
-	return FText::FromString( FString::FromInt(Weight) );
+	return FText::FromName(Value);
 }
 
-void UIntWeightLTEdge::SetNodeTitle(const FText& NewTitle)
+void UNamedLTEdge::SetNodeTitle(const FText& NewTitle)
 {
-	Weight = FCString::Atoi(*NewTitle.ToString());
+	Value = *NewTitle.ToString();
 }
 
 #endif // #if WITH_EDITOR
 
 #undef LOCTEXT_NAMESPACE 
+
+
+

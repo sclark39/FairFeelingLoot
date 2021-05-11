@@ -1,7 +1,7 @@
 ﻿// Copyright 2021 Skyler Clark. All Rights Reserved.
 
-#include "LTGraph/SwitchLTNode.h"
-#include "LTGraph/NamedLTEdge.h"
+#include "SwitchLTNode.h"
+#include "NamedLTEdge.h"
 
 #define LOCTEXT_NAMESPACE "LootTableDefinition"
 

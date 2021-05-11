@@ -1,6 +1,6 @@
 ﻿// Copyright 2021 Skyler Clark. All Rights Reserved.
 
-#include "LTGraph/CallbackLTNode.h"
+#include "CallbackLTNode.h"
 #include "LootTableComponent.h"
 
 #define LOCTEXT_NAMESPACE "LootTableDefinition"

@@ -1,10 +1,10 @@
 ﻿// Copyright 2021 Skyler Clark. All Rights Reserved.
 
-#include "LTGraph/PriorityLTEdge.h"
+#include "IntWeightLTEdge.h"
 
 #define LOCTEXT_NAMESPACE "LootTableDefinition"
 
-UPriorityLTEdge::UPriorityLTEdge()
+UIntWeightLTEdge::UIntWeightLTEdge()
 {
 #if WITH_EDITORONLY_DATA
 	bShouldDrawTitle = true;
@@ -13,14 +13,14 @@ UPriorityLTEdge::UPriorityLTEdge()
 
 #if WITH_EDITOR
 
-FText UPriorityLTEdge::GetNodeTitle() const
+FText UIntWeightLTEdge::GetNodeTitle() const
 {
-	return FText::FromString( FString::SanitizeFloat(Priority, 0) );
+	return FText::FromString( FString::FromInt(Weight) );
 }
 
-void UPriorityLTEdge::SetNodeTitle(const FText& NewTitle)
+void UIntWeightLTEdge::SetNodeTitle(const FText& NewTitle)
 {
-	Priority = FCString::Atof(*NewTitle.ToString());
+	Weight = FCString::Atoi(*NewTitle.ToString());
 }
 
 #endif // #if WITH_EDITOR

@@ -1,6 +1,6 @@
 ﻿// Copyright 2021 Skyler Clark. All Rights Reserved.
 
-#include "LTGraph/WeightedLTEdge.h"
+#include "WeightedLTEdge.h"
 
 #define LOCTEXT_NAMESPACE "LootTableDefinition"
 
