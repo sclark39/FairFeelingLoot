@@ -7,7 +7,7 @@
 class ULTGenericGraph;
 class ULTGenericGraphEdge;
 
-UENUM(BlueprintType)
+UENUM()
 enum class ELTGenericGraphNodeLimit : uint8
 {
 	Unlimited,

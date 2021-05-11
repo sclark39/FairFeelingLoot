@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 #include "Settings_LTGenericGraphEditor.generated.h"
 
-UENUM(BlueprintType)
+UENUM()
 enum class ELTAutoLayoutStrategy : uint8
 {
 	Tree,
