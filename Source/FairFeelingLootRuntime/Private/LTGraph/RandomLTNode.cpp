@@ -27,7 +27,7 @@ const ULTGenericGraphNode* URandomLTNode::PickChild(FLootTable &LootTable, const
 		*RequiresInitialization = false;
 		bNeedSumAccum = true;
 	
-		for (const ULTGenericGraphNode *Node : ChildrenNodes)
+		for (const auto *Node : ChildrenNodes)
 		{
 			const ULTGenericGraphEdge *EdgeUncast = GetEdge(Node);
 			if (const UWeightedLTEdge *Edge = Cast<const UWeightedLTEdge>(GetEdge(Node)))
@@ -48,7 +48,7 @@ const ULTGenericGraphNode* URandomLTNode::PickChild(FLootTable &LootTable, const
 	if (bNeedSumAccum)
 	{
 		SumOfWeights = 0;
-		for (const ULTGenericGraphNode *Node : ChildrenNodes)
+		for (const auto *Node : ChildrenNodes)
 		{
 			if (const UWeightedLTEdge *Edge = Cast<const UWeightedLTEdge>(GetEdge(Node)))
 			{
@@ -58,7 +58,7 @@ const ULTGenericGraphNode* URandomLTNode::PickChild(FLootTable &LootTable, const
 	}
 
 	float RandNum = State.RNG->FRandRange(0, SumOfWeights);
-	for (const ULTGenericGraphNode *Node : ChildrenNodes)
+	for (const auto *Node : ChildrenNodes)
 	{
 		if (const UWeightedLTEdge *Edge = Cast<const UWeightedLTEdge>(GetEdge(Node)))
 		{

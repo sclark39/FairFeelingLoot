@@ -34,7 +34,7 @@ const ULTGraphNode* ULTGraphNode::TraverseNodesAndCollectLoot(FLootTable &LootTa
 	}
 	else
 	{
-		for (const ULTGenericGraphNode *Node : ChildrenNodes)
+		for (const auto *Node : ChildrenNodes)
 		{
 			if (const ULTGraphNode *LTNode = Cast<const ULTGraphNode>(Node))
 			{
@@ -123,7 +123,7 @@ ULootTableDefinition::ULootTableDefinition()
 
 const URootLTGraphNode* ULootTableDefinition::GetRootNode() const
 {
-	for (ULTGenericGraphNode *Node : RootNodes)
+	for (auto *Node : RootNodes)
 	{
 		if (const URootLTGraphNode *RootNode = Cast<URootLTGraphNode>(Node))
 			return RootNode;

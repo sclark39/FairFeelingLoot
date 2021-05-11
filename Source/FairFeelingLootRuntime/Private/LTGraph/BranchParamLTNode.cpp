@@ -18,7 +18,7 @@ const ULTGraphNode* UBranchParamLTNode::TraverseNodesAndCollectLoot(FLootTable &
 {
 	float TestValue = LootTable.GetFloatParam(ParamName);
 
-	for (const ULTGenericGraphNode *Node : ChildrenNodes)
+	for (const auto *Node : ChildrenNodes)
 	{
 		if (const UComparisonLTEdge* Edge = Cast<UComparisonLTEdge>(GetEdge(Node)))
 		{

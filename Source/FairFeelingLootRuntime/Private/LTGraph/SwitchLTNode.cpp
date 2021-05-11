@@ -21,7 +21,7 @@ const ULTGenericGraphNode* USwitchLTNode::PickChild(FLootTable &LootTable, const
 	const ULTGenericGraphNode *DefaultNode = nullptr;
 	if (NameParam)
 	{
-		for (const ULTGenericGraphNode *Node : ChildrenNodes)
+		for (const auto *Node : ChildrenNodes)
 		{
 			if (const UNamedLTEdge *Edge = Cast<const UNamedLTEdge>(GetEdge(Node)))
 			{

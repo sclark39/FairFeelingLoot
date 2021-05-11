@@ -23,7 +23,7 @@ const ULTGraphNode* UNestedTableLTNode::TraverseNodesAndCollectLoot(FLootTable &
 			UE_LOG(LogTemp, Error, TEXT("Can't enter nested loot table %s. Would create a cycle."), *LootTableDefinition->GetName() );
 			return nullptr;
 		}
-		for (const ULTGenericGraphNode *Node : LootTableDefinition->RootNodes)
+		for (const auto *Node : LootTableDefinition->RootNodes)
 		{
 			if (const URootLTGraphNode *RootNode = Cast<URootLTGraphNode>(Node))
 			{
