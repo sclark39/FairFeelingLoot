@@ -2,6 +2,7 @@
 
 #include "ShufflebagLTNode.h"
 #include "IntWeightLTEdge.h"
+#include <utility>
 
 #define LOCTEXT_NAMESPACE "LootTableDefinition"
 
