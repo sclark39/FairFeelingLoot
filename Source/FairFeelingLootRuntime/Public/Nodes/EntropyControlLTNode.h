@@ -31,9 +31,11 @@ public:
 	bool bTracksOwnTime = true;
 
 	virtual const ULTGraphNode* TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const override;
+	virtual bool ShouldPickChildren() const override { return false; }
 
 #if WITH_EDITOR
 	virtual FLinearColor GetBackgroundColor() const override;
 	virtual const FSlateBrush* GetNodeIcon() const override;
+	virtual bool SupportsImplicitSequence() const override { return true; }
 #endif
 };

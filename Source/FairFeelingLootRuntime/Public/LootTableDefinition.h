@@ -75,6 +75,9 @@ public:
 	virtual FText GetNodeTitle() const override;
 	virtual bool IsNameEditable() const override;
 	virtual TSubclassOf<ULTGenericGraphEdge> GetEdgeType() const override;
+	virtual bool SupportsImplicitSequence() const { return false; }
+
+	virtual bool CanCreateConnectionTo(ULTGenericGraphNode* Other, int32 NumberOfChildrenNodes, FText& ErrorMessage);
 #endif
 };
 
@@ -114,6 +117,7 @@ public:
 	virtual TSubclassOf<ULTGenericGraphEdge> GetEdgeType() const override;
 	virtual FLinearColor GetBackgroundColor() const override;
 	virtual const FSlateBrush* GetNodeIcon() const override;
+	virtual bool SupportsImplicitSequence() const override { return true; }
 #endif
 };
 
@@ -123,6 +127,10 @@ class FAIRFEELINGLOOTRUNTIME_API ULootTableDefinition : public ULTGenericGraph
 {
 	GENERATED_BODY()
 public:
+
+	// When enabled, this allows for some node types to have multiple children which will be unconditionally followed.
+	UPROPERTY(EditDefaultsOnly, Category = "Loot Table")
+	bool bAllowImplicitSequenceNodes = false;
 
 	ULootTableDefinition();
 

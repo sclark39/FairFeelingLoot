@@ -26,5 +26,6 @@ public:
 	virtual FText GetNodeTitle() const override;
 	virtual const FSlateBrush* GetNodeIcon() const override;
 	virtual FLinearColor GetBackgroundColor() const override;
+	virtual bool SupportsImplicitSequence() const override { return true; }
 #endif // #if WITH_EDITOR
 };

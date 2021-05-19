@@ -46,6 +46,8 @@ const ULTGraphNode* ULTGraphNode::TraverseNodesAndCollectLoot(FLootTable &LootTa
 	return this;
 }
 
+
+
 #if WITH_EDITOR
 
 FText ULTGraphNode::RangeToText(float Min, float Max) const
@@ -75,6 +77,39 @@ bool ULTGraphNode::IsNameEditable() const
 TSubclassOf<ULTGenericGraphEdge> ULTGraphNode::GetEdgeType() const 
 {
 	return nullptr;
+}
+
+bool ULTGraphNode::CanCreateConnectionTo(ULTGenericGraphNode* Other, int32 NumberOfChildrenNodes, FText& ErrorMessage)
+{
+	ELTGenericGraphNodeLimit MyChildrenLimitType = this->ChildrenLimitType;
+	int32 MyChildrenLimit = this->ChildrenLimit;
+
+	if (SupportsImplicitSequence())
+	{
+		ensure(!ShouldPickChildren());
+		if (ULootTableDefinition *LT = Cast<ULootTableDefinition>(Graph))
+		{
+			if (!LT->bAllowImplicitSequenceNodes)
+			{
+				MyChildrenLimitType = ELTGenericGraphNodeLimit::Limited;
+				MyChildrenLimit = 1;
+			}
+		}
+	}
+
+	if (MyChildrenLimitType == ELTGenericGraphNodeLimit::Forbidden || (ChildrenLimitType == ELTGenericGraphNodeLimit::Limited && MyChildrenLimit <= 0))
+	{
+		ErrorMessage = FText::FromString("Node can not have children");
+		return false;
+	}
+
+	if (MyChildrenLimitType == ELTGenericGraphNodeLimit::Limited && NumberOfChildrenNodes >= MyChildrenLimit)
+	{
+		ErrorMessage = FText::FromString("Children limit exceeded");
+		return false;
+	}
+	
+	return CanCreateConnection(Other, ErrorMessage);
 }
 
 #endif // #if WITH_EDITOR

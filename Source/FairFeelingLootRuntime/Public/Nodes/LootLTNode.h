@@ -30,5 +30,6 @@ public:
 	virtual void SetNodeTitle(const FText& NewTitle) override;
 	virtual bool IsNameEditable() const override;
 	virtual FLinearColor GetBackgroundColor() const override;
+	virtual bool SupportsImplicitSequence() const override { return true; }
 #endif
 };
