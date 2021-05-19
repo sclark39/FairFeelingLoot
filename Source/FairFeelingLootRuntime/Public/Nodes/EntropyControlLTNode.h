@@ -23,7 +23,7 @@ public:
 	bool bShouldRandomizeSeed = false;
 
 	// If not randomizing the seed, this is what will be used to initialize the random number stream
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Random", meta = (EditCondition = "bTracksOwnRandomStream"))
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Random", meta = (EditCondition = "bTracksOwnRandomStream && !bShouldRandomizeSeed"))
 	float InitialSeed = 0;
 	
 	// Should this node time be tracked from the graph-scope or from this node? This impacts if Negentropy nodes g
