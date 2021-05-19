@@ -27,14 +27,14 @@ IMPLEMENT_MODULE(FFairFeelingLootEditor, FairFeelingLootEditor)
 void FFairFeelingLootEditor::StartupModule()
 {
 	IAssetTools& AssetTools = FModuleManager::LoadModuleChecked<FAssetToolsModule>("AssetTools").Get();
-	//FairRandomGraphAssetCategoryBit = AssetTools.RegisterAdvancedAssetCategory(
-	//	FName(TEXT("FairRandomAssetCategory")), 
-	//	LOCTEXT("FairRandomGraphAssetCategory", "FairRandom"));
+	FairRandomGraphAssetCategoryBit = AssetTools.RegisterAdvancedAssetCategory(
+		FName(TEXT("FairFeelingLootAssetCategory")), 
+		LOCTEXT("FairFeelingLootAssetCategory", "Fair Feeling Loot"));
 	
 	RegisterAssetTypeAction(
 		AssetTools, 
 		MakeShareable(
-			new FAssetTypeActions_LootTableDefinition(EAssetTypeCategories::Misc)
+			new FAssetTypeActions_LootTableDefinition(FairRandomGraphAssetCategoryBit)
 		));
 
 			
