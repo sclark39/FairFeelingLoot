@@ -8,7 +8,8 @@
 
 #include "SetLootTableParamLTNode.generated.h"
 
-
+// Modifies a global Param of the Loot Table, with options to 
+// apply a random number within a range either via Set, Add, or Subtract.
 UCLASS()
 class FAIRFEELINGLOOTRUNTIME_API USetLootTableParamLTNode : public ULTGraphNode
 {
@@ -16,15 +17,19 @@ class FAIRFEELINGLOOTRUNTIME_API USetLootTableParamLTNode : public ULTGraphNode
 public:
 	USetLootTableParamLTNode();
 
+	// Loot Table Param to Modify
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Loot Table")
 	FName ParamName;
 
+	// If the param hasn't been set yet, what should it be set to?
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Loot Table")
 	float DefaultValue = 0;
 
+	// How will the value be manipulated?
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Loot Table")
 	EAddParamLTType WriteMode;
 
+	// Random range for the number to apply using the specified WriteMode
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Loot Table")
 	FVector2D ValueRange = FVector2D::ZeroVector;
 

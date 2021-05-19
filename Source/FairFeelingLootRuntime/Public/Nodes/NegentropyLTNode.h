@@ -8,6 +8,10 @@
 
 #include "NegentropyLTNode.generated.h"
 
+// Picks between two children based upon the edge weights. The distribution will be the same
+// as if using a Pick Random node, but the sequence will be totally predictable. This can help
+// make loot drops feel more fair. Reseting the entropy after a specified amount of time can help
+// to hide the predictability of the sequence.
 UCLASS()
 class FAIRFEELINGLOOTRUNTIME_API UNegentropyLTNode : public ULTGraphNode
 {

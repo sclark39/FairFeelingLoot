@@ -8,7 +8,7 @@
 
 #include "NestedTableLTNode.generated.h"
 
-
+// Calls into another Loot Table Definition, as if it is part of the same graph.
 UCLASS()
 class FAIRFEELINGLOOTRUNTIME_API UNestedTableLTNode : public ULTGraphNode
 {
@@ -16,6 +16,7 @@ class FAIRFEELINGLOOTRUNTIME_API UNestedTableLTNode : public ULTGraphNode
 public:
 	UNestedTableLTNode();
 
+	// The Loot Table Definition to call in to
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Nested Loot Table")
 	ULootTableDefinition *LootTableDefinition;
 

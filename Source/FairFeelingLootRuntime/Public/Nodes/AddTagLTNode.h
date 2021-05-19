@@ -9,6 +9,7 @@
 #include "AddTagLTNode.generated.h"
 
 
+// Adds a GameplayTag to the last generated Loot
 UCLASS()
 class FAIRFEELINGLOOTRUNTIME_API UAddTagLTNode : public ULTGraphNode
 {
@@ -16,6 +17,7 @@ class FAIRFEELINGLOOTRUNTIME_API UAddTagLTNode : public ULTGraphNode
 public:
 	UAddTagLTNode();
 
+	// What GameplayTag should be applied?
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Loot")
 	FGameplayTag GameplayTag;
 	

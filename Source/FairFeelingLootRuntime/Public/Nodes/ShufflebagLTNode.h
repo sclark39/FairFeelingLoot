@@ -8,7 +8,9 @@
 
 #include "ShufflebagLTNode.generated.h"
 
-
+// Picks from Children by putting all children into a bag (cloning if weights are 
+// greater than 1), and then randomly draws until the bag is empty. Once bag is empty,
+// all children are put back into the bag.
 UCLASS()
 class FAIRFEELINGLOOTRUNTIME_API UShufflebagLTNode : public ULTGraphNode
 {

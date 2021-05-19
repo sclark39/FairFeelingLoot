@@ -8,6 +8,7 @@
 
 #include "LootLTNode.generated.h"
 
+// Creates a Loot Recipe and adds it to the returned array
 UCLASS()
 class FAIRFEELINGLOOTRUNTIME_API ULootLTNode : public ULTGraphNode
 {
@@ -15,9 +16,11 @@ class FAIRFEELINGLOOTRUNTIME_API ULootLTNode : public ULTGraphNode
 public:
 	ULootLTNode();
 
+	// Name for the Loot
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Loot")
 	FName LootType;
 
+	// Color of Loot in the Graph (dev only)
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Loot")
 	FLinearColor LootColor;
 

@@ -8,7 +8,8 @@
 
 #include "CallbackLTNode.generated.h"
 
-
+// When this node is reached, an event will be sent to the LootTableComponent
+// along with the given Specifier value. This allows for more custom logic mid-generation.
 UCLASS()
 class FAIRFEELINGLOOTRUNTIME_API UCallbackLTNode : public ULTGraphNode
 {
@@ -16,6 +17,7 @@ class FAIRFEELINGLOOTRUNTIME_API UCallbackLTNode : public ULTGraphNode
 public:
 	UCallbackLTNode();
 
+	// The value to send through to the callback to help identify which node is triggering the blueprint event
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Blueprint Callback")
 	FName Specifier;
 

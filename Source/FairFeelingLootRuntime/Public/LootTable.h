@@ -65,9 +65,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	bool bShouldRandomizeSeed = true;
 
+	// If not randomizing the seed, this is what will be used to initialize the random number stream
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (EditCondition = "!bShouldRandomizeSeed"))
 	int InitialSeed = 0;
 
+	// The Loot Table Definition to use for generating Loot
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	ULootTableDefinition *Definition = 0;
 

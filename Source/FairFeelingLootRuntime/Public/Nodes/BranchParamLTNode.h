@@ -8,6 +8,8 @@
 
 #include "BranchParamLTNode.generated.h"
 
+// Test a Loot Table Float Param to determine which edge to follow. The ranges
+// to test against should be set on the edges.
 UCLASS()
 class FAIRFEELINGLOOTRUNTIME_API UBranchParamLTNode : public ULTGraphNode
 {
@@ -15,9 +17,11 @@ class FAIRFEELINGLOOTRUNTIME_API UBranchParamLTNode : public ULTGraphNode
 public:
 	UBranchParamLTNode();
 
+	// Param to Test
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Float Param")
 	FName ParamName = NAME_None;
 
+	// If the param hasn't been set yet, what should it be set to?
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Float Param")
 	float DefaultValue;
 

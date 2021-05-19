@@ -8,6 +8,8 @@
 
 #include "AddParamLTNode.generated.h"
 
+// Modifies a Param for the last generated Loot, with options to 
+// apply a random number within a range either via Set, Add, or Subtract.
 UCLASS()
 class FAIRFEELINGLOOTRUNTIME_API UAddParamLTNode : public ULTGraphNode
 {
@@ -15,12 +17,15 @@ class FAIRFEELINGLOOTRUNTIME_API UAddParamLTNode : public ULTGraphNode
 public:
 	UAddParamLTNode();
 
+	// The Param Name on the Loot to Modify
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Loot")
 	FName LootParamName;
 
+	// How will the value be manipulated?
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Loot")
 	EAddParamLTType WriteMode;
 
+	// Random range for the number to apply using the specified WriteMode
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Loot")
 	FVector2D LootParamRange;
 

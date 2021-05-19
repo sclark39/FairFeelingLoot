@@ -8,6 +8,7 @@
 
 #include "RepeatLTNode.generated.h"
 
+// Loops its children to generate multiple drops of Loot
 UCLASS()
 class FAIRFEELINGLOOTRUNTIME_API URepeatLTNode : public ULTGraphNode
 {
@@ -15,6 +16,7 @@ class FAIRFEELINGLOOTRUNTIME_API URepeatLTNode : public ULTGraphNode
 public:
 	URepeatLTNode();
 
+	// How many times to repeat? Will repeat between [Min, Max] times.
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Loot")
 	FVector2D RepeatRange;
 

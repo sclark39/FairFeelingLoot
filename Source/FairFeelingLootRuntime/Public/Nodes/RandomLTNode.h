@@ -8,7 +8,7 @@
 
 #include "RandomLTNode.generated.h"
 
-
+// Randomly picks a child based on the weighted values
 UCLASS()
 class FAIRFEELINGLOOTRUNTIME_API URandomLTNode : public ULTGraphNode
 {

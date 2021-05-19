@@ -8,6 +8,7 @@
 
 #include "SequenceLTNode.generated.h"
 
+// Calls all of it's children, optionally in an order you specify, accumulating any Loot
 UCLASS()
 class FAIRFEELINGLOOTRUNTIME_API USequenceLTNode : public ULTGraphNode
 {

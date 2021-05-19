@@ -23,18 +23,23 @@ public:
 	UPROPERTY(BlueprintAssignable)
 	FOnLootTableCallback OnLootTableCallback;
 
+	// Generates an array of Loot Recipes based upon the Loot Table Definition
 	UFUNCTION(BlueprintCallable, Category = "Loot Table")
 	TArray<FLootRecipe> MakeRandomLoot();
 
+	// Gets the value of a global loot table name param
 	UFUNCTION(BlueprintCallable, Category = "Loot Table")
 	FName GetNameParam(FName ParamName, FName DefaultName = NAME_None);
 
+	// Gets the value of a global loot table float param
 	UFUNCTION(BlueprintCallable, Category = "Loot Table")
 	float GetFloatParam(FName ParamName, float DefaultValue = 0);
 
+	// Sets the value of a global loot table name param
 	UFUNCTION(BlueprintCallable, Category = "Loot Table")
 	void SetNameParam(FName ParamName, FName ParamValue);
 
+	// Sets the value of a global loot table float param
 	UFUNCTION(BlueprintCallable, Category = "Loot Table")
 	void SetFloatParam(FName ParamName, float ParamValue);
 };

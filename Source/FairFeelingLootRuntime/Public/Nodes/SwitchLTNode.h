@@ -9,6 +9,7 @@
 #include "SwitchLTNode.generated.h"
 
 
+// Picks Child based on Global Param match to Edge name. 
 UCLASS()
 class FAIRFEELINGLOOTRUNTIME_API USwitchLTNode : public ULTGraphNode
 {
@@ -16,9 +17,11 @@ class FAIRFEELINGLOOTRUNTIME_API USwitchLTNode : public ULTGraphNode
 public:
 	USwitchLTNode();
 
+	// Global Loot Table Param to Match
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Switch")
 	FName ParamName;
 
+	// If the param hasn't been set yet, what should it be set to?
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Switch")
 	FName DefaultValue;
 
