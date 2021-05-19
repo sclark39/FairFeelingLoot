@@ -27,6 +27,7 @@ const ULTGenericGraphNode* UNegentropyLTNode::PickChild(FLootTable &LootTable, c
  	DECLARE_LTNODE_ELEMENT(float, Probability);
 
 	bool bNeedProbabilityCalc = false;
+	bool bNeedEntropyReset = false;
 
 	if (*RequiresInitialization)
 	{
@@ -40,13 +41,20 @@ const ULTGenericGraphNode* UNegentropyLTNode::PickChild(FLootTable &LootTable, c
 
 		*RequiresInitialization = false;
 		
-		Entropy = State.RNG->FRand();
 		bDynamicWeights = ( Edge0->bUseDynamicWeight || Edge1->bUseDynamicWeight );
 		bNeedProbabilityCalc = true;
+		bNeedEntropyReset = true;
 	}
 	else
 	{
 		bNeedProbabilityCalc = bDynamicWeights;
+
+		if (bShouldResetEntropyAfterTimeout)
+		{
+			float Time = LootTable.GetTime();
+			if (State.LastTime + TimeUntilEntropyReset < Time)
+				bNeedEntropyReset = true;
+		}
 	}
 
 	if (bNeedProbabilityCalc)
@@ -68,8 +76,8 @@ const ULTGenericGraphNode* UNegentropyLTNode::PickChild(FLootTable &LootTable, c
 		Probability = EdgeWeight[1] / denom;
 	}
 
-	float Time = LootTable.GetTime();
-	if (State.LastTime + TimeUntilEntropyReset < Time)
+
+	if (bNeedEntropyReset)
 	{
 		Entropy = State.RNG->FRand();
 	}
