@@ -6,22 +6,6 @@
 
 TArray<FLootRecipe> ULootTableComponent::MakeRandomLoot()
 {
-	LootTable.Component = this;
-	return ULootTableBlueprintLibrary::MakeRandomLoot(LootTable, GetWorld());
-}
-
-void ULootTableComponent::SetNameParam(FName ParamName, FName ParamValue)
-{
-	ULootTableBlueprintLibrary::SetLootTableNameParam(LootTable, ParamName, ParamValue);
-}
-
-void ULootTableComponent::SetFloatParam(FName ParamName, float ParamValue)
-{
-	ULootTableBlueprintLibrary::SetLootTableFloatParam(LootTable, ParamName, ParamValue);
-}
-
-TArray<FLootRecipe> ULootTableBlueprintLibrary::MakeRandomLoot(FLootTable &LootTable, UObject *WorldContext)
-{
 	TArray<FLootRecipe> Loot;
 
 	if (LootTable.Definition == nullptr)
@@ -38,13 +22,12 @@ TArray<FLootRecipe> ULootTableBlueprintLibrary::MakeRandomLoot(FLootTable &LootT
 			LootTable.RNG.GenerateNewSeed();
 
 		LootTable.EntropyState.RNG = &LootTable.RNG;
-		LootTable.World = WorldContext->GetWorld();
+		LootTable.World = GetWorld();
 
 		LootTable.bRequiresInitialization = false;
 	}
 
 	// Make Loot
-
 	const URootLTGraphNode *RootNode = LootTable.Definition->GetRootNode();
 	if (!RootNode)
 	{
@@ -61,16 +44,28 @@ TArray<FLootRecipe> ULootTableBlueprintLibrary::MakeRandomLoot(FLootTable &LootT
 	return Loot;
 }
 
-void ULootTableBlueprintLibrary::SetLootTableNameParam(FLootTable &LootTable, FName ParamName, FName ParamValue)
+FName ULootTableComponent::GetNameParam(FName ParamName, FName DefaultName)
+{
+	return LootTable.GetNameParam(ParamName, DefaultName);
+}
+
+float ULootTableComponent::GetFloatParam(FName ParamName, float DefaultValue)
+{
+	return LootTable.GetFloatParam(ParamName, DefaultValue);
+}
+
+void ULootTableComponent::SetNameParam(FName ParamName, FName ParamValue)
 {
 	FName &Value = LootTable.NameParams.FindOrAdd(ParamName);
 	Value = ParamValue;
 }
-void ULootTableBlueprintLibrary::SetLootTableFloatParam(FLootTable &LootTable, FName ParamName, float ParamValue)
+
+void ULootTableComponent::SetFloatParam(FName ParamName, float ParamValue)
 {
 	float &Value = LootTable.FloatParams.FindOrAdd(ParamName);
 	Value = ParamValue;
 }
+
 
 
 // Algorithm Source: Leva, J. L. 1992. A fast normal random number generator.

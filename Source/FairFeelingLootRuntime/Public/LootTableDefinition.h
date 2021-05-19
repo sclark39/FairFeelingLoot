@@ -118,7 +118,7 @@ public:
 };
 
 
-UCLASS(Blueprintable, hideCategories = ("LTGenericGraph", "LTGenericGraph_Editor"))
+UCLASS(NotBlueprintable, hideCategories = ("LTGenericGraph", "LTGenericGraph_Editor"))
 class FAIRFEELINGLOOTRUNTIME_API ULootTableDefinition : public ULTGenericGraph
 {
 	GENERATED_BODY()

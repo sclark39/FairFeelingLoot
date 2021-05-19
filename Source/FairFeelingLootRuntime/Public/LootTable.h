@@ -17,13 +17,13 @@ struct FAIRFEELINGLOOTRUNTIME_API FLootRecipe
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FName LootType;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TMap<FName, float> Params;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FGameplayTagContainer GameplayTags;
 };
 
@@ -35,7 +35,7 @@ struct FAIRFEELINGLOOTRUNTIME_API FEntropyState
 };
 
 
-USTRUCT(BlueprintType)
+USTRUCT(BlueprintInternalUseOnly)
 struct FAIRFEELINGLOOTRUNTIME_API FLootTable
 {
 	GENERATED_BODY()
@@ -62,7 +62,7 @@ public:
 	bool bRequiresInitialization = true;
 
 	// If true, ignore InitialSeed and randomize the seed for the random number stream
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	bool bShouldRandomizeSeed = true;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (EditCondition = "!bShouldRandomizeSeed"))

@@ -17,7 +17,7 @@ class FAIRFEELINGLOOTRUNTIME_API ULootTableComponent : public UActorComponent
 	DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnLootTableCallback, FName, Specifier);
 
 public:
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere)
 	FLootTable LootTable;
 
 	UPROPERTY(BlueprintAssignable)
@@ -25,6 +25,12 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Loot Table")
 	TArray<FLootRecipe> MakeRandomLoot();
+
+	UFUNCTION(BlueprintCallable, Category = "Loot Table")
+	FName GetNameParam(FName ParamName, FName DefaultName = NAME_None);
+
+	UFUNCTION(BlueprintCallable, Category = "Loot Table")
+	float GetFloatParam(FName ParamName, float DefaultValue = 0);
 
 	UFUNCTION(BlueprintCallable, Category = "Loot Table")
 	void SetNameParam(FName ParamName, FName ParamValue);
@@ -39,15 +45,6 @@ class FAIRFEELINGLOOTRUNTIME_API ULootTableBlueprintLibrary : public UBlueprintF
 {
 	GENERATED_BODY()
 public:
-
-	UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContext"), Category = "Math|Random")
-		static TArray<FLootRecipe> MakeRandomLoot(UPARAM(ref) FLootTable &LootTable, UObject *WorldContext);
-
-	UFUNCTION(BlueprintCallable, Category = "Loot Table")
-		static void SetLootTableNameParam(UPARAM(ref) FLootTable &LootTable, FName ParamName, FName ParamValue);
-
-	UFUNCTION(BlueprintCallable, Category = "Loot Table")
-		static void SetLootTableFloatParam(UPARAM(ref) FLootTable &LootTable, FName ParamName, float ParamValue);
 
 	// Change sigma to change how clustered around the mean the value is. Lower values may be more performance heavy
 	UFUNCTION(BlueprintCallable, Category = "Loot Table")
