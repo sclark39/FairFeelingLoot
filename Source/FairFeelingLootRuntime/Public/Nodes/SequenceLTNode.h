@@ -14,7 +14,11 @@ class FAIRFEELINGLOOTRUNTIME_API USequenceLTNode : public ULTGraphNode
 	GENERATED_BODY()
 public:
 	USequenceLTNode();
-	
+
+	// Should the sequence connections be ordered?
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Sequence")
+	bool bOrderedSequence = false;
+
 	virtual const ULTGraphNode* TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const override;	
 
 #if WITH_EDITOR

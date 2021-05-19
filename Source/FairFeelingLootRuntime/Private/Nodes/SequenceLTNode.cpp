@@ -34,10 +34,11 @@ const ULTGraphNode* USequenceLTNode::TraverseNodesAndCollectLoot(FLootTable &Loo
 		{
 			UPriorityLTEdge *EdgeA = Cast<UPriorityLTEdge>( GetEdge(ChildrenNodes[A]) );
 			UPriorityLTEdge *EdgeB = Cast<UPriorityLTEdge>( GetEdge(ChildrenNodes[B]) );
-			if ( EdgeA && EdgeB )
-				return EdgeA < EdgeB;
 
-			return A < B;
+			int AWeight = EdgeA ? EdgeA->Priority : 1;
+			int BWeight = EdgeB ? EdgeB->Priority : 1;
+
+			return AWeight < BWeight;
 		});
 
 		for (int i = 0; i < NumChildren; i++)
@@ -62,7 +63,7 @@ const ULTGraphNode* USequenceLTNode::TraverseNodesAndCollectLoot(FLootTable &Loo
 
 TSubclassOf<ULTGenericGraphEdge> USequenceLTNode::GetEdgeType() const
 {
-	return UPriorityLTEdge::StaticClass();
+	return bOrderedSequence ? UPriorityLTEdge::StaticClass() : nullptr;
 }
 
 const FSlateBrush*  USequenceLTNode::GetNodeIcon() const
