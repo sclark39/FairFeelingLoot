@@ -9,7 +9,7 @@ UAddTagLTNode::UAddTagLTNode()
 //	LootTagName = NAME_None;
 
 #if WITH_EDITORONLY_DATA
-	ContextMenuName = LOCTEXT("AddTagNode", "Make Loot - Add Tag / Stat");
+	ContextMenuName = LOCTEXT("AddTagNode", "Add Tag / Stat");
 	ContextMenuCategory = LTCATEGORY_LOOT;
 #endif // #if WITH_EDITORONLY_DATA
 }
@@ -40,7 +40,7 @@ const ULTGraphNode* UAddTagLTNode::TraverseNodesAndCollectLoot(FLootTable &LootT
 	}
 	else
 	{
-		UE_LOG(LogTemp, Error, TEXT("No loot found to Add Gameplay Tag. Add a Make Loot node first."));
+		UE_LOG(LogTemp, Error, TEXT("No loot found to Add Tag / Stat. Add a Make Loot node first."));
 	}
 
 	return Super::TraverseNodesAndCollectLoot(LootTable, State, Loot);
@@ -62,11 +62,11 @@ FText UAddTagLTNode::GetNodeTitle() const
 		else
 			Args.Add(TEXT("Mode"), FText::FromString(TEXT("")));
 		Args.Add(TEXT("Range"), RangeToText(StatValueRange.X, StatValueRange.Y));
-		return FText::Format(LOCTEXT("NestedTableNodeTitle", "{Name}{Mode} {Range}"), Args);
+		return FText::Format(LOCTEXT("NestedTableNodeTitle", ">{Name}{Mode} {Range}"), Args);
 	}
 	else
 	{
-		return FText::Format(LOCTEXT("NestedTableNodeTitle", "{Name}"), Args);
+		return FText::Format(LOCTEXT("NestedTableNodeTitle", "<{Name}>"), Args);
 	}
 }
 
