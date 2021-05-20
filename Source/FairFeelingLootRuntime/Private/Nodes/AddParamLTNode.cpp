@@ -10,7 +10,7 @@ UAddParamLTNode::UAddParamLTNode()
 	LootParamRange = FVector2D::ZeroVector;
 
 #if WITH_EDITORONLY_DATA
-	ContextMenuName = LOCTEXT("AddParamNode", "Add Loot Param");
+	ContextMenuName = LOCTEXT("AddParamNode", "Make Loot - Add Named Param");
 	ContextMenuCategory = LTCATEGORY_LOOT;
 #endif // #if WITH_EDITORONLY_DATA
 }
@@ -32,6 +32,10 @@ const ULTGraphNode* UAddParamLTNode::TraverseNodesAndCollectLoot(FLootTable &Loo
 			rand = Param - rand;
 
 		Param = rand;
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("No loot found to Add Named Param. Add a Make Loot node first."));
 	}
 
 	return Super::TraverseNodesAndCollectLoot(LootTable, State, Loot);

@@ -18,11 +18,11 @@ public:
 	USwitchLTNode();
 
 	// Global Loot Table Param to Match
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Switch")
+	UPROPERTY(EditDefaultsOnly, Category = "Switch")
 	FName ParamName;
 
 	// If the param hasn't been set yet, what should it be set to?
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Switch")
+	UPROPERTY(EditDefaultsOnly, Category = "Switch")
 	FName DefaultValue;
 
 	virtual const ULTGenericGraphNode* PickChild(FLootTable &LootTable, const FEntropyState &State) const override;

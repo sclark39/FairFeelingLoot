@@ -17,7 +17,7 @@ public:
 	URepeatLTNode();
 
 	// How many times to repeat? Will repeat between [Min, Max] times.
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Loot")
+	UPROPERTY(EditDefaultsOnly, Category = "Loot")
 	FVector2D RepeatRange;
 
 	virtual const ULTGraphNode* TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const override;

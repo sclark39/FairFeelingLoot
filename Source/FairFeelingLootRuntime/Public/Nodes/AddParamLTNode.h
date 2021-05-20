@@ -18,15 +18,15 @@ public:
 	UAddParamLTNode();
 
 	// The Param Name on the Loot to Modify
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Loot")
+	UPROPERTY(EditDefaultsOnly, Category = "Loot")
 	FName LootParamName;
 
 	// How will the value be manipulated?
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Loot")
+	UPROPERTY(EditDefaultsOnly, Category = "Loot")
 	EAddParamLTType WriteMode;
 
 	// Random range for the number to apply using the specified WriteMode
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Loot")
+	UPROPERTY(EditDefaultsOnly, Category = "Loot")
 	FVector2D LootParamRange;
 
 	virtual const ULTGraphNode* TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const override;

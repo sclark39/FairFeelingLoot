@@ -18,7 +18,7 @@ public:
 	UCallbackLTNode();
 
 	// The value to send through to the callback to help identify which node is triggering the blueprint event
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Blueprint Callback")
+	UPROPERTY(EditDefaultsOnly, Category = "Blueprint Callback")
 	FName Specifier;
 
 	virtual const ULTGraphNode* TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const override;

@@ -20,11 +20,11 @@ public:
 	UNegentropyLTNode();
 
 	// If enough time passes, should the entropy value be reset (breaking the sequence)
-	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Negentropy")
+	UPROPERTY(EditDefaultsOnly, Category = "Negentropy")
 	bool bShouldResetEntropyAfterTimeout = true;
 
 	// The amount of time in seconds without checking for a new value that must pass before the entropy values are reset
-	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Negentropy", meta = (EditCondition = "bShouldResetEntropyAfterTimeout"))
+	UPROPERTY(EditDefaultsOnly, Category = "Negentropy", meta = (EditCondition = "bShouldResetEntropyAfterTimeout"))
 	float TimeUntilEntropyReset = 30;
 
 	virtual const ULTGenericGraphNode* PickChild(FLootTable &LootTable, const FEntropyState &State) const override;

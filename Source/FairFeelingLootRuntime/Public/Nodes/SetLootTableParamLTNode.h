@@ -18,19 +18,19 @@ public:
 	USetLootTableParamLTNode();
 
 	// Loot Table Param to Modify
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Loot Table")
+	UPROPERTY(EditDefaultsOnly, Category = "Loot Table")
 	FName ParamName;
 
 	// If the param hasn't been set yet, what should it be set to?
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Loot Table")
+	UPROPERTY(EditDefaultsOnly, Category = "Loot Table")
 	float DefaultValue = 0;
 
 	// How will the value be manipulated?
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Loot Table")
+	UPROPERTY(EditDefaultsOnly, Category = "Loot Table")
 	EAddParamLTType WriteMode;
 
 	// Random range for the number to apply using the specified WriteMode
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Loot Table")
+	UPROPERTY(EditDefaultsOnly, Category = "Loot Table")
 	FVector2D ValueRange = FVector2D::ZeroVector;
 
 	virtual const ULTGraphNode* TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const override;

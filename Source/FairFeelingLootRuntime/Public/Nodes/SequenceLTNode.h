@@ -17,7 +17,7 @@ public:
 	USequenceLTNode();
 
 	// Should the sequence connections be ordered?
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Sequence")
+	UPROPERTY(EditDefaultsOnly, Category = "Sequence")
 	bool bOrderedSequence = false;
 
 	virtual const ULTGraphNode* TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const override;	

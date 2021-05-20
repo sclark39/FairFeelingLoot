@@ -18,11 +18,11 @@ public:
 	UBranchParamLTNode();
 
 	// Param to Test
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Float Param")
+	UPROPERTY(EditDefaultsOnly, Category = "Float Param")
 	FName ParamName = NAME_None;
 
 	// If the param hasn't been set yet, what should it be set to?
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Float Param")
+	UPROPERTY(EditDefaultsOnly, Category = "Float Param")
 	float DefaultValue;
 
 	virtual const ULTGraphNode* TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const override;

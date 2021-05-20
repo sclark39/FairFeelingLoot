@@ -17,7 +17,7 @@ public:
 	UNestedTableLTNode();
 
 	// The Loot Table Definition to call in to
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Nested Loot Table")
+	UPROPERTY(EditDefaultsOnly, Category = "Nested Loot Table")
 	ULootTableDefinition *LootTableDefinition;
 
 	virtual const ULTGraphNode* TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const override;
