@@ -7,7 +7,7 @@
 ULootLTNode::ULootLTNode()
 {
 	LootColor = FLinearColor(1.0f, 0.7f, 0.0f);
-	LootType = FName(TEXT("Loot"));
+	LootName = FName(TEXT("Loot"));
 
 #if WITH_EDITORONLY_DATA
 	ContextMenuName = LOCTEXT("LootNode", "Make Loot");
@@ -20,7 +20,9 @@ const ULTGraphNode* ULootLTNode::TraverseNodesAndCollectLoot(FLootTable &LootTab
 {
 	FLootRecipe NewLoot;
 
+	NewLoot.LootName = LootName;
 	NewLoot.LootType = LootType;
+
 	Loot.Push(NewLoot);
 
 	return Super::TraverseNodesAndCollectLoot(LootTable, State, Loot);
@@ -30,12 +32,12 @@ const ULTGraphNode* ULootLTNode::TraverseNodesAndCollectLoot(FLootTable &LootTab
 
 FText ULootLTNode::GetNodeTitle() const
 {
-	return FText::FromName(LootType);
+	return FText::FromName(LootName);
 }
 
 void ULootLTNode::SetNodeTitle(const FText& NewTitle)
 {
-	LootType = FName(NewTitle.ToString());
+	LootName = FName(NewTitle.ToString());
 }
 
 const FSlateBrush*  ULootLTNode::GetNodeIcon() const

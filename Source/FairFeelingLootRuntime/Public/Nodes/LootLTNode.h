@@ -17,11 +17,15 @@ public:
 	ULootLTNode();
 
 	// Name for the Loot
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Loot")
-	FName LootType;
+	UPROPERTY(EditDefaultsOnly, Category = "Loot")
+	FName LootName;
+
+	// Gameplay Tag Loot Type Identifier
+	UPROPERTY(EditDefaultsOnly, Category = "Loot")
+	FGameplayTag LootType;
 
 	// Color of Loot in the Graph (dev only)
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Loot")
+	UPROPERTY(EditDefaultsOnly, Category = "Loot")
 	FLinearColor LootColor;
 
 	virtual const ULTGraphNode* TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const override;
