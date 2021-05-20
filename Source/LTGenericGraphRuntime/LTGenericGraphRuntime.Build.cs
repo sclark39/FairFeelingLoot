@@ -27,10 +27,14 @@ public class LTGenericGraphRuntime : ModuleRules
 				"Core",
 				"CoreUObject",
                 "Engine",
-				"EditorStyle",
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
+
+		if (Target.Type == TargetRules.TargetType.Editor)
+		{
+			PublicDependencyModuleNames.Add("EditorStyle");
+		}
 
 		PrivateDependencyModuleNames.AddRange(
 			new string[]

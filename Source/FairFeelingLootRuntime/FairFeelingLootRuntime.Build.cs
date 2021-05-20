@@ -33,9 +33,13 @@ public class FairFeelingLootRuntime : ModuleRules
 				"CoreUObject",
                 "Engine",
 				"GameplayTags",
-				"EditorStyle"
 			}
 			);
+
+		if (Target.Type == TargetRules.TargetType.Editor)
+		{
+			PrivateDependencyModuleNames.Add("EditorStyle");
+		}
 
 		PrivateDependencyModuleNames.AddRange(
 			new string[]
