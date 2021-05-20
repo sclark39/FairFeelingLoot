@@ -9,7 +9,7 @@ UAddTagLTNode::UAddTagLTNode()
 //	LootTagName = NAME_None;
 
 #if WITH_EDITORONLY_DATA
-	ContextMenuName = LOCTEXT("AddTagNode", "Add Tag / Stat");
+	ContextMenuName = LOCTEXT("AddTagNode", "Make Loot - Add Tag / Stat");
 	ContextMenuCategory = LTCATEGORY_LOOT;
 #endif // #if WITH_EDITORONLY_DATA
 }

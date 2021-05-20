@@ -7,8 +7,8 @@
 USetLootTableParamLTNode::USetLootTableParamLTNode()
 {
 #if WITH_EDITORONLY_DATA
-	ContextMenuName = LOCTEXT("SetParam", "Edit LootTable Param");
-	ContextMenuCategory = LTCATEGORY_MISC;
+	ContextMenuName = LOCTEXT("SetParam", "Edit Float Param");
+	ContextMenuCategory = LTCATEGORY_FLOW;
 #endif // #if WITH_EDITORONLY_DATA
 }
 

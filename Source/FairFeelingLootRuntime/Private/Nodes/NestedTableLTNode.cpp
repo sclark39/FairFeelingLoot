@@ -8,7 +8,7 @@ UNestedTableLTNode::UNestedTableLTNode()
 {
 #if WITH_EDITORONLY_DATA
 	ContextMenuName = LOCTEXT("NestedLTNode", "Nested Loot Table");
-	ContextMenuCategory = LTCATEGORY_FLOW;
+	ContextMenuCategory = LTCATEGORY_MISC;
 	ChildrenLimitType = ELTGenericGraphNodeLimit::Forbidden;
 #endif // #if WITH_EDITORONLY_DATA
 }

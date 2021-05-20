@@ -12,8 +12,8 @@
 
 class ULTGraphNode;
 
-#define LTCATEGORY_RANDOM	LOCTEXT("RandomCategory", "1. Random Selection")
-#define LTCATEGORY_LOOT		LOCTEXT("LootCategory", "2. Loot Building")
+#define LTCATEGORY_LOOT		LOCTEXT("LootCategory", "1. Loot Building")
+#define LTCATEGORY_RANDOM	LOCTEXT("RandomCategory", "2. Random Selection")
 #define LTCATEGORY_FLOW		LOCTEXT("FlowControlCategory", "3. Flow Control")
 #define LTCATEGORY_MISC		LOCTEXT("MiscCategory", "4. Miscellaneous")
 
