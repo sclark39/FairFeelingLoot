@@ -9,7 +9,7 @@ UAddTagLTNode::UAddTagLTNode()
 //	LootTagName = NAME_None;
 
 #if WITH_EDITORONLY_DATA
-	ContextMenuName = LOCTEXT("AddTagNode", "Make Loot - Add Gameplay Tag");
+	ContextMenuName = LOCTEXT("AddTagNode", "Make Loot - Add Tag / Stat");
 	ContextMenuCategory = LTCATEGORY_LOOT;
 #endif // #if WITH_EDITORONLY_DATA
 }
@@ -21,7 +21,7 @@ const ULTGraphNode* UAddTagLTNode::TraverseNodesAndCollectLoot(FLootTable &LootT
 	if (0 < Loot.Num())
 	{
 		FLootRecipe &NewLoot = Loot.Last();
-		NewLoot.GameplayTags.AddTag(GameplayTag);
+		NewLoot.Tags.AddTag(GameplayTag);
 
 		if (bTagHasStatValue)
 		{

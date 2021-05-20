@@ -20,8 +20,8 @@ const ULTGraphNode* ULootLTNode::TraverseNodesAndCollectLoot(FLootTable &LootTab
 {
 	FLootRecipe NewLoot;
 
-	NewLoot.LootName = LootName;
-	NewLoot.LootType = LootType;
+	NewLoot.Name = LootName;
+	NewLoot.Type = LootType;
 
 	Loot.Push(NewLoot);
 

@@ -18,19 +18,16 @@ struct FAIRFEELINGLOOTRUNTIME_API FLootRecipe
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FName LootName;
+	FName Name;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FGameplayTag LootType;
+	FGameplayTag Type;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FGameplayTagContainer GameplayTags;
+	FGameplayTagContainer Tags;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TMap<FGameplayTag, float> Stats;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TMap<FName, float> Params;
 
 };
 
