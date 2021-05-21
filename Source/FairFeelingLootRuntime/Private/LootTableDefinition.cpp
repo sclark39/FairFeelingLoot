@@ -69,6 +69,11 @@ FText ULTGraphNode::GetNodeTitle() const
 	return ContextMenuName;
 }
 
+FText ULTGraphNode::GetContextMenuDescription() const
+{
+	return GetNodeTooltip();
+}
+
 bool ULTGraphNode::IsNameEditable() const
 {
 	return false;
@@ -79,11 +84,8 @@ TSubclassOf<ULTGenericGraphEdge> ULTGraphNode::GetEdgeType() const
 	return nullptr;
 }
 
-bool ULTGraphNode::CanCreateConnectionTo(ULTGenericGraphNode* Other, int32 NumberOfChildrenNodes, FText& ErrorMessage)
+void ULTGraphNode::GetChildrenLimit(ELTGenericGraphNodeLimit &LimitType, int32 &LimitCount) const
 {
-	ELTGenericGraphNodeLimit MyChildrenLimitType = this->ChildrenLimitType;
-	int32 MyChildrenLimit = this->ChildrenLimit;
-
 	if (SupportsImplicitSequence())
 	{
 		ensure(!ShouldPickChildren());
@@ -91,25 +93,14 @@ bool ULTGraphNode::CanCreateConnectionTo(ULTGenericGraphNode* Other, int32 Numbe
 		{
 			if (!LT->bAllowImplicitSequenceNodes)
 			{
-				MyChildrenLimitType = ELTGenericGraphNodeLimit::Limited;
-				MyChildrenLimit = 1;
+				LimitType = ELTGenericGraphNodeLimit::Limited;
+				LimitCount = 1;
+				return;
 			}
 		}
 	}
 
-	if (MyChildrenLimitType == ELTGenericGraphNodeLimit::Forbidden || (ChildrenLimitType == ELTGenericGraphNodeLimit::Limited && MyChildrenLimit <= 0))
-	{
-		ErrorMessage = FText::FromString("Node can not have children");
-		return false;
-	}
-
-	if (MyChildrenLimitType == ELTGenericGraphNodeLimit::Limited && NumberOfChildrenNodes >= MyChildrenLimit)
-	{
-		ErrorMessage = FText::FromString("Children limit exceeded");
-		return false;
-	}
-	
-	return CanCreateConnection(Other, ErrorMessage);
+	Super::GetChildrenLimit(LimitType, LimitCount);
 }
 
 #endif // #if WITH_EDITOR

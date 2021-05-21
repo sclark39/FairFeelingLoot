@@ -73,11 +73,12 @@ public:
 #if WITH_EDITOR
 	FText RangeToText(float Min, float Max) const;
 	virtual FText GetNodeTitle() const override;
+	virtual FText GetContextMenuDescription() const override;
 	virtual bool IsNameEditable() const override;
 	virtual TSubclassOf<ULTGenericGraphEdge> GetEdgeType() const override;
 	virtual bool SupportsImplicitSequence() const { return false; }
 
-	virtual bool CanCreateConnectionTo(ULTGenericGraphNode* Other, int32 NumberOfChildrenNodes, FText& ErrorMessage);
+	virtual void GetChildrenLimit(ELTGenericGraphNodeLimit &LimitType, int32 &LimitCount) const override;
 #endif
 };
 
@@ -90,7 +91,7 @@ public:
 };
 
 
-
+// Node that has no effect, can be used if you don't always want loot to be generated
 UCLASS()
 class FAIRFEELINGLOOTRUNTIME_API UNoopLTGraphNode : public ULTGraphNode
 {
@@ -104,6 +105,7 @@ public:
 };
 
 
+// The start of loot generation in this loot table
 UCLASS()
 class FAIRFEELINGLOOTRUNTIME_API URootLTGraphNode : public ULTGraphNode
 {
