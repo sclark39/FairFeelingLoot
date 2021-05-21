@@ -27,6 +27,8 @@ public:
 
 	virtual const FSlateBrush* GetNodeIcon() const;
 
+	FText GetNodeTooltip() const;
+
 protected:
 };
 

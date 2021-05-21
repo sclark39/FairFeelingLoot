@@ -24,9 +24,6 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "LTGenericGraph")
 	TSubclassOf<ULTGenericGraphEdge> EdgeType;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "LTGenericGraph")
-	FGameplayTagContainer GraphTags;
-
 	UPROPERTY(BlueprintReadOnly, Category = "LTGenericGraph")
 	TArray<ULTGenericGraphNode*> RootNodes;
 

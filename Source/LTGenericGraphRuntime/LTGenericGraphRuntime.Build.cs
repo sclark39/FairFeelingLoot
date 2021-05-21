@@ -42,7 +42,6 @@ public class LTGenericGraphRuntime : ModuleRules
 				// ... add private dependencies that you statically link with here ...
                 "Slate",
                 "SlateCore",
-                "GameplayTags"
             }
 			);
 

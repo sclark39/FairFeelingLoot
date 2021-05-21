@@ -55,6 +55,9 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "LTGenericGraphNode_Editor")
 	FText NodeTitle;
 
+	UPROPERTY(EditDefaultsOnly, Category = "LTGenericGraphNode_Editor")
+	FText NodeTooltip;
+
 	UPROPERTY(VisibleDefaultsOnly, Category = "LTGenericGraphNode_Editor")
 	TSubclassOf<ULTGenericGraph> CompatibleGraphType;
 
@@ -66,6 +69,9 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = "LTGenericGraphNode_Editor")
 	FText ContextMenuCategory;
+
+	UPROPERTY(EditDefaultsOnly, Category = "LTGenericGraphNode_Editor")
+	FText ContextMenuDescription;
 
 	UPROPERTY(EditDefaultsOnly, Category = "LTGenericGraphNode_Editor")
 	ELTGenericGraphNodeLimit ParentLimitType;
@@ -89,6 +95,11 @@ public:
 	virtual FLinearColor GetBackgroundColor() const;
 
 	virtual FText GetNodeTitle() const;
+	virtual FText GetNodeTooltip() const;
+
+	virtual FText GetContextMenuName() const;
+	virtual FText GetContextMenuCategory() const;
+	virtual FText GetContextMenuDescription() const;
 
 	virtual void SetNodeTitle(const FText& NewTitle);
 
@@ -98,5 +109,8 @@ public:
 
 	virtual bool CanCreateConnectionTo(ULTGenericGraphNode* Other, int32 NumberOfChildrenNodes, FText& ErrorMessage);
 	virtual bool CanCreateConnectionFrom(ULTGenericGraphNode* Other, int32 NumberOfParentNodes, FText& ErrorMessage);
+
+	virtual void GetChildrenLimit(ELTGenericGraphNodeLimit &LimitType, int32 &LimitCount) const;
+	virtual void GetParentLimit(ELTGenericGraphNodeLimit &LimitType, int32 &LimitCount) const;
 #endif
 };

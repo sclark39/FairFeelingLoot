@@ -9,6 +9,7 @@
 #include "GraphEditorSettings.h"
 #include "LTGenericGraphAssetEditor/EdNode_LTGenericGraphNode.h"
 #include "LTGenericGraphAssetEditor/LTGenericGraphDragConnection.h"
+#include "IDocumentation.h"
 
 #include "LTGenericGraphEditorStrings.h"
 
@@ -45,7 +46,9 @@ public:
 protected:
 	virtual FSlateColor GetPinColor() const override
 	{
-		return LTGenericGraphColors::Pin::Default;
+		return IsHovered() ?
+			FLinearColor::White : 
+			LTGenericGraphColors::Pin::Default;
 	}
 
 	virtual TSharedRef<SWidget>	GetDefaultValueWidget() override
@@ -81,6 +84,7 @@ void SEdNode_LTGenericGraphNode::Construct(const FArguments& InArgs, UEdNode_LTG
 {
 	GraphNode = InNode;
 	UpdateGraphNode();
+	SetCursor(EMouseCursor::CardinalCross);
 	InNode->SEdNode = this;
 }
 
@@ -228,10 +232,42 @@ void SEdNode_LTGenericGraphNode::UpdateGraphNode()
 			CommentBubble.ToSharedRef()
 		];
 
+	if (!SWidget::GetToolTip().IsValid())
+	{
+		TSharedRef<SToolTip> DefaultToolTip = 
+			IDocumentation::Get()->CreateToolTip(
+				TAttribute< FText >(this, &SEdNode_LTGenericGraphNode::GetNodeTooltip),
+				NULL, 
+				GraphNode->GetDocumentationLink(), 
+				GraphNode->GetDocumentationExcerptName());
+		SetToolTip(DefaultToolTip);
+	}
+
 	ErrorReporting = ErrorText;
 	ErrorReporting->SetError(ErrorMsg);
 	CreatePinWidgets();
 }
+
+
+FText SEdNode_LTGenericGraphNode::GetNodeTooltip() const
+{
+	if (GraphNode != NULL)
+	{
+		FText TooltipText = GraphNode->GetTooltipText();
+
+		if (TooltipText.IsEmpty())
+		{
+			TooltipText = GraphNode->GetNodeTitle(ENodeTitleType::FullTitle);
+		}
+
+		return TooltipText;
+	}
+	else
+	{
+		return NSLOCTEXT("GraphEditor", "InvalidGraphNode", "<Invalid graph node>");
+	}
+}
+
 
 void SEdNode_LTGenericGraphNode::CreatePinWidgets()
 {

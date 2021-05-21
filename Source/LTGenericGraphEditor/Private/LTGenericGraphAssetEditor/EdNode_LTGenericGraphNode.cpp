@@ -15,6 +15,27 @@ UEdNode_LTGenericGraphNode::~UEdNode_LTGenericGraphNode()
 
 }
 
+FString UEdNode_LTGenericGraphNode::GetDocumentationExcerptName() const
+{
+	UClass* MyClass = GetClass();
+	if (LTGenericGraphNode)
+		MyClass = LTGenericGraphNode->GetClass();
+
+	// Default the node to searching for an excerpt named for the C++ node class name, including the U prefix.
+	// This is done so that the excerpt name in the doc file can be found by find-in-files when searching for the full class name.
+	return FString::Printf(TEXT("%s%s"), MyClass->GetPrefixCPP(), *MyClass->GetName());
+}
+
+FText UEdNode_LTGenericGraphNode::GetTooltipText() const
+{
+	if (LTGenericGraphNode)
+		return LTGenericGraphNode->GetNodeTooltip();
+
+	UClass* MyClass = GetClass();
+	return MyClass->GetToolTipText();
+}
+
+
 void UEdNode_LTGenericGraphNode::AllocateDefaultPins()
 {
 	CreatePin(EGPD_Input, "MultipleNodes", FName(), TEXT("In"));

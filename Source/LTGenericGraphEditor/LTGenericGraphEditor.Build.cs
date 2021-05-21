@@ -41,6 +41,7 @@ public class LTGenericGraphEditor : ModuleRules
 				"CoreUObject",
                 "Engine",
                 "UnrealEd",
+				"Documentation",
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
