@@ -45,15 +45,3 @@ public:
 };
 
 
-UCLASS()
-class FAIRFEELINGLOOTRUNTIME_API ULootTableBlueprintLibrary : public UBlueprintFunctionLibrary
-{
-	GENERATED_BODY()
-public:
-
-	// Change sigma to change how clustered around the mean the value is. Lower values may be more performance heavy
-	UFUNCTION(BlueprintCallable, Category = "Loot Table")
-		static float NextGaussian(const FRandomStream &RNG, float Min, float Max, float Sigma = 2.5f);
-
-
-};

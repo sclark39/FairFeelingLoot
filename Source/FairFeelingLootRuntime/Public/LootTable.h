@@ -12,23 +12,35 @@ class ULootTableDefinition;
 class ULootTableComponent;
 
 USTRUCT(BlueprintType)
+struct FAIRFEELINGLOOTRUNTIME_API FLootRecipeStat
+{
+	GENERATED_BODY()
+
+public:
+	// Type Specifier for this Stat
+	UPROPERTY(BlueprintReadWrite, Category="Loot")
+	FGameplayTag StatType;
+
+	// Value for this Stat
+	UPROPERTY(BlueprintReadWrite, Category = "Loot")
+	float StatValue;
+};
+
+USTRUCT(BlueprintType)
 struct FAIRFEELINGLOOTRUNTIME_API FLootRecipe
 {
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+
 	FName Name;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FGameplayTag Type;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FGameplayTagContainer Tags;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TMap<FGameplayTag, float> Stats;
-
+	TArray<FLootRecipeStat> Stats;
+	TMap<FGameplayTag, int32> StatLookup;
 };
 
 

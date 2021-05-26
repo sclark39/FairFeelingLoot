@@ -1,6 +1,7 @@
 ﻿// Copyright 2021 Skyler Clark. All Rights Reserved.
 
 #include "AddTagLTNode.h"
+#include "LootTableBlueprintLibrary.h"
 
 #define LOCTEXT_NAMESPACE "LootTableDefinition"
 
@@ -21,22 +22,26 @@ const ULTGraphNode* UAddTagLTNode::TraverseNodesAndCollectLoot(FLootTable &LootT
 	if (0 < Loot.Num())
 	{
 		FLootRecipe &NewLoot = Loot.Last();
-		NewLoot.Tags.AddTag(GameplayTag);
-
-		if (bTagHasStatValue)
+		
+		if (!bTagHasStatValue)
 		{
+			ULootTableBlueprintLibrary::AddLootTag(NewLoot, GameplayTag);
+		}
+		else
+		{
+			float CurrentValue = ULootTableBlueprintLibrary::GetLootStat( NewLoot, GameplayTag, StatDefaultValue );
+
 			float rand = State.RNG->FRandRange(StatValueRange.X, StatValueRange.Y);
 
-			float &Stat = NewLoot.Stats.FindOrAdd(GameplayTag, StatDefaultValue);
-
 			if (StatWriteMode == EAddParamLTType::Add)
-				rand = Stat + rand;
+				CurrentValue += rand;
 			else if (StatWriteMode == EAddParamLTType::Subtract)
-				rand = Stat - rand;
+				CurrentValue -= rand;
+			else
+				CurrentValue = rand;
 
-			Stat = rand;
+			ULootTableBlueprintLibrary::SetLootStat(NewLoot, GameplayTag, CurrentValue);
 		}
-
 	}
 	else
 	{
