@@ -6,16 +6,16 @@
 #include "LootTable.h"
 #include "LootTableDefinition.h"
 
-#include "SetLootTableParamLTNode.generated.h"
+#include "EditFloatParamLTNode.generated.h"
 
 // Modifies a global Param of the Loot Table, with options to 
 // apply a random number within a range either via Set, Add, or Subtract.
 UCLASS()
-class FAIRFEELINGLOOTRUNTIME_API USetLootTableParamLTNode : public ULTGraphNode
+class FAIRFEELINGLOOTRUNTIME_API UEditFloatParamLTNode : public ULTGraphNode
 {
 	GENERATED_BODY()
 public:
-	USetLootTableParamLTNode();
+	UEditFloatParamLTNode();
 
 	// Loot Table Param to Modify
 	UPROPERTY(EditDefaultsOnly, Category = "Loot Table")

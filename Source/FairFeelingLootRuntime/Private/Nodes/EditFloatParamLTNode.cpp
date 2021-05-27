@@ -1,10 +1,10 @@
 ﻿// Copyright 2021 Skyler Clark. All Rights Reserved.
 
-#include "SetLootTableParamLTNode.h"
+#include "EditFloatParamLTNode.h"
 
 #define LOCTEXT_NAMESPACE "LootTableDefinition"
 
-USetLootTableParamLTNode::USetLootTableParamLTNode()
+UEditFloatParamLTNode::UEditFloatParamLTNode()
 {
 #if WITH_EDITORONLY_DATA
 	ContextMenuName = LOCTEXT("SetParam", "Edit Float Param");
@@ -12,7 +12,7 @@ USetLootTableParamLTNode::USetLootTableParamLTNode()
 #endif // #if WITH_EDITORONLY_DATA
 }
 
-const void USetLootTableParamLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, FMakeLootState State, TArray<FLootRecipe> &Loot) const
+const void UEditFloatParamLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, FMakeLootState State, TArray<FLootRecipe> &Loot) const
 {
 	const ULootTableDefinition *Definition = Cast<ULootTableDefinition>(GetGraph());
 	ensure(Definition);
@@ -41,7 +41,7 @@ const void USetLootTableParamLTNode::TraverseNodesAndCollectLoot(FLootTableData 
 }
 
 #if WITH_EDITOR
-FText USetLootTableParamLTNode::GetNodeTitle() const
+FText UEditFloatParamLTNode::GetNodeTitle() const
 {
 	FFormatNamedArguments Args;
 	if (WriteMode == EAddParamLTType::Add)
@@ -55,12 +55,12 @@ FText USetLootTableParamLTNode::GetNodeTitle() const
 	return FText::Format(LOCTEXT("NestedTableNodeTitle", "{Name}{Mode} {Range}"), Args);
 }
 
-const FSlateBrush*  USetLootTableParamLTNode::GetNodeIcon() const
+const FSlateBrush*  UEditFloatParamLTNode::GetNodeIcon() const
 {
 	return FEditorStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Decorator.NonConditional.Icon"));
 }
 
-FLinearColor USetLootTableParamLTNode::GetBackgroundColor() const
+FLinearColor UEditFloatParamLTNode::GetBackgroundColor() const
 {
 	return FLinearColor(0.5f, 0.01f, 0.01f);
 }
