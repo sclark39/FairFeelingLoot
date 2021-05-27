@@ -83,6 +83,22 @@ public:
 		Loot.Tags.RemoveTag(Tag);
 	}
 
+	// Get type for a specific loot stat 
+	UFUNCTION(BlueprintPure, Category = "Loot", meta = (AdvancedDisplay = "DefaultValue"))
+	static FGameplayTag GetLootStatType(UPARAM(ref) const FLootRecipeStat &LootStat)
+	{
+		return LootStat.StatType;
+	}
+
+
+	// Get value for a specific loot stat
+	UFUNCTION(BlueprintPure, Category = "Loot", meta = (AdvancedDisplay = "DefaultValue"))
+	static float GetLootStatValue(UPARAM(ref) const FLootRecipeStat &LootStat)
+	{
+		return LootStat.StatValue;
+	}
+
+
 	// Get value for a specific stat for this Loot
 	UFUNCTION(BlueprintPure, Category = "Loot", meta = (AdvancedDisplay = "DefaultValue"))
 	static float GetLootStat(UPARAM(ref) const FLootRecipe &Loot, FGameplayTag StatType, float DefaultValue = 0);
@@ -94,7 +110,6 @@ public:
 	// Remove a stat from this Loot
 	UFUNCTION(BlueprintCallable, Category = "Loot")
 	static void RemoveLootStat(UPARAM(ref) FLootRecipe &Loot, FGameplayTag StatType);
-
 
 	// Change sigma to change how clustered around the mean the value is. Lower values may be more performance heavy
 	//UFUNCTION(BlueprintCallable, Category = "Loot Table")
