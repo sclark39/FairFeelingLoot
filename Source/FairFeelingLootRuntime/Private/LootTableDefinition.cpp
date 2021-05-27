@@ -133,6 +133,42 @@ URootLTGraphNode::URootLTGraphNode()
 #endif // #if WITH_EDITORONLY_DATA
 }
 
+const void URootLTGraphNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, FMakeLootState State, TArray<FLootRecipe> &Loot) const
+{
+	ULootTableDefinition *Definition = Cast<ULootTableDefinition>(GetGraph());
+	ensure(Definition);
+	
+	// Implicit Entropy Control Node...
+
+	RETRIEVE_LTNODE_PAYLOAD(sizeof(FRandomStream) + sizeof(float));
+	DECLARE_LTNODE_ELEMENT(FRandomStream, MyRNG);
+	DECLARE_LTNODE_ELEMENT(float, LastTime);
+
+	if (*RequiresInitialization)
+	{
+		*RequiresInitialization = false;
+
+		// Initialize State Stream
+		if (Definition->bTracksOwnRandomStream)
+		{
+			new (&MyRNG) FRandomStream(Definition->InitialSeed);
+			if (Definition->bShouldRandomizeSeed)
+				MyRNG.GenerateNewSeed();
+		}
+	}
+
+	if (Definition->bTracksOwnRandomStream)
+		State.RNG = &MyRNG;
+
+	if (Definition->bTracksOwnTime)
+		State.LastTime = LastTime;
+
+	Super::TraverseNodesAndCollectLoot(LootTable, State, Loot);
+
+	if (Definition->bTracksOwnTime)
+		LastTime = LootTable.GetTime();	
+}
+
 
 #if WITH_EDITOR
 

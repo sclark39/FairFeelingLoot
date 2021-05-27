@@ -71,20 +71,12 @@ public:
 
 	// Global State stream
 	FRandomStream RNG;
-	FMakeLootState EntropyState;
+	float LastTime = 0;
 
 	UWorld *World = 0;
 	ULootTableComponent *Component = 0;
 
 	bool bRequiresInitialization = true;
-
-	// If true, ignore InitialSeed and randomize the seed for the random number stream
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	bool bShouldRandomizeSeed = true;
-
-	// If not randomizing the seed, this is what will be used to initialize the random number stream
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (EditCondition = "!bShouldRandomizeSeed"))
-	int InitialSeed = 0;
 
 	virtual float GetTime();
 	

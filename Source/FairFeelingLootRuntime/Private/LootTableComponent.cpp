@@ -19,11 +19,10 @@ TArray<FLootRecipe> ULootTableComponent::MakeRandomLootFromLootTable( const ULoo
 	// Initialize
 	if (LootTableData.bRequiresInitialization)
 	{
-		LootTableData.RNG.Initialize(LootTableData.InitialSeed);
-		if (LootTableData.bShouldRandomizeSeed)
+		LootTableData.RNG.Initialize(InitialSeed);
+		if (bShouldRandomizeSeed)
 			LootTableData.RNG.GenerateNewSeed();
 
-		LootTableData.EntropyState.RNG = &LootTableData.RNG;
 		LootTableData.World = GetWorld();
 
 		LootTableData.bRequiresInitialization = false;
@@ -39,9 +38,12 @@ TArray<FLootRecipe> ULootTableComponent::MakeRandomLootFromLootTable( const ULoo
 
 	LootTableData.VisitedGraphs.Add(LootTableDefinition);
 
-	RootNode->TraverseNodesAndCollectLoot(LootTableData, LootTableData.EntropyState, Loot);
+	FMakeLootState LootState;
+	LootState.RNG = &LootTableData.RNG;
+	LootState.LastTime = LootTableData.LastTime;
+	RootNode->TraverseNodesAndCollectLoot(LootTableData, LootState, Loot);
 
-	LootTableData.EntropyState.LastTime = LootTableData.GetTime();
+	LootTableData.LastTime = LootTableData.GetTime();
 
 	return Loot;
 }

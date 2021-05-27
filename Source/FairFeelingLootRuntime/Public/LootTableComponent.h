@@ -38,8 +38,16 @@ public:
 	FOnLootTableCallback OnLootTableCallback;
 
 	// The Loot Table Definition to use for generating Loot
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Loot Table")
 	ULootTableDefinition *DefaultLootTable = 0;
+
+	// If true, ignore InitialSeed and randomize the seed for the random number stream
+	UPROPERTY(EditDefaultsOnly, Category = "Loot Table", meta = (EditCondition = "bTracksOwnRandomStream"))
+	bool bShouldRandomizeSeed = true;
+
+	// If not randomizing the seed, this is what will be used to initialize the random number stream
+	UPROPERTY(EditDefaultsOnly, Category = "Loot Table", meta = (EditCondition = "bTracksOwnRandomStream && !bShouldRandomizeSeed"))
+	float InitialSeed = 0;
 
 	// Generates an array of Loot Recipes based upon the Loot Table Definition
 	UFUNCTION(BlueprintCallable, Category = "Loot Table")
