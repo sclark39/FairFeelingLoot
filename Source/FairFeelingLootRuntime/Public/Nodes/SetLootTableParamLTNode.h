@@ -21,9 +21,13 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Loot Table")
 	FName ParamName;
 
+	// If the param doesn't exist, should it be created in local or global scope?
+	UPROPERTY(EditDefaultsOnly, Category = "Loot Table")
+	bool bShouldCreateLocalScopeOnly = false;
+
 	// Should this param only change for this Loot Table Definition?
 	UPROPERTY(EditDefaultsOnly, Category = "Loot Table")
-	bool bShouldBeLocalScope = false;
+	bool bShouldModifyLocalScopeOnly = false;
 
 	// If the param hasn't been set yet, what should it be set to?
 	UPROPERTY(EditDefaultsOnly, Category = "Loot Table")

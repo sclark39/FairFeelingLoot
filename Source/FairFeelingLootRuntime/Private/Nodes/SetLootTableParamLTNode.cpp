@@ -17,14 +17,7 @@ const void USetLootTableParamLTNode::TraverseNodesAndCollectLoot(FLootTableData 
 	const ULootTableDefinition *Definition = Cast<ULootTableDefinition>(GetGraph());
 	ensure(Definition);
 
-	if (!bShouldBeLocalScope
-		&& LootTable.LocalFloatParams.Contains(Definition)
-		&& LootTable.LocalFloatParams[Definition].Contains(ParamName))
-	{
-		UE_LOG(LogTemp, Error, TEXT("Edit Float Param operating on Global Scope while there is already a Local Scope Param."));
-	}
-
-	float CurrentValue = LootTable.GetFloatParamFromLT(Cast<ULootTableDefinition>(GetGraph()), ParamName, DefaultValue);
+	float CurrentValue = LootTable.GetFloatParamFromLT(Definition, ParamName, DefaultValue);
 
 	float rand = State.RNG->FRandRange(ValueRange.X, ValueRange.Y);
 
@@ -35,10 +28,14 @@ const void USetLootTableParamLTNode::TraverseNodesAndCollectLoot(FLootTableData 
 	else
 		CurrentValue = rand;
 
-	if (!bShouldBeLocalScope)
-		LootTable.SetFloatParam(ParamName, CurrentValue);
-	else
+	const bool bLocalParamExists =
+		LootTable.LocalFloatParams.Contains(Definition)
+		&& LootTable.LocalFloatParams[Definition].Contains(ParamName);
+
+	if (bLocalParamExists || bShouldCreateLocalScopeOnly )
 		LootTable.SetFloatParamForLT(Definition, ParamName, CurrentValue);
+	else if ( !bLocalParamExists && !bShouldModifyLocalScopeOnly )
+		LootTable.SetFloatParam(ParamName, CurrentValue);
 
 	Super::TraverseNodesAndCollectLoot(LootTable, State, Loot);
 }
