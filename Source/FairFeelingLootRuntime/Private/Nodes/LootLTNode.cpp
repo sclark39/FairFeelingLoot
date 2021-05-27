@@ -16,7 +16,7 @@ ULootLTNode::ULootLTNode()
 }
 
 
-const ULTGraphNode* ULootLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
+const void ULootLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
 {
 	FLootRecipe NewLoot;
 
@@ -25,7 +25,7 @@ const ULTGraphNode* ULootLTNode::TraverseNodesAndCollectLoot(FLootTableData &Loo
 
 	Loot.Push(NewLoot);
 
-	return Super::TraverseNodesAndCollectLoot(LootTable, State, Loot);
+	Super::TraverseNodesAndCollectLoot(LootTable, State, Loot);
 }
 
 #if WITH_EDITOR

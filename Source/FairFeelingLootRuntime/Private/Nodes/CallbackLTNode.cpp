@@ -14,7 +14,7 @@ UCallbackLTNode::UCallbackLTNode()
 }
 
 
-const ULTGraphNode* UCallbackLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
+const void UCallbackLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
 {
 	if (LootTable.Component)
 	{
@@ -25,7 +25,7 @@ const ULTGraphNode* UCallbackLTNode::TraverseNodesAndCollectLoot(FLootTableData 
 		UE_LOG(LogTemp, Error, TEXT("Callback node requires Loot Table Component."));
 	}
 
-	return Super::TraverseNodesAndCollectLoot(LootTable, State, Loot);
+	Super::TraverseNodesAndCollectLoot(LootTable, State, Loot);
 }
 
 #if WITH_EDITOR

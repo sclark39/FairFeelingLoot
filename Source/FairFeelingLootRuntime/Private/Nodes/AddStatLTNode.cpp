@@ -15,7 +15,7 @@ UAddStatLTNode::UAddStatLTNode()
 
 
 
-const ULTGraphNode* UAddStatLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
+const void UAddStatLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
 {
 	if (0 < Loot.Num())
 	{
@@ -39,7 +39,7 @@ const ULTGraphNode* UAddStatLTNode::TraverseNodesAndCollectLoot(FLootTableData &
 		UE_LOG(LogTemp, Error, TEXT("No loot found to Add Stat. Add a Make Loot node first."));
 	}
 
-	return Super::TraverseNodesAndCollectLoot(LootTable, State, Loot);
+	Super::TraverseNodesAndCollectLoot(LootTable, State, Loot);
 }
 
 #if WITH_EDITOR

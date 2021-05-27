@@ -14,7 +14,7 @@ UBranchParamLTNode::UBranchParamLTNode()
 #endif // #if WITH_EDITORONLY_DATA
 }
 
-const ULTGraphNode* UBranchParamLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
+const ULTGenericGraphNode* UBranchParamLTNode::PickChild(FLootTableData &LootTable, const FEntropyState &State) const
 {
 	float TestValue = LootTable.GetFloatParam(ParamName, DefaultValue);
 
@@ -22,17 +22,17 @@ const ULTGraphNode* UBranchParamLTNode::TraverseNodesAndCollectLoot(FLootTableDa
 	{
 		if (const UComparisonLTEdge* Edge = Cast<UComparisonLTEdge>(GetEdge(Node)))
 		{
-			if (Edge->AllowTraversal(LootTable,TestValue))
+			if (Edge->AllowTraversal(LootTable, TestValue))
 			{
 				if (const ULTGraphNode *LTNode = Cast<ULTGraphNode>(Node))
 				{
-					return LTNode->TraverseNodesAndCollectLoot(LootTable, State, Loot);
+					return LTNode;
 				}
 			}
 		}
 	}
 
-	return this;
+	return nullptr;
 }
 
 

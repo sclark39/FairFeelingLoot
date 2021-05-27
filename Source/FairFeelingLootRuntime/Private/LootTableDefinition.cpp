@@ -23,13 +23,14 @@ const ULTGenericGraphNode* ULTGraphNode::PickChild(FLootTableData &LootTable, co
 	return nullptr;
 }
 
-const ULTGraphNode* ULTGraphNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot ) const
+const void ULTGraphNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot ) const
 {
 	if (ShouldPickChildren())
 	{
 		if (const ULTGraphNode *Child = Cast<ULTGraphNode>(PickChild(LootTable, State)))
 		{
-			return Child->TraverseNodesAndCollectLoot(LootTable, State, Loot);
+			Child->TraverseNodesAndCollectLoot(LootTable, State, Loot);
+			return;
 		}
 	}
 	else
@@ -42,8 +43,6 @@ const ULTGraphNode* ULTGraphNode::TraverseNodesAndCollectLoot(FLootTableData &Lo
 			}
 		}
 	}
-
-	return this;
 }
 
 

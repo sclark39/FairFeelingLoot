@@ -17,14 +17,12 @@ URepeatLTNode::URepeatLTNode()
 }
 
 
-const ULTGraphNode* URepeatLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
+const void URepeatLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
 {
 	int Times = FMath::RoundToInt( State.RNG->FRandRange(RepeatRange.X, RepeatRange.Y) );
 
 	for ( int i = 0; i < Times; i++ )	
 		Super::TraverseNodesAndCollectLoot(LootTable, State, Loot);
-
-	return this;
 }
 
 #if WITH_EDITOR

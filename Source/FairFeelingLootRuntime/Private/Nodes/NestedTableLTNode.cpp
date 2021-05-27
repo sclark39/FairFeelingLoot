@@ -14,27 +14,27 @@ UNestedTableLTNode::UNestedTableLTNode()
 }
 
 
-const ULTGraphNode* UNestedTableLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
+const void UNestedTableLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
 {
 	if (LootTableDefinition)
 	{
 		if (LootTable.VisitedGraphs.Contains(LootTableDefinition))
 		{
-			UE_LOG(LogTemp, Error, TEXT("Can't enter nested loot table %s. Would create a cycle."), *LootTableDefinition->GetName() );
-			return nullptr;
+			UE_LOG(LogTemp, Error, TEXT("Can't enter nested loot table %s. Would create a cycle."), *LootTableDefinition->GetName());
+			return;
 		}
-		for (const auto *Node : LootTableDefinition->RootNodes)
+
+		const URootLTGraphNode *RootNode = LootTableDefinition->GetRootNode();
+		if (!RootNode)
 		{
-			if (const URootLTGraphNode *RootNode = Cast<URootLTGraphNode>(Node))
-			{
-				LootTable.VisitedGraphs.Add(LootTableDefinition);
-				const ULTGenericGraphNode *Child = TraverseNodesAndCollectLoot(LootTable, State, Loot);
-				LootTable.VisitedGraphs.Remove(LootTableDefinition);
-				return Cast<ULTGraphNode>(Child);
-			}
+			UE_LOG(LogTemp, Error, TEXT("Loot Table Definition is missing Root Node."));
+			return;
 		}
+
+		LootTable.VisitedGraphs.Add(LootTableDefinition);
+		RootNode->TraverseNodesAndCollectLoot(LootTable, State, Loot);
+		LootTable.VisitedGraphs.Remove(LootTableDefinition);		
 	}
-	return nullptr;
 }
 
 #if WITH_EDITOR
