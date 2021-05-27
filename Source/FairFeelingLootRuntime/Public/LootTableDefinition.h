@@ -65,8 +65,8 @@ public:
 
 	ULTGraphNode();
 
-	virtual const ULTGenericGraphNode* PickChild(FLootTableData &LootTable, const FEntropyState &State) const;
-	virtual const void TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const;
+	virtual const ULTGenericGraphNode* PickChild(FLootTableData &LootTable, const FMakeLootState &State) const;
+	virtual const void TraverseNodesAndCollectLoot(FLootTableData &LootTable, FMakeLootState State, TArray<FLootRecipe> &Loot) const;
 	
 	virtual bool ShouldPickChildren() const { return true; }
 
@@ -124,7 +124,7 @@ public:
 };
 
 
-UCLASS(NotBlueprintable, hideCategories = ("LTGenericGraph", "LTGenericGraph_Editor"))
+UCLASS(NotBlueprintable, BlueprintType, hideCategories = ("LTGenericGraph", "LTGenericGraph_Editor"))
 class FAIRFEELINGLOOTRUNTIME_API ULootTableDefinition : public ULTGenericGraph
 {
 	GENERATED_BODY()

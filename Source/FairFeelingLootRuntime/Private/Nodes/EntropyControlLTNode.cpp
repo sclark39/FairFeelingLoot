@@ -13,7 +13,7 @@ UEntropyControlLTNode::UEntropyControlLTNode()
 #endif // #if WITH_EDITORONLY_DATA
 }
 
-const void UEntropyControlLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
+const void UEntropyControlLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, FMakeLootState State, TArray<FLootRecipe> &Loot) const
 {
 	RETRIEVE_LTNODE_PAYLOAD(sizeof(FRandomStream) + sizeof(float));
 	DECLARE_LTNODE_ELEMENT(FRandomStream, MyRNG);
@@ -32,11 +32,13 @@ const void UEntropyControlLTNode::TraverseNodesAndCollectLoot(FLootTableData &Lo
 		}
 	}
 
-	FEntropyState MyEntropyState;
-	MyEntropyState.RNG = bTracksOwnRandomStream ? &MyRNG : State.RNG; 
-	MyEntropyState.LastTime = bTracksOwnTime ? LastTime : State.LastTime;
+	if (bTracksOwnRandomStream)
+		State.RNG = &MyRNG;
 
-	Super::TraverseNodesAndCollectLoot(LootTable, MyEntropyState, Loot);
+	if (bTracksOwnTime)
+		State.LastTime = LastTime;
+
+	Super::TraverseNodesAndCollectLoot(LootTable, State, Loot);
 
 	if (bTracksOwnTime)
 		LastTime = LootTable.GetTime();

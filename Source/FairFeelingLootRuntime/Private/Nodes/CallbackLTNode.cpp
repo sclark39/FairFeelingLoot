@@ -14,7 +14,7 @@ UCallbackLTNode::UCallbackLTNode()
 }
 
 
-const void UCallbackLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
+const void UCallbackLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, FMakeLootState State, TArray<FLootRecipe> &Loot) const
 {
 	if (LootTable.Component)
 	{

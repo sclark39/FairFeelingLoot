@@ -12,7 +12,7 @@ USetLootTableParamLTNode::USetLootTableParamLTNode()
 #endif // #if WITH_EDITORONLY_DATA
 }
 
-const void USetLootTableParamLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
+const void USetLootTableParamLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, FMakeLootState State, TArray<FLootRecipe> &Loot) const
 {
 	float rand = State.RNG->FRandRange(ValueRange.X, ValueRange.Y);
 	

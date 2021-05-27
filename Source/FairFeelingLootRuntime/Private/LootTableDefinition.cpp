@@ -14,7 +14,7 @@ ULTGraphNode::ULTGraphNode()
 }
 
 
-const ULTGenericGraphNode* ULTGraphNode::PickChild(FLootTableData &LootTable, const FEntropyState &State) const
+const ULTGenericGraphNode* ULTGraphNode::PickChild(FLootTableData &LootTable, const FMakeLootState &State) const
 {
 	// Follow first child
 	if (0 < ChildrenNodes.Num())
@@ -23,7 +23,7 @@ const ULTGenericGraphNode* ULTGraphNode::PickChild(FLootTableData &LootTable, co
 	return nullptr;
 }
 
-const void ULTGraphNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot ) const
+const void ULTGraphNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, FMakeLootState State, TArray<FLootRecipe> &Loot ) const
 {
 	if (ShouldPickChildren())
 	{

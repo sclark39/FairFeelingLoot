@@ -6,7 +6,7 @@
 
 #define LOCTEXT_NAMESPACE "LootTableDefinition"
 
-void ShuffleArray(int* Array, int NumElements, bool bAllowRepeatOfLast, const FEntropyState &State)
+void ShuffleArray(int* Array, int NumElements, bool bAllowRepeatOfLast, const FMakeLootState &State)
 {
 	int Last = Array[NumElements - 1];
 
@@ -32,7 +32,7 @@ UShufflebagLTNode::UShufflebagLTNode()
 #endif // #if WITH_EDITORONLY_DATA
 }
 
-const ULTGenericGraphNode* UShufflebagLTNode::PickChild(FLootTableData &LootTable, const FEntropyState &State) const
+const ULTGenericGraphNode* UShufflebagLTNode::PickChild(FLootTableData &LootTable, const FMakeLootState &State) const
 {
 	int NumChildren = ChildrenNodes.Num();
 	RETRIEVE_LTNODE_PAYLOAD(sizeof(float) + sizeof(int) + sizeof(int) * NumChildren);

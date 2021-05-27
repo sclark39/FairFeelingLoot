@@ -16,7 +16,7 @@ ULootLTNode::ULootLTNode()
 }
 
 
-const void ULootLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
+const void ULootLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, FMakeLootState State, TArray<FLootRecipe> &Loot) const
 {
 	FLootRecipe NewLoot;
 
@@ -24,6 +24,8 @@ const void ULootLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, c
 	NewLoot.Type = LootType;
 
 	Loot.Push(NewLoot);
+
+	State.ActiveLoot = &Loot.Last();
 
 	Super::TraverseNodesAndCollectLoot(LootTable, State, Loot);
 }

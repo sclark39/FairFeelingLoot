@@ -16,7 +16,7 @@ class FAIRFEELINGLOOTRUNTIME_API URandomLTNode : public ULTGraphNode
 public:
 	URandomLTNode();
 
-	virtual const ULTGenericGraphNode* PickChild(FLootTableData &LootTable, const FEntropyState &State) const override;
+	virtual const ULTGenericGraphNode* PickChild(FLootTableData &LootTable, const FMakeLootState &State) const override;
 	
 #if WITH_EDITOR
 	virtual TSubclassOf<ULTGenericGraphEdge> GetEdgeType() const override;

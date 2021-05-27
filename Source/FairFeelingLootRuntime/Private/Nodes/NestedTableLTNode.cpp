@@ -14,7 +14,7 @@ UNestedTableLTNode::UNestedTableLTNode()
 }
 
 
-const void UNestedTableLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
+const void UNestedTableLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, FMakeLootState State, TArray<FLootRecipe> &Loot) const
 {
 	if (LootTableDefinition)
 	{

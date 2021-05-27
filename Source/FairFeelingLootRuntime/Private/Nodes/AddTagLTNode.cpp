@@ -17,11 +17,11 @@ UAddTagLTNode::UAddTagLTNode()
 
 
 
-const void UAddTagLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
+const void UAddTagLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, FMakeLootState State, TArray<FLootRecipe> &Loot) const
 {
-	if (0 < Loot.Num())
+	if (State.ActiveLoot)
 	{
-		FLootRecipe &NewLoot = Loot.Last();
+		FLootRecipe &NewLoot = *State.ActiveLoot;
 		
 		ULootTableBlueprintLibrary::AddLootTag(NewLoot, LootTag);
 	}

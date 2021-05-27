@@ -15,11 +15,11 @@ UAddStatLTNode::UAddStatLTNode()
 
 
 
-const void UAddStatLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
+const void UAddStatLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, FMakeLootState State, TArray<FLootRecipe> &Loot) const
 {
-	if (0 < Loot.Num())
+	if (State.ActiveLoot)
 	{
-		FLootRecipe &NewLoot = Loot.Last();
+		FLootRecipe &NewLoot = *State.ActiveLoot;
 
 		float CurrentValue = ULootTableBlueprintLibrary::GetLootStat(NewLoot, StatType, StatDefaultValue);
 

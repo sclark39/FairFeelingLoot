@@ -15,7 +15,7 @@ USwitchLTNode::USwitchLTNode()
 #endif // #if WITH_EDITORONLY_DATA
 }
 
-const ULTGenericGraphNode* USwitchLTNode::PickChild(FLootTableData &LootTable, const FEntropyState &State) const
+const ULTGenericGraphNode* USwitchLTNode::PickChild(FLootTableData &LootTable, const FMakeLootState &State) const
 {
 	FName NameParam = LootTable.GetNameParam(ParamName,DefaultValue);
 	const ULTGenericGraphNode *DefaultNode = nullptr;

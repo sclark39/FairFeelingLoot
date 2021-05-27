@@ -18,7 +18,7 @@ class FAIRFEELINGLOOTRUNTIME_API UShufflebagLTNode : public ULTGraphNode
 public:
 	UShufflebagLTNode();
 	
-	virtual const ULTGenericGraphNode* PickChild(FLootTableData &LootTable, const FEntropyState &State) const override;
+	virtual const ULTGenericGraphNode* PickChild(FLootTableData &LootTable, const FMakeLootState &State) const override;
 
 #if WITH_EDITOR
 	virtual TSubclassOf<ULTGenericGraphEdge> GetEdgeType() const override;

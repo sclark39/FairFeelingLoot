@@ -44,8 +44,9 @@ public:
 };
 
 
-struct FAIRFEELINGLOOTRUNTIME_API FEntropyState
+struct FAIRFEELINGLOOTRUNTIME_API FMakeLootState
 {
+	FLootRecipe *ActiveLoot = nullptr;
 	FRandomStream *RNG = nullptr;
 	float LastTime = 0;
 };
@@ -70,7 +71,7 @@ public:
 
 	// Global State stream
 	FRandomStream RNG;
-	FEntropyState EntropyState;
+	FMakeLootState EntropyState;
 
 	UWorld *World = 0;
 	ULootTableComponent *Component = 0;

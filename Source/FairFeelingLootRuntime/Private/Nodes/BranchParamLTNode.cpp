@@ -14,7 +14,7 @@ UBranchParamLTNode::UBranchParamLTNode()
 #endif // #if WITH_EDITORONLY_DATA
 }
 
-const ULTGenericGraphNode* UBranchParamLTNode::PickChild(FLootTableData &LootTable, const FEntropyState &State) const
+const ULTGenericGraphNode* UBranchParamLTNode::PickChild(FLootTableData &LootTable, const FMakeLootState &State) const
 {
 	float TestValue = LootTable.GetFloatParam(ParamName, DefaultValue);
 
