@@ -52,7 +52,7 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Loot")
 	static bool LootHasStat(UPARAM(ref) const FLootRecipe &Loot, FGameplayTag StatType)
 	{
-		return Loot.StatLookup.Find(StatType);
+		return Loot.StatLookup.Contains(StatType);
 	}
 
 	// Set name for this Loot
