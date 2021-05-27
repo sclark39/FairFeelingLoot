@@ -58,24 +58,44 @@ TArray<FLootRecipe> ULootTableComponent::MakeRandomLootFromActor(AActor *Actor)
 	return TArray<FLootRecipe>();
 }
 
-FName ULootTableComponent::GetNameParam(FName ParamName, FName DefaultName)
+FName ULootTableComponent::GetGlobalNameParam(FName ParamName, FName DefaultValue)
 {
-	return LootTableData.GetNameParam(ParamName, DefaultName);
+	return LootTableData.GetNameParam(ParamName, DefaultValue);
 }
 
-float ULootTableComponent::GetFloatParam(FName ParamName, float DefaultValue)
+float ULootTableComponent::GetGlobalFloatParam(FName ParamName, float DefaultValue)
 {
 	return LootTableData.GetFloatParam(ParamName, DefaultValue);
 }
 
-void ULootTableComponent::SetNameParam(FName ParamName, FName ParamValue)
+void ULootTableComponent::SetGlobalNameParam(FName ParamName, FName ParamValue)
 {
-	FName &Value = LootTableData.NameParams.FindOrAdd(ParamName);
-	Value = ParamValue;
+	LootTableData.SetNameParam(ParamName, ParamValue);
 }
 
-void ULootTableComponent::SetFloatParam(FName ParamName, float ParamValue)
+void ULootTableComponent::SetGlobalFloatParam(FName ParamName, float ParamValue)
 {
-	float &Value = LootTableData.FloatParams.FindOrAdd(ParamName);
-	Value = ParamValue;
+	LootTableData.SetFloatParam(ParamName, ParamValue);
+}
+
+FName ULootTableComponent::GetNameParamForLootTable(const ULootTableDefinition *LootTable, FName ParamName, FName DefaultValue)
+{
+	return LootTableData.GetNameParamFromLT(LootTable, ParamName, DefaultValue);
+}
+
+float ULootTableComponent::GetFloatParamForLootTable(const ULootTableDefinition *LootTable, FName ParamName, float DefaultValue)
+{
+	return LootTableData.GetFloatParamFromLT(LootTable, ParamName, DefaultValue);
+}
+
+void ULootTableComponent::SetNameParamForLootTable(const ULootTableDefinition *LootTable, FName ParamName, FName ParamValue)
+{
+	if (LootTable)
+		LootTableData.SetNameParamForLT(LootTable, ParamName, ParamValue);
+}
+
+void ULootTableComponent::SetFloatParamForLootTable(const ULootTableDefinition *LootTable, FName ParamName, float ParamValue)
+{
+	if (LootTable)
+		LootTableData.SetFloatParamForLT(LootTable, ParamName, ParamValue);
 }

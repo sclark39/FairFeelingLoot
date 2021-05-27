@@ -21,6 +21,10 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Loot Table")
 	FName ParamName;
 
+	// Should this param only change for this Loot Table Definition?
+	UPROPERTY(EditDefaultsOnly, Category = "Loot Table")
+	bool bShouldBeLocalScope = false;
+
 	// If the param hasn't been set yet, what should it be set to?
 	UPROPERTY(EditDefaultsOnly, Category = "Loot Table")
 	float DefaultValue = 0;

@@ -16,7 +16,7 @@ UBranchParamLTNode::UBranchParamLTNode()
 
 const ULTGenericGraphNode* UBranchParamLTNode::PickChild(FLootTableData &LootTable, const FMakeLootState &State) const
 {
-	float TestValue = LootTable.GetFloatParam(ParamName, DefaultValue);
+	float TestValue = LootTable.GetFloatParamFromLT(Cast<ULootTableDefinition>(GetGraph()), ParamName, DefaultValue);
 
 	for (const auto *Node : ChildrenNodes)
 	{

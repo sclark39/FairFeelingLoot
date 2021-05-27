@@ -14,16 +14,31 @@ USetLootTableParamLTNode::USetLootTableParamLTNode()
 
 const void USetLootTableParamLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, FMakeLootState State, TArray<FLootRecipe> &Loot) const
 {
+	const ULootTableDefinition *Definition = Cast<ULootTableDefinition>(GetGraph());
+	ensure(Definition);
+
+	if (!bShouldBeLocalScope
+		&& LootTable.LocalFloatParams.Contains(Definition)
+		&& LootTable.LocalFloatParams[Definition].Contains(ParamName))
+	{
+		UE_LOG(LogTemp, Error, TEXT("Edit Float Param operating on Global Scope while there is already a Local Scope Param."));
+	}
+
+	float CurrentValue = LootTable.GetFloatParamFromLT(Cast<ULootTableDefinition>(GetGraph()), ParamName, DefaultValue);
+
 	float rand = State.RNG->FRandRange(ValueRange.X, ValueRange.Y);
-	
-	float &Param = LootTable.FloatParams.FindOrAdd(ParamName, DefaultValue);
 
 	if (WriteMode == EAddParamLTType::Add)
-		rand = Param + rand;
+		CurrentValue += rand;
 	else if (WriteMode == EAddParamLTType::Subtract)
-		rand = Param - rand;
+		CurrentValue -= rand;
+	else
+		CurrentValue = rand;
 
-	Param = rand;
+	if (!bShouldBeLocalScope)
+		LootTable.SetFloatParam(ParamName, CurrentValue);
+	else
+		LootTable.SetFloatParamForLT(Definition, ParamName, CurrentValue);
 
 	Super::TraverseNodesAndCollectLoot(LootTable, State, Loot);
 }

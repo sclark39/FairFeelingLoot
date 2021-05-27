@@ -66,6 +66,8 @@ public:
 	// Dynamic Param Lookup
 	TMap<FName, FName> NameParams;
 	TMap<FName, float> FloatParams;
+	TMap<const ULootTableDefinition*, TMap<FName, FName>> LocalNameParams;
+	TMap <const ULootTableDefinition*, TMap<FName, float>> LocalFloatParams;
 
 	TSet<const ULootTableDefinition*> VisitedGraphs;
 
@@ -80,17 +82,71 @@ public:
 
 	virtual float GetTime();
 	
-	float GetFloatParam(FName ParamName, float DefaultValue = 0.0f)
+	float GetFloatParam(FName ParamName, float DefaultValue = 0.0f, bool bShouldAdd = false)
 	{
-		float &Lookup = FloatParams.FindOrAdd(ParamName, DefaultValue);
-		return Lookup;
+		if (FloatParams.Contains(ParamName))
+			return FloatParams[ParamName];
+
+		if (bShouldAdd)
+			FloatParams[ParamName] = DefaultValue;
+
+		return DefaultValue;
 	}
 
-	FName GetNameParam(FName ParamName, FName DefaultName = NAME_None)
+	FName GetNameParam(FName ParamName, FName DefaultValue = NAME_None, bool bShouldAdd = false)
 	{
-		FName &Lookup = NameParams.FindOrAdd(ParamName, DefaultName);
-		return Lookup;
+		if (NameParams.Contains(ParamName))
+			return NameParams[ParamName];
+
+		if (bShouldAdd)
+			NameParams[ParamName] = DefaultValue;
+
+		return DefaultValue;
 	}
+
+	float GetFloatParamFromLT(const ULootTableDefinition *LootTable, FName ParamName, float DefaultValue = 0, bool bShouldAdd = false)
+	{
+		if (LocalFloatParams.Contains(LootTable))
+			if (LocalFloatParams[LootTable].Contains(ParamName))
+				return LocalFloatParams[LootTable][ParamName];
+
+		return GetFloatParam(ParamName, DefaultValue, bShouldAdd);
+	}
+
+	FName GetNameParamFromLT(const ULootTableDefinition *LootTable, FName ParamName, FName DefaultValue = NAME_None, bool bShouldAdd = false)
+	{
+		if (LocalNameParams.Contains(LootTable))
+			if (LocalNameParams[LootTable].Contains(ParamName))
+				return LocalNameParams[LootTable][ParamName];
+
+		return GetNameParam(ParamName, DefaultValue, bShouldAdd);
+	}
+
+
+	void SetFloatParam(FName ParamName, float ParamValue)
+	{
+		FloatParams[ParamName] = ParamValue;
+	}
+
+	void SetNameParam(FName ParamName, FName ParamValue)
+	{
+		NameParams[ParamName] = ParamValue;
+	}
+
+	void SetFloatParamForLT(const ULootTableDefinition *LootTable, FName ParamName, float ParamValue)
+	{
+		ensure(LootTable);
+		LocalFloatParams[LootTable][ParamName] = ParamValue;
+	}
+
+	void SetNameParamForLT(const ULootTableDefinition *LootTable, FName ParamName, FName ParamValue)
+	{
+		ensure(LootTable);
+		LocalNameParams[LootTable][ParamName] = ParamValue;
+	}
+
+
+
 
 	virtual ~FLootTableData() {};
 };
