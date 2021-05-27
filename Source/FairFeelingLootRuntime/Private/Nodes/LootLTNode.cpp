@@ -16,7 +16,7 @@ ULootLTNode::ULootLTNode()
 }
 
 
-const ULTGraphNode* ULootLTNode::TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
+const ULTGraphNode* ULootLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
 {
 	FLootRecipe NewLoot;
 

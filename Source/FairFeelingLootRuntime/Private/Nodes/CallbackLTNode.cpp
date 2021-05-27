@@ -14,7 +14,7 @@ UCallbackLTNode::UCallbackLTNode()
 }
 
 
-const ULTGraphNode* UCallbackLTNode::TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
+const ULTGraphNode* UCallbackLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
 {
 	if (LootTable.Component)
 	{

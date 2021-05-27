@@ -13,7 +13,7 @@ UEntropyControlLTNode::UEntropyControlLTNode()
 #endif // #if WITH_EDITORONLY_DATA
 }
 
-const ULTGraphNode* UEntropyControlLTNode::TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
+const ULTGraphNode* UEntropyControlLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
 {
 	RETRIEVE_LTNODE_PAYLOAD(sizeof(FRandomStream) + sizeof(float));
 	DECLARE_LTNODE_ELEMENT(FRandomStream, MyRNG);

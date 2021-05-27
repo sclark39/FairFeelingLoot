@@ -17,7 +17,7 @@ URepeatLTNode::URepeatLTNode()
 }
 
 
-const ULTGraphNode* URepeatLTNode::TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
+const ULTGraphNode* URepeatLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
 {
 	int Times = FMath::RoundToInt( State.RNG->FRandRange(RepeatRange.X, RepeatRange.Y) );
 

@@ -48,7 +48,7 @@ public:
 
 	UComparisonLTEdge();
 
-	bool AllowTraversal(FLootTable &LootTable, float TestValue) const;
+	bool AllowTraversal(FLootTableData &LootTable, float TestValue) const;
 
 #if WITH_EDITOR
 	virtual FText GetNodeTitle() const override;

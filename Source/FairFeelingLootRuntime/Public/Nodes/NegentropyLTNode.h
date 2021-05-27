@@ -27,7 +27,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Negentropy", meta = (EditCondition = "bShouldResetEntropyAfterTimeout"))
 	float TimeUntilEntropyReset = 30;
 
-	virtual const ULTGenericGraphNode* PickChild(FLootTable &LootTable, const FEntropyState &State) const override;
+	virtual const ULTGenericGraphNode* PickChild(FLootTableData &LootTable, const FEntropyState &State) const override;
 
 #if WITH_EDITOR
 	virtual TSubclassOf<ULTGenericGraphEdge> GetEdgeType() const override;

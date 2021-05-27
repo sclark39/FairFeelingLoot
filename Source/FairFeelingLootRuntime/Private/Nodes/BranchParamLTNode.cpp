@@ -14,7 +14,7 @@ UBranchParamLTNode::UBranchParamLTNode()
 #endif // #if WITH_EDITORONLY_DATA
 }
 
-const ULTGraphNode* UBranchParamLTNode::TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
+const ULTGraphNode* UBranchParamLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
 {
 	float TestValue = LootTable.GetFloatParam(ParamName, DefaultValue);
 

@@ -14,7 +14,7 @@ URandomLTNode::URandomLTNode()
 }
 
 
-const ULTGenericGraphNode* URandomLTNode::PickChild(FLootTable &LootTable, const FEntropyState &State) const
+const ULTGenericGraphNode* URandomLTNode::PickChild(FLootTableData &LootTable, const FEntropyState &State) const
 {
 	RETRIEVE_LTNODE_PAYLOAD(sizeof(bool) + sizeof(float));
 	DECLARE_LTNODE_ELEMENT(bool, bDynamicWeights);

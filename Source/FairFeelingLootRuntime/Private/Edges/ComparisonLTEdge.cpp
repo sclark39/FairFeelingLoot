@@ -11,7 +11,7 @@ UComparisonLTEdge::UComparisonLTEdge()
 #endif // #if WITH_EDITORONLY_DATA
 }
 
-bool UComparisonLTEdge::AllowTraversal(FLootTable &LootTable, float TestValue) const
+bool UComparisonLTEdge::AllowTraversal(FLootTableData &LootTable, float TestValue) const
 {
 	if (bHasMinValue)
 	{

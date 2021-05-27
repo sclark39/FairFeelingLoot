@@ -32,7 +32,7 @@ UShufflebagLTNode::UShufflebagLTNode()
 #endif // #if WITH_EDITORONLY_DATA
 }
 
-const ULTGenericGraphNode* UShufflebagLTNode::PickChild(FLootTable &LootTable, const FEntropyState &State) const
+const ULTGenericGraphNode* UShufflebagLTNode::PickChild(FLootTableData &LootTable, const FEntropyState &State) const
 {
 	int NumChildren = ChildrenNodes.Num();
 	RETRIEVE_LTNODE_PAYLOAD(sizeof(float) + sizeof(int) + sizeof(int) * NumChildren);

@@ -52,7 +52,7 @@ struct FAIRFEELINGLOOTRUNTIME_API FEntropyState
 
 
 USTRUCT(BlueprintInternalUseOnly)
-struct FAIRFEELINGLOOTRUNTIME_API FLootTable
+struct FAIRFEELINGLOOTRUNTIME_API FLootTableData
 {
 	GENERATED_BODY()
 	
@@ -99,5 +99,5 @@ public:
 		return Lookup;
 	}
 
-	virtual ~FLootTable() {};
+	virtual ~FLootTableData() {};
 };

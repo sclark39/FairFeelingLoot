@@ -15,7 +15,7 @@ UAddStatLTNode::UAddStatLTNode()
 
 
 
-const ULTGraphNode* UAddStatLTNode::TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
+const ULTGraphNode* UAddStatLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
 {
 	if (0 < Loot.Num())
 	{

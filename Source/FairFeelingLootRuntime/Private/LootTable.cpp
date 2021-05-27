@@ -3,7 +3,7 @@
 #include "LootTable.h"
 #include "LootTableDefinition.h"
 
-float FLootTable::GetTime()
+float FLootTableData::GetTime()
 {
 	return World->GetTimeSeconds();
 }

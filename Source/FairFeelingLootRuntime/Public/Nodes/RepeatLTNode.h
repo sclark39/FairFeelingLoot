@@ -20,7 +20,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Loot")
 	FVector2D RepeatRange;
 
-	virtual const ULTGraphNode* TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const override;
+	virtual const ULTGraphNode* TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const override;
 
 #if WITH_EDITOR
 	virtual FText GetNodeTitle() const override;

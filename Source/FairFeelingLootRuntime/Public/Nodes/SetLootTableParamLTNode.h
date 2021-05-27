@@ -33,7 +33,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Loot Table")
 	FVector2D ValueRange = FVector2D::ZeroVector;
 
-	virtual const ULTGraphNode* TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const override;
+	virtual const ULTGraphNode* TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const override;
 	virtual bool ShouldPickChildren() const override { return false; }
 
 #if WITH_EDITOR

@@ -66,7 +66,7 @@ public:
 	void SetFloatParam(FName ParamName, float ParamValue);
 
 protected:
-	FLootTable LootTableData;
+	FLootTableData LootTableData;
 };
 
 

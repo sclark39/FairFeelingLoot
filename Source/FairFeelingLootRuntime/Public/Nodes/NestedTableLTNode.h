@@ -20,7 +20,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Nested Loot Table")
 	ULootTableDefinition *LootTableDefinition;
 
-	virtual const ULTGraphNode* TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const override;
+	virtual const ULTGraphNode* TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const override;
 
 #if WITH_EDITOR
 	virtual FText GetNodeTitle() const override;

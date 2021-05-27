@@ -12,7 +12,7 @@ USetLootTableParamLTNode::USetLootTableParamLTNode()
 #endif // #if WITH_EDITORONLY_DATA
 }
 
-const ULTGraphNode* USetLootTableParamLTNode::TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
+const ULTGraphNode* USetLootTableParamLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
 {
 	float rand = State.RNG->FRandRange(ValueRange.X, ValueRange.Y);
 	

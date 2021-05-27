@@ -25,7 +25,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Switch")
 	FName DefaultValue;
 
-	virtual const ULTGenericGraphNode* PickChild(FLootTable &LootTable, const FEntropyState &State) const override;
+	virtual const ULTGenericGraphNode* PickChild(FLootTableData &LootTable, const FEntropyState &State) const override;
 	
 #if WITH_EDITOR
 	virtual FText GetNodeTitle() const override;

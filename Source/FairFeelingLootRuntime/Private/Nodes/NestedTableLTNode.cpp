@@ -14,7 +14,7 @@ UNestedTableLTNode::UNestedTableLTNode()
 }
 
 
-const ULTGraphNode* UNestedTableLTNode::TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
+const ULTGraphNode* UNestedTableLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
 {
 	if (LootTableDefinition)
 	{

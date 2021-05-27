@@ -65,8 +65,8 @@ public:
 
 	ULTGraphNode();
 
-	virtual const ULTGenericGraphNode* PickChild(FLootTable &LootTable, const FEntropyState &State) const;
-	virtual const ULTGraphNode* TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const;
+	virtual const ULTGenericGraphNode* PickChild(FLootTableData &LootTable, const FEntropyState &State) const;
+	virtual const ULTGraphNode* TraverseNodesAndCollectLoot(FLootTableData &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const;
 	
 	virtual bool ShouldPickChildren() const { return true; }
 
