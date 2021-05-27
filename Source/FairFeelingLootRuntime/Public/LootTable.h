@@ -66,7 +66,7 @@ public:
 	TMap<FName, FName> NameParams;
 	TMap<FName, float> FloatParams;
 
-	TSet<ULootTableDefinition*> VisitedGraphs;
+	TSet<const ULootTableDefinition*> VisitedGraphs;
 
 	// Global State stream
 	FRandomStream RNG;
@@ -84,10 +84,6 @@ public:
 	// If not randomizing the seed, this is what will be used to initialize the random number stream
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (EditCondition = "!bShouldRandomizeSeed"))
 	int InitialSeed = 0;
-
-	// The Loot Table Definition to use for generating Loot
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	ULootTableDefinition *Definition = 0;
 
 	virtual float GetTime();
 	

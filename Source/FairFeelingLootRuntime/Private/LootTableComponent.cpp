@@ -4,64 +4,76 @@
 #include "LootTableDefinition.h"
 
 
-TArray<FLootRecipe> ULootTableComponent::MakeRandomLoot()
+TArray<FLootRecipe> ULootTableComponent::MakeRandomLootFromLootTable( const ULootTableDefinition *LootTableDefinition )
 {
 	TArray<FLootRecipe> Loot;
 
-	if (LootTable.Definition == nullptr)
+	LootTableDefinition = LootTableDefinition ? LootTableDefinition : DefaultLootTable;
+
+	if (LootTableDefinition == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("Loot Table has no definition specified."));
 		return Loot;
 	}
 
 	// Initialize
-	if (LootTable.bRequiresInitialization)
+	if (LootTableData.bRequiresInitialization)
 	{
-		LootTable.RNG.Initialize(LootTable.InitialSeed);
-		if (LootTable.bShouldRandomizeSeed)
-			LootTable.RNG.GenerateNewSeed();
+		LootTableData.RNG.Initialize(LootTableData.InitialSeed);
+		if (LootTableData.bShouldRandomizeSeed)
+			LootTableData.RNG.GenerateNewSeed();
 
-		LootTable.EntropyState.RNG = &LootTable.RNG;
-		LootTable.World = GetWorld();
+		LootTableData.EntropyState.RNG = &LootTableData.RNG;
+		LootTableData.World = GetWorld();
 
-		LootTable.bRequiresInitialization = false;
+		LootTableData.bRequiresInitialization = false;
 	}
 
 	// Make Loot
-	const URootLTGraphNode *RootNode = LootTable.Definition->GetRootNode();
+	const URootLTGraphNode *RootNode = LootTableDefinition->GetRootNode();
 	if (!RootNode)
 	{
 		UE_LOG(LogTemp, Error, TEXT("Loot Table Definition is missing Root Node."));
 		return Loot;
 	}
 
-	LootTable.VisitedGraphs.Add(LootTable.Definition);
+	LootTableData.VisitedGraphs.Add(LootTableDefinition);
 
-	RootNode->TraverseNodesAndCollectLoot(LootTable, LootTable.EntropyState, Loot);
+	RootNode->TraverseNodesAndCollectLoot(LootTableData, LootTableData.EntropyState, Loot);
 
-	LootTable.EntropyState.LastTime = LootTable.GetTime();
+	LootTableData.EntropyState.LastTime = LootTableData.GetTime();
 
 	return Loot;
 }
 
+TArray<FLootRecipe> ULootTableComponent::MakeRandomLootFromActor(AActor *Actor)
+{
+	if (Actor && Actor->Implements<ULootTableSpecifier>())
+	{
+		const ULootTableDefinition *LootTable = ILootTableSpecifier::Execute_GetLootTable(Actor);
+		return MakeRandomLootFromLootTable(LootTable);
+	}
+	return TArray<FLootRecipe>();
+}
+
 FName ULootTableComponent::GetNameParam(FName ParamName, FName DefaultName)
 {
-	return LootTable.GetNameParam(ParamName, DefaultName);
+	return LootTableData.GetNameParam(ParamName, DefaultName);
 }
 
 float ULootTableComponent::GetFloatParam(FName ParamName, float DefaultValue)
 {
-	return LootTable.GetFloatParam(ParamName, DefaultValue);
+	return LootTableData.GetFloatParam(ParamName, DefaultValue);
 }
 
 void ULootTableComponent::SetNameParam(FName ParamName, FName ParamValue)
 {
-	FName &Value = LootTable.NameParams.FindOrAdd(ParamName);
+	FName &Value = LootTableData.NameParams.FindOrAdd(ParamName);
 	Value = ParamValue;
 }
 
 void ULootTableComponent::SetFloatParam(FName ParamName, float ParamValue)
 {
-	float &Value = LootTable.FloatParams.FindOrAdd(ParamName);
+	float &Value = LootTableData.FloatParams.FindOrAdd(ParamName);
 	Value = ParamValue;
 }
