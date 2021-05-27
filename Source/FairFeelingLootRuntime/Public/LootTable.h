@@ -82,44 +82,38 @@ public:
 
 	virtual float GetTime();
 	
-	float GetFloatParam(FName ParamName, float DefaultValue = 0.0f, bool bShouldAdd = false)
+	float GetFloatParam(FName ParamName, float DefaultValue = 0.0f) const
 	{
 		if (FloatParams.Contains(ParamName))
 			return FloatParams[ParamName];
 
-		if (bShouldAdd)
-			FloatParams[ParamName] = DefaultValue;
-
 		return DefaultValue;
 	}
 
-	FName GetNameParam(FName ParamName, FName DefaultValue = NAME_None, bool bShouldAdd = false)
+	FName GetNameParam(FName ParamName, FName DefaultValue = NAME_None) const
 	{
 		if (NameParams.Contains(ParamName))
 			return NameParams[ParamName];
 
-		if (bShouldAdd)
-			NameParams[ParamName] = DefaultValue;
-
 		return DefaultValue;
 	}
 
-	float GetFloatParamFromLT(const ULootTableDefinition *LootTable, FName ParamName, float DefaultValue = 0, bool bShouldAdd = false)
+	float GetFloatParamFromLT(const ULootTableDefinition *LootTable, FName ParamName, float DefaultValue = 0) const
 	{
 		if (LocalFloatParams.Contains(LootTable))
 			if (LocalFloatParams[LootTable].Contains(ParamName))
 				return LocalFloatParams[LootTable][ParamName];
 
-		return GetFloatParam(ParamName, DefaultValue, bShouldAdd);
+		return GetFloatParam(ParamName, DefaultValue);
 	}
 
-	FName GetNameParamFromLT(const ULootTableDefinition *LootTable, FName ParamName, FName DefaultValue = NAME_None, bool bShouldAdd = false)
+	FName GetNameParamFromLT(const ULootTableDefinition *LootTable, FName ParamName, FName DefaultValue = NAME_None) const
 	{
 		if (LocalNameParams.Contains(LootTable))
 			if (LocalNameParams[LootTable].Contains(ParamName))
 				return LocalNameParams[LootTable][ParamName];
 
-		return GetNameParam(ParamName, DefaultValue, bShouldAdd);
+		return GetNameParam(ParamName, DefaultValue);
 	}
 
 
