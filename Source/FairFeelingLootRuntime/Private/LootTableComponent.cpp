@@ -48,22 +48,18 @@ TArray<FLootRecipe> ULootTableComponent::MakeRandomLootFromLootTable( const ULoo
 	return Loot;
 }
 
-TArray<FLootRecipe> ULootTableComponent::MakeRandomLootFromActor(AActor *Actor)
+TArray<FLootRecipe> ULootTableComponent::MakeRandomLootFromActor(TScriptInterface<ILootTableSpecifier> Actor)
 {
-	if (Actor && Actor->Implements<ULootTableSpecifier>())
-	{
-		const ULootTableDefinition *LootTable = ILootTableSpecifier::Execute_GetLootTable(Actor);
-		return MakeRandomLootFromLootTable(LootTable);
-	}
-	return TArray<FLootRecipe>();
+	const ULootTableDefinition *LootTable = Actor->GetLootTable();
+	return MakeRandomLootFromLootTable(LootTable);
 }
 
-FName ULootTableComponent::GetGlobalNameParam(FName ParamName, FName DefaultValue)
+FName ULootTableComponent::GetGlobalNameParam(FName ParamName, FName DefaultValue) const
 {
 	return LootTableData.GetNameParam(ParamName, DefaultValue);
 }
 
-float ULootTableComponent::GetGlobalFloatParam(FName ParamName, float DefaultValue)
+float ULootTableComponent::GetGlobalFloatParam(FName ParamName, float DefaultValue) const
 {
 	return LootTableData.GetFloatParam(ParamName, DefaultValue);
 }
@@ -78,12 +74,12 @@ void ULootTableComponent::SetGlobalFloatParam(FName ParamName, float ParamValue)
 	LootTableData.SetFloatParam(ParamName, ParamValue);
 }
 
-FName ULootTableComponent::GetNameParamForLootTable(const ULootTableDefinition *LootTable, FName ParamName, FName DefaultValue)
+FName ULootTableComponent::GetNameParamForLootTable(const ULootTableDefinition *LootTable, FName ParamName, FName DefaultValue) const
 {
 	return LootTableData.GetNameParamFromLT(LootTable, ParamName, DefaultValue);
 }
 
-float ULootTableComponent::GetFloatParamForLootTable(const ULootTableDefinition *LootTable, FName ParamName, float DefaultValue)
+float ULootTableComponent::GetFloatParamForLootTable(const ULootTableDefinition *LootTable, FName ParamName, float DefaultValue) const
 {
 	return LootTableData.GetFloatParamFromLT(LootTable, ParamName, DefaultValue);
 }

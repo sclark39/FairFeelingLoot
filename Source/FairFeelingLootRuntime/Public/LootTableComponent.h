@@ -53,17 +53,17 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Loot Table")
 	TArray<FLootRecipe> MakeRandomLootFromLootTable( const ULootTableDefinition *LootTable );
 
-	// Generates an array of Loot Recipes based upon an Actor implementing the LootInterface
+	// Generates an array of Loot Recipes based upon an Actor implementing the LootTableSpecifier Interface
 	UFUNCTION(BlueprintCallable, Category = "Loot Table")
-	TArray<FLootRecipe> MakeRandomLootFromActor( AActor *Actor );
+	TArray<FLootRecipe> MakeRandomLootFromActor( TScriptInterface<ILootTableSpecifier> Actor );
 
 	// Gets the value of a global loot table name param (specific to this component)
 	UFUNCTION(BlueprintCallable, Category = "Loot Table")
-	FName GetGlobalNameParam(FName ParamName, FName DefaultValue = NAME_None);
+	FName GetGlobalNameParam(FName ParamName, FName DefaultValue = NAME_None) const;
 
 	// Gets the value of a global loot table float param (specific to this component)
 	UFUNCTION(BlueprintCallable, Category = "Loot Table")
-	float GetGlobalFloatParam(FName ParamName, float DefaultValue = 0);
+	float GetGlobalFloatParam(FName ParamName, float DefaultValue = 0) const;
 
 	// Sets the value of a global loot table name param (specific to this component)
 	UFUNCTION(BlueprintCallable, Category = "Loot Table")
@@ -75,11 +75,11 @@ public:
 
 	// Gets the value of a local loot table name param (specific to this component and loot table)
 	UFUNCTION(BlueprintCallable, Category = "Loot Table")
-	FName GetNameParamForLootTable(const ULootTableDefinition *LootTable, FName ParamName, FName DefaultValue = NAME_None);
+	FName GetNameParamForLootTable(const ULootTableDefinition *LootTable, FName ParamName, FName DefaultValue = NAME_None) const;
 
 	// Gets the value of a local loot table float param (specific to this component and loot table)
 	UFUNCTION(BlueprintCallable, Category = "Loot Table")
-	float GetFloatParamForLootTable(const ULootTableDefinition *LootTable, FName ParamName, float DefaultValue = 0);
+	float GetFloatParamForLootTable(const ULootTableDefinition *LootTable, FName ParamName, float DefaultValue = 0) const;
 
 	// Sets the value of a local loot table name param (specific to this component and loot table)
 	UFUNCTION(BlueprintCallable, Category = "Loot Table")
