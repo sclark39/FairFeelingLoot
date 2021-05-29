@@ -14,7 +14,7 @@ ULTGraphNode::ULTGraphNode()
 }
 
 
-const ULTGenericGraphNode* ULTGraphNode::PickChild(FLootTable &LootTable, const FEntropyState &State) const
+const ULTGenericGraphNode* ULTGraphNode::PickChild(FLootTableData &LootTable, const FMakeLootState &State) const
 {
 	// Follow first child
 	if (0 < ChildrenNodes.Num())
@@ -23,13 +23,14 @@ const ULTGenericGraphNode* ULTGraphNode::PickChild(FLootTable &LootTable, const 
 	return nullptr;
 }
 
-const ULTGraphNode* ULTGraphNode::TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot ) const
+const void ULTGraphNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, FMakeLootState State, TArray<FLootRecipe> &Loot ) const
 {
 	if (ShouldPickChildren())
 	{
 		if (const ULTGraphNode *Child = Cast<ULTGraphNode>(PickChild(LootTable, State)))
 		{
-			return Child->TraverseNodesAndCollectLoot(LootTable, State, Loot);
+			Child->TraverseNodesAndCollectLoot(LootTable, State, Loot);
+			return;
 		}
 	}
 	else
@@ -42,8 +43,6 @@ const ULTGraphNode* ULTGraphNode::TraverseNodesAndCollectLoot(FLootTable &LootTa
 			}
 		}
 	}
-
-	return this;
 }
 
 
@@ -132,6 +131,42 @@ URootLTGraphNode::URootLTGraphNode()
 	ContextMenuName = LOCTEXT("RootNode", "Start");
 	ParentLimitType = ELTGenericGraphNodeLimit::Forbidden;
 #endif // #if WITH_EDITORONLY_DATA
+}
+
+const void URootLTGraphNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, FMakeLootState State, TArray<FLootRecipe> &Loot) const
+{
+	ULootTableDefinition *Definition = Cast<ULootTableDefinition>(GetGraph());
+	ensure(Definition);
+	
+	// Implicit Entropy Control Node...
+
+	RETRIEVE_LTNODE_PAYLOAD(sizeof(FRandomStream) + sizeof(float));
+	DECLARE_LTNODE_ELEMENT(FRandomStream, MyRNG);
+	DECLARE_LTNODE_ELEMENT(float, LastTime);
+
+	if (*RequiresInitialization)
+	{
+		*RequiresInitialization = false;
+
+		// Initialize State Stream
+		if (Definition->bTracksOwnRandomStream)
+		{
+			new (&MyRNG) FRandomStream(Definition->InitialSeed);
+			if (Definition->bShouldRandomizeSeed)
+				MyRNG.GenerateNewSeed();
+		}
+	}
+
+	if (Definition->bTracksOwnRandomStream)
+		State.RNG = &MyRNG;
+
+	if (Definition->bTracksOwnTime)
+		State.LastTime = LastTime;
+
+	Super::TraverseNodesAndCollectLoot(LootTable, State, Loot);
+
+	if (Definition->bTracksOwnTime)
+		LastTime = LootTable.GetTime();	
 }
 
 

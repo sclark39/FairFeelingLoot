@@ -65,8 +65,8 @@ public:
 
 	ULTGraphNode();
 
-	virtual const ULTGenericGraphNode* PickChild(FLootTable &LootTable, const FEntropyState &State) const;
-	virtual const ULTGraphNode* TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const;
+	virtual const ULTGenericGraphNode* PickChild(FLootTableData &LootTable, const FMakeLootState &State) const;
+	virtual const void TraverseNodesAndCollectLoot(FLootTableData &LootTable, FMakeLootState State, TArray<FLootRecipe> &Loot) const;
 	
 	virtual bool ShouldPickChildren() const { return true; }
 
@@ -113,6 +113,8 @@ class FAIRFEELINGLOOTRUNTIME_API URootLTGraphNode : public ULTGraphNode
 public:
 	URootLTGraphNode();
 
+	virtual const void TraverseNodesAndCollectLoot(FLootTableData &LootTable, FMakeLootState State, TArray<FLootRecipe> &Loot) const;
+
 	virtual bool ShouldPickChildren() const override { return false; }
 
 #if WITH_EDITOR
@@ -124,7 +126,7 @@ public:
 };
 
 
-UCLASS(NotBlueprintable, hideCategories = ("LTGenericGraph", "LTGenericGraph_Editor"))
+UCLASS(NotBlueprintable, BlueprintType, hideCategories = ("LTGenericGraph", "LTGenericGraph_Editor"))
 class FAIRFEELINGLOOTRUNTIME_API ULootTableDefinition : public ULTGenericGraph
 {
 	GENERATED_BODY()
@@ -133,6 +135,22 @@ public:
 	// When enabled, this allows for some node types to have multiple children which will be unconditionally followed.
 	UPROPERTY(EditDefaultsOnly, Category = "Loot Table")
 	bool bAllowImplicitSequenceNodes = false;
+
+	// Should this loot table use its own random stream
+	UPROPERTY(EditDefaultsOnly, Category = "Random")
+	bool bTracksOwnRandomStream = false;
+
+	// If true, ignore InitialSeed and randomize the seed for the random number stream
+	UPROPERTY(EditDefaultsOnly, Category = "Random", meta = (EditCondition = "bTracksOwnRandomStream"))
+	bool bShouldRandomizeSeed = true;
+
+	// If not randomizing the seed, this is what will be used to initialize the random number stream
+	UPROPERTY(EditDefaultsOnly, Category = "Random", meta = (EditCondition = "bTracksOwnRandomStream && !bShouldRandomizeSeed"))
+	float InitialSeed = 0;
+
+	// Should this loot table track its own time?
+	UPROPERTY(EditDefaultsOnly, Category = "Time")
+	bool bTracksOwnTime = true;
 
 	ULootTableDefinition();
 

@@ -26,7 +26,7 @@ public:
 
 	UWeightedLTEdge();
 
-	float GetWeight(FLootTable &LootTable) const;
+	float GetWeight(FLootTableData &LootTable) const;
 
 #if WITH_EDITOR
 	virtual FText GetNodeTitle() const override;

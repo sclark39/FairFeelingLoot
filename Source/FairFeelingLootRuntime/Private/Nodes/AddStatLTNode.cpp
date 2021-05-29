@@ -15,11 +15,11 @@ UAddStatLTNode::UAddStatLTNode()
 
 
 
-const ULTGraphNode* UAddStatLTNode::TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
+const void UAddStatLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, FMakeLootState State, TArray<FLootRecipe> &Loot) const
 {
-	if (0 < Loot.Num())
+	if (State.ActiveLoot)
 	{
-		FLootRecipe &NewLoot = Loot.Last();
+		FLootRecipe &NewLoot = *State.ActiveLoot;
 
 		float CurrentValue = ULootTableBlueprintLibrary::GetLootStat(NewLoot, StatType, StatDefaultValue);
 
@@ -39,7 +39,7 @@ const ULTGraphNode* UAddStatLTNode::TraverseNodesAndCollectLoot(FLootTable &Loot
 		UE_LOG(LogTemp, Error, TEXT("No loot found to Add Stat. Add a Make Loot node first."));
 	}
 
-	return Super::TraverseNodesAndCollectLoot(LootTable, State, Loot);
+	Super::TraverseNodesAndCollectLoot(LootTable, State, Loot);
 }
 
 #if WITH_EDITOR

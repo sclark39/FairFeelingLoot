@@ -17,11 +17,11 @@ UAddTagLTNode::UAddTagLTNode()
 
 
 
-const ULTGraphNode* UAddTagLTNode::TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
+const void UAddTagLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, FMakeLootState State, TArray<FLootRecipe> &Loot) const
 {
-	if (0 < Loot.Num())
+	if (State.ActiveLoot)
 	{
-		FLootRecipe &NewLoot = Loot.Last();
+		FLootRecipe &NewLoot = *State.ActiveLoot;
 		
 		ULootTableBlueprintLibrary::AddLootTag(NewLoot, LootTag);
 	}
@@ -30,7 +30,7 @@ const ULTGraphNode* UAddTagLTNode::TraverseNodesAndCollectLoot(FLootTable &LootT
 		UE_LOG(LogTemp, Error, TEXT("No loot found to Add Tag / Stat. Add a Make Loot node first."));
 	}
 
-	return Super::TraverseNodesAndCollectLoot(LootTable, State, Loot);
+	Super::TraverseNodesAndCollectLoot(LootTable, State, Loot);
 }
 
 #if WITH_EDITOR

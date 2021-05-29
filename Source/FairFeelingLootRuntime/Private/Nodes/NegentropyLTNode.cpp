@@ -16,7 +16,7 @@ UNegentropyLTNode::UNegentropyLTNode()
 #endif // #if WITH_EDITORONLY_DATA
 }
 
-const ULTGenericGraphNode* UNegentropyLTNode::PickChild(FLootTable &LootTable, const FEntropyState &State) const
+const ULTGenericGraphNode* UNegentropyLTNode::PickChild(FLootTableData &LootTable, const FMakeLootState &State) const
 {
 	if (ChildrenNodes.Num() < 2)
 		return Super::PickChild(LootTable, State);

@@ -6,20 +6,28 @@
 #include "LootTable.h"
 #include "LootTableDefinition.h"
 
-#include "SetLootTableParamLTNode.generated.h"
+#include "EditFloatParamLTNode.generated.h"
 
 // Modifies a global Param of the Loot Table, with options to 
 // apply a random number within a range either via Set, Add, or Subtract.
 UCLASS()
-class FAIRFEELINGLOOTRUNTIME_API USetLootTableParamLTNode : public ULTGraphNode
+class FAIRFEELINGLOOTRUNTIME_API UEditFloatParamLTNode : public ULTGraphNode
 {
 	GENERATED_BODY()
 public:
-	USetLootTableParamLTNode();
+	UEditFloatParamLTNode();
 
 	// Loot Table Param to Modify
 	UPROPERTY(EditDefaultsOnly, Category = "Loot Table")
 	FName ParamName;
+
+	// If the param doesn't exist, should it be created in local or global scope?
+	UPROPERTY(EditDefaultsOnly, Category = "Loot Table")
+	bool bShouldCreateLocalScopeOnly = false;
+
+	// Should this param only change for this Loot Table Definition?
+	UPROPERTY(EditDefaultsOnly, Category = "Loot Table")
+	bool bShouldModifyLocalScopeOnly = false;
 
 	// If the param hasn't been set yet, what should it be set to?
 	UPROPERTY(EditDefaultsOnly, Category = "Loot Table")
@@ -33,7 +41,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Loot Table")
 	FVector2D ValueRange = FVector2D::ZeroVector;
 
-	virtual const ULTGraphNode* TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const override;
+	virtual const void TraverseNodesAndCollectLoot(FLootTableData &LootTable, FMakeLootState State, TArray<FLootRecipe> &Loot) const override;
 	virtual bool ShouldPickChildren() const override { return false; }
 
 #if WITH_EDITOR

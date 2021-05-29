@@ -4,64 +4,98 @@
 #include "LootTableDefinition.h"
 
 
-TArray<FLootRecipe> ULootTableComponent::MakeRandomLoot()
+TArray<FLootRecipe> ULootTableComponent::MakeRandomLootFromLootTable( const ULootTableDefinition *LootTableDefinition )
 {
 	TArray<FLootRecipe> Loot;
 
-	if (LootTable.Definition == nullptr)
+	LootTableDefinition = LootTableDefinition ? LootTableDefinition : DefaultLootTable;
+
+	if (LootTableDefinition == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("Loot Table has no definition specified."));
 		return Loot;
 	}
 
 	// Initialize
-	if (LootTable.bRequiresInitialization)
+	if (LootTableData.bRequiresInitialization)
 	{
-		LootTable.RNG.Initialize(LootTable.InitialSeed);
-		if (LootTable.bShouldRandomizeSeed)
-			LootTable.RNG.GenerateNewSeed();
+		LootTableData.RNG.Initialize(InitialSeed);
+		if (bShouldRandomizeSeed)
+			LootTableData.RNG.GenerateNewSeed();
 
-		LootTable.EntropyState.RNG = &LootTable.RNG;
-		LootTable.World = GetWorld();
+		LootTableData.World = GetWorld();
 
-		LootTable.bRequiresInitialization = false;
+		LootTableData.bRequiresInitialization = false;
 	}
 
 	// Make Loot
-	const URootLTGraphNode *RootNode = LootTable.Definition->GetRootNode();
+	const URootLTGraphNode *RootNode = LootTableDefinition->GetRootNode();
 	if (!RootNode)
 	{
 		UE_LOG(LogTemp, Error, TEXT("Loot Table Definition is missing Root Node."));
 		return Loot;
 	}
 
-	LootTable.VisitedGraphs.Add(LootTable.Definition);
+	LootTableData.VisitedGraphs.Add(LootTableDefinition);
 
-	RootNode->TraverseNodesAndCollectLoot(LootTable, LootTable.EntropyState, Loot);
+	FMakeLootState LootState;
+	LootState.RNG = &LootTableData.RNG;
+	LootState.LastTime = LootTableData.LastTime;
+	RootNode->TraverseNodesAndCollectLoot(LootTableData, LootState, Loot);
 
-	LootTable.EntropyState.LastTime = LootTable.GetTime();
+	LootTableData.LastTime = LootTableData.GetTime();
 
 	return Loot;
 }
 
-FName ULootTableComponent::GetNameParam(FName ParamName, FName DefaultName)
+TArray<FLootRecipe> ULootTableComponent::MakeRandomLootFromActor(AActor *Actor)
 {
-	return LootTable.GetNameParam(ParamName, DefaultName);
+	if (Actor && Actor->Implements<ULootTableSpecifier>())
+	{
+		const ULootTableDefinition *LootTable = ILootTableSpecifier::Execute_GetLootTable(Actor);
+		return MakeRandomLootFromLootTable(LootTable);
+	}
+	return TArray<FLootRecipe>();
 }
 
-float ULootTableComponent::GetFloatParam(FName ParamName, float DefaultValue)
+FName ULootTableComponent::GetGlobalNameParam(FName ParamName, FName DefaultValue)
 {
-	return LootTable.GetFloatParam(ParamName, DefaultValue);
+	return LootTableData.GetNameParam(ParamName, DefaultValue);
 }
 
-void ULootTableComponent::SetNameParam(FName ParamName, FName ParamValue)
+float ULootTableComponent::GetGlobalFloatParam(FName ParamName, float DefaultValue)
 {
-	FName &Value = LootTable.NameParams.FindOrAdd(ParamName);
-	Value = ParamValue;
+	return LootTableData.GetFloatParam(ParamName, DefaultValue);
 }
 
-void ULootTableComponent::SetFloatParam(FName ParamName, float ParamValue)
+void ULootTableComponent::SetGlobalNameParam(FName ParamName, FName ParamValue)
 {
-	float &Value = LootTable.FloatParams.FindOrAdd(ParamName);
-	Value = ParamValue;
+	LootTableData.SetNameParam(ParamName, ParamValue);
+}
+
+void ULootTableComponent::SetGlobalFloatParam(FName ParamName, float ParamValue)
+{
+	LootTableData.SetFloatParam(ParamName, ParamValue);
+}
+
+FName ULootTableComponent::GetNameParamForLootTable(const ULootTableDefinition *LootTable, FName ParamName, FName DefaultValue)
+{
+	return LootTableData.GetNameParamFromLT(LootTable, ParamName, DefaultValue);
+}
+
+float ULootTableComponent::GetFloatParamForLootTable(const ULootTableDefinition *LootTable, FName ParamName, float DefaultValue)
+{
+	return LootTableData.GetFloatParamFromLT(LootTable, ParamName, DefaultValue);
+}
+
+void ULootTableComponent::SetNameParamForLootTable(const ULootTableDefinition *LootTable, FName ParamName, FName ParamValue)
+{
+	if (LootTable)
+		LootTableData.SetNameParamForLT(LootTable, ParamName, ParamValue);
+}
+
+void ULootTableComponent::SetFloatParamForLootTable(const ULootTableDefinition *LootTable, FName ParamName, float ParamValue)
+{
+	if (LootTable)
+		LootTableData.SetFloatParamForLT(LootTable, ParamName, ParamValue);
 }

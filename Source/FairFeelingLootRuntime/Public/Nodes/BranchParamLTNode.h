@@ -25,7 +25,8 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Float Param")
 	float DefaultValue;
 
-	virtual const ULTGraphNode* TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const override;
+	virtual const ULTGenericGraphNode* PickChild(FLootTableData &LootTable, const FMakeLootState &State) const override;
+
 #if WITH_EDITOR
 	virtual TSubclassOf<ULTGenericGraphEdge> GetEdgeType() const override;
 	virtual FText GetNodeTitle() const override;

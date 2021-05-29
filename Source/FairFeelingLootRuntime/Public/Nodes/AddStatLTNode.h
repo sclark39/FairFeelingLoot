@@ -34,7 +34,7 @@ public:
 		(EditCondition = "StatWriteMode != EAddParamLTType::Overwrite"))
 	float StatDefaultValue{ 0.0f };
 
-	virtual const ULTGraphNode* TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const override;
+	virtual const void TraverseNodesAndCollectLoot(FLootTableData &LootTable, FMakeLootState State, TArray<FLootRecipe> &Loot) const override;
 	virtual bool ShouldPickChildren() const override { return false; } 
 
 #if WITH_EDITOR

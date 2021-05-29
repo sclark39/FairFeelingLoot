@@ -12,7 +12,7 @@ UWeightedLTEdge::UWeightedLTEdge()
 #endif // #if WITH_EDITORONLY_DATA
 }
 
-float UWeightedLTEdge::GetWeight(FLootTable &LootTable) const
+float UWeightedLTEdge::GetWeight(FLootTableData &LootTable) const
 {
 	if (bUseDynamicWeight)
 	{

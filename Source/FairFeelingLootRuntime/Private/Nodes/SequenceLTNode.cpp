@@ -13,7 +13,7 @@ USequenceLTNode::USequenceLTNode()
 #endif // #if WITH_EDITORONLY_DATA
 }
 
-const ULTGraphNode* USequenceLTNode::TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
+const void USequenceLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, FMakeLootState State, TArray<FLootRecipe> &Loot) const
 {
 	int NumChildren = ChildrenNodes.Num();
 	RETRIEVE_LTNODE_PAYLOAD(sizeof(int) + sizeof(int) * NumChildren);
@@ -55,8 +55,6 @@ const ULTGraphNode* USequenceLTNode::TraverseNodesAndCollectLoot(FLootTable &Loo
 			LTNode->TraverseNodesAndCollectLoot(LootTable, State, Loot);
 		}
 	}
-
-	return this;
 }
 
 #if WITH_EDITOR

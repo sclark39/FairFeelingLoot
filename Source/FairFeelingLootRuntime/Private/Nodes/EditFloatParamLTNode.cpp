@@ -1,10 +1,10 @@
 ﻿// Copyright 2021 Skyler Clark. All Rights Reserved.
 
-#include "SetLootTableParamLTNode.h"
+#include "EditFloatParamLTNode.h"
 
 #define LOCTEXT_NAMESPACE "LootTableDefinition"
 
-USetLootTableParamLTNode::USetLootTableParamLTNode()
+UEditFloatParamLTNode::UEditFloatParamLTNode()
 {
 #if WITH_EDITORONLY_DATA
 	ContextMenuName = LOCTEXT("SetParam", "Edit Float Param");
@@ -12,24 +12,36 @@ USetLootTableParamLTNode::USetLootTableParamLTNode()
 #endif // #if WITH_EDITORONLY_DATA
 }
 
-const ULTGraphNode* USetLootTableParamLTNode::TraverseNodesAndCollectLoot(FLootTable &LootTable, const FEntropyState &State, TArray<FLootRecipe> &Loot) const
+const void UEditFloatParamLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, FMakeLootState State, TArray<FLootRecipe> &Loot) const
 {
+	const ULootTableDefinition *Definition = Cast<ULootTableDefinition>(GetGraph());
+	ensure(Definition);
+
+	float CurrentValue = LootTable.GetFloatParamFromLT(Definition, ParamName, DefaultValue);
+
 	float rand = State.RNG->FRandRange(ValueRange.X, ValueRange.Y);
-	
-	float &Param = LootTable.FloatParams.FindOrAdd(ParamName, DefaultValue);
 
 	if (WriteMode == EAddParamLTType::Add)
-		rand = Param + rand;
+		CurrentValue += rand;
 	else if (WriteMode == EAddParamLTType::Subtract)
-		rand = Param - rand;
+		CurrentValue -= rand;
+	else
+		CurrentValue = rand;
 
-	Param = rand;
+	const bool bLocalParamExists =
+		LootTable.LocalFloatParams.Contains(Definition)
+		&& LootTable.LocalFloatParams[Definition].Contains(ParamName);
 
-	return Super::TraverseNodesAndCollectLoot(LootTable, State, Loot);
+	if (bLocalParamExists || bShouldCreateLocalScopeOnly )
+		LootTable.SetFloatParamForLT(Definition, ParamName, CurrentValue);
+	else if ( !bLocalParamExists && !bShouldModifyLocalScopeOnly )
+		LootTable.SetFloatParam(ParamName, CurrentValue);
+
+	Super::TraverseNodesAndCollectLoot(LootTable, State, Loot);
 }
 
 #if WITH_EDITOR
-FText USetLootTableParamLTNode::GetNodeTitle() const
+FText UEditFloatParamLTNode::GetNodeTitle() const
 {
 	FFormatNamedArguments Args;
 	if (WriteMode == EAddParamLTType::Add)
@@ -43,12 +55,12 @@ FText USetLootTableParamLTNode::GetNodeTitle() const
 	return FText::Format(LOCTEXT("NestedTableNodeTitle", "{Name}{Mode} {Range}"), Args);
 }
 
-const FSlateBrush*  USetLootTableParamLTNode::GetNodeIcon() const
+const FSlateBrush*  UEditFloatParamLTNode::GetNodeIcon() const
 {
 	return FEditorStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Decorator.NonConditional.Icon"));
 }
 
-FLinearColor USetLootTableParamLTNode::GetBackgroundColor() const
+FLinearColor UEditFloatParamLTNode::GetBackgroundColor() const
 {
 	return FLinearColor(0.5f, 0.01f, 0.01f);
 }

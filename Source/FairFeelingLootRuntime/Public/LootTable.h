@@ -44,15 +44,16 @@ public:
 };
 
 
-struct FAIRFEELINGLOOTRUNTIME_API FEntropyState
+struct FAIRFEELINGLOOTRUNTIME_API FMakeLootState
 {
+	FLootRecipe *ActiveLoot = nullptr;
 	FRandomStream *RNG = nullptr;
 	float LastTime = 0;
 };
 
 
 USTRUCT(BlueprintInternalUseOnly)
-struct FAIRFEELINGLOOTRUNTIME_API FLootTable
+struct FAIRFEELINGLOOTRUNTIME_API FLootTableData
 {
 	GENERATED_BODY()
 	
@@ -65,43 +66,81 @@ public:
 	// Dynamic Param Lookup
 	TMap<FName, FName> NameParams;
 	TMap<FName, float> FloatParams;
+	TMap<const ULootTableDefinition*, TMap<FName, FName>> LocalNameParams;
+	TMap <const ULootTableDefinition*, TMap<FName, float>> LocalFloatParams;
 
-	TSet<ULootTableDefinition*> VisitedGraphs;
+	TSet<const ULootTableDefinition*> VisitedGraphs;
 
 	// Global State stream
 	FRandomStream RNG;
-	FEntropyState EntropyState;
+	float LastTime = 0;
 
 	UWorld *World = 0;
 	ULootTableComponent *Component = 0;
 
 	bool bRequiresInitialization = true;
 
-	// If true, ignore InitialSeed and randomize the seed for the random number stream
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	bool bShouldRandomizeSeed = true;
-
-	// If not randomizing the seed, this is what will be used to initialize the random number stream
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (EditCondition = "!bShouldRandomizeSeed"))
-	int InitialSeed = 0;
-
-	// The Loot Table Definition to use for generating Loot
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	ULootTableDefinition *Definition = 0;
-
 	virtual float GetTime();
 	
-	float GetFloatParam(FName ParamName, float DefaultValue = 0.0f)
+	float GetFloatParam(FName ParamName, float DefaultValue = 0.0f) const
 	{
-		float &Lookup = FloatParams.FindOrAdd(ParamName, DefaultValue);
-		return Lookup;
+		if (FloatParams.Contains(ParamName))
+			return FloatParams[ParamName];
+
+		return DefaultValue;
 	}
 
-	FName GetNameParam(FName ParamName, FName DefaultName = NAME_None)
+	FName GetNameParam(FName ParamName, FName DefaultValue = NAME_None) const
 	{
-		FName &Lookup = NameParams.FindOrAdd(ParamName, DefaultName);
-		return Lookup;
+		if (NameParams.Contains(ParamName))
+			return NameParams[ParamName];
+
+		return DefaultValue;
 	}
 
-	virtual ~FLootTable() {};
+	float GetFloatParamFromLT(const ULootTableDefinition *LootTable, FName ParamName, float DefaultValue = 0) const
+	{
+		if (LocalFloatParams.Contains(LootTable))
+			if (LocalFloatParams[LootTable].Contains(ParamName))
+				return LocalFloatParams[LootTable][ParamName];
+
+		return GetFloatParam(ParamName, DefaultValue);
+	}
+
+	FName GetNameParamFromLT(const ULootTableDefinition *LootTable, FName ParamName, FName DefaultValue = NAME_None) const
+	{
+		if (LocalNameParams.Contains(LootTable))
+			if (LocalNameParams[LootTable].Contains(ParamName))
+				return LocalNameParams[LootTable][ParamName];
+
+		return GetNameParam(ParamName, DefaultValue);
+	}
+
+
+	void SetFloatParam(FName ParamName, float ParamValue)
+	{
+		FloatParams[ParamName] = ParamValue;
+	}
+
+	void SetNameParam(FName ParamName, FName ParamValue)
+	{
+		NameParams[ParamName] = ParamValue;
+	}
+
+	void SetFloatParamForLT(const ULootTableDefinition *LootTable, FName ParamName, float ParamValue)
+	{
+		ensure(LootTable);
+		LocalFloatParams[LootTable][ParamName] = ParamValue;
+	}
+
+	void SetNameParamForLT(const ULootTableDefinition *LootTable, FName ParamName, FName ParamValue)
+	{
+		ensure(LootTable);
+		LocalNameParams[LootTable][ParamName] = ParamValue;
+	}
+
+
+
+
+	virtual ~FLootTableData() {};
 };
