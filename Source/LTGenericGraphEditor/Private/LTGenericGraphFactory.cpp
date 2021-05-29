@@ -4,6 +4,7 @@
 #include "ClassViewerModule.h"
 #include "ClassViewerFilter.h"
 #include "Kismet2/SClassPickerDialog.h"
+#include "Kismet2/KismetEditorUtilities.h"
 
 #define LOCTEXT_NAMESPACE "LTGenericGraphFactory"
 

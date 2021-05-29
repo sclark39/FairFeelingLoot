@@ -2,6 +2,7 @@
 #include "LTGenericGraphAssetEditor/EdGraph_LTGenericGraph.h"
 #include "Kismet2/Kismet2NameValidators.h"
 #include "Kismet2/BlueprintEditorUtils.h"
+#include "LTGenericGraph.h"
 
 #define LOCTEXT_NAMESPACE "EdNode_LTGenericGraph"
 

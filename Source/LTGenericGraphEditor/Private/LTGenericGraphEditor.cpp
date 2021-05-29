@@ -7,6 +7,8 @@ DEFINE_LOG_CATEGORY(LTGenericGraphEditor)
 
 #define LOCTEXT_NAMESPACE "Editor_LTGenericGraph"
 
+IMPLEMENT_MODULE(FLTGenericGraphEditor, LTGenericGraphEditor)
+
 void FLTGenericGraphEditor::StartupModule()
 {
 	FLTGenericGraphEditorStyle::Initialize();

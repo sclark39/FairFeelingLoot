@@ -8,7 +8,8 @@
 #include "LTGenericGraphAssetEditor/EdNode_LTGenericGraphNode.h"
 #include "LTGenericGraphAssetEditor/EdNode_LTGenericGraphEdge.h"
 #include "LTGenericGraphAssetEditor/ConnectionDrawingPolicy_LTGenericGraph.h"
-
+#include "LTGenericGraphNode.h"
+#include "LTGenericGraphEdge.h"
 #include "LTGenericGraphEditorStrings.h"
 
 #define LOCTEXT_NAMESPACE "SLTGenericGraphEdge"
