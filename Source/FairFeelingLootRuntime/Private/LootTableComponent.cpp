@@ -58,6 +58,11 @@ TArray<FLootRecipe> ULootTableComponent::MakeRandomLootFromActor(AActor *Actor)
 	return TArray<FLootRecipe>();
 }
 
+TArray<FLootRecipe> ULootTableComponent::MakeRandomLootFromLootSource(TScriptInterface<ILootTableSpecifier> LootSource)
+{
+	return  MakeRandomLootFromLootTable(LootSource->GetLootTable());
+}
+
 FName ULootTableComponent::GetGlobalNameParam(FName ParamName, FName DefaultValue) const
 {
 	return LootTableData.GetNameParam(ParamName, DefaultValue);

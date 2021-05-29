@@ -53,9 +53,13 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Loot Table")
 	TArray<FLootRecipe> MakeRandomLootFromLootTable( const ULootTableDefinition *LootTable );
 
-	// Generates an array of Loot Recipes based upon an Actor implementing the LootTableSpecifier Interface
+	// Generates an array of Loot Recipes based upon an Actor implementing LootSourceInterface
 	UFUNCTION(BlueprintCallable, Category = "Loot Table")
-	TArray<FLootRecipe> MakeRandomLootFromActor( AActor *Actor );
+	TArray<FLootRecipe> MakeRandomLootFromActor(AActor *Actor);
+
+	// Generates an array of Loot Recipes based upon an object implementing LootSourceInterface
+	UFUNCTION(BlueprintCallable, Category = "Loot Table")
+	TArray<FLootRecipe> MakeRandomLootFromLootSource(TScriptInterface<ILootTableSpecifier> LootSource);
 
 	// Gets the value of a global loot table name param (specific to this component)
 	UFUNCTION(BlueprintCallable, Category = "Loot Table")
