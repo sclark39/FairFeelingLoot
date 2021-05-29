@@ -9,7 +9,7 @@
 
 class ULTGraphNode;
 class ULootTableDefinition;
-class ULootTableComponent;
+class ULootGenerationComponent;
 
 USTRUCT(BlueprintType)
 struct FAIRFEELINGLOOTRUNTIME_API FLootRecipeStat
@@ -76,7 +76,7 @@ public:
 	float LastTime = 0;
 
 	UWorld *World = 0;
-	ULootTableComponent *Component = 0;
+	ULootGenerationComponent *Component = 0;
 
 	bool bRequiresInitialization = true;
 

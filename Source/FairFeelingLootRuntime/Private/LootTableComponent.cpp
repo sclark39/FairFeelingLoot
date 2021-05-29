@@ -4,7 +4,7 @@
 #include "LootTableDefinition.h"
 
 
-TArray<FLootRecipe> ULootTableComponent::MakeRandomLootFromLootTable( const ULootTableDefinition *LootTableDefinition )
+TArray<FLootRecipe> ULootGenerationComponent::MakeRandomLootFromLootTable( const ULootTableDefinition *LootTableDefinition )
 {
 	TArray<FLootRecipe> Loot;
 
@@ -48,58 +48,58 @@ TArray<FLootRecipe> ULootTableComponent::MakeRandomLootFromLootTable( const ULoo
 	return Loot;
 }
 
-TArray<FLootRecipe> ULootTableComponent::MakeRandomLootFromActor(AActor *Actor)
+TArray<FLootRecipe> ULootGenerationComponent::MakeRandomLootFromActor(AActor *Actor)
 {
-	if (Actor && Actor->Implements<ULootTableSpecifier>())
+	if (Actor && Actor->Implements<ULootSourceInterface>())
 	{
-		const ULootTableDefinition *LootTable = ILootTableSpecifier::Execute_GetLootTable(Actor);
+		const ULootTableDefinition *LootTable = ILootSourceInterface::Execute_GetLootTable(Actor);
 		return MakeRandomLootFromLootTable(LootTable);
 	}
 	return TArray<FLootRecipe>();
 }
 
-TArray<FLootRecipe> ULootTableComponent::MakeRandomLootFromLootSource(TScriptInterface<ILootTableSpecifier> LootSource)
+TArray<FLootRecipe> ULootGenerationComponent::MakeRandomLootFromLootSource(TScriptInterface<ILootSourceInterface> LootSource)
 {
 	return  MakeRandomLootFromLootTable(LootSource->GetLootTable());
 }
 
-FName ULootTableComponent::GetGlobalNameParam(FName ParamName, FName DefaultValue) const
+FName ULootGenerationComponent::GetGlobalNameParam(FName ParamName, FName DefaultValue) const
 {
 	return LootTableData.GetNameParam(ParamName, DefaultValue);
 }
 
-float ULootTableComponent::GetGlobalFloatParam(FName ParamName, float DefaultValue) const
+float ULootGenerationComponent::GetGlobalFloatParam(FName ParamName, float DefaultValue) const
 {
 	return LootTableData.GetFloatParam(ParamName, DefaultValue);
 }
 
-void ULootTableComponent::SetGlobalNameParam(FName ParamName, FName ParamValue)
+void ULootGenerationComponent::SetGlobalNameParam(FName ParamName, FName ParamValue)
 {
 	LootTableData.SetNameParam(ParamName, ParamValue);
 }
 
-void ULootTableComponent::SetGlobalFloatParam(FName ParamName, float ParamValue)
+void ULootGenerationComponent::SetGlobalFloatParam(FName ParamName, float ParamValue)
 {
 	LootTableData.SetFloatParam(ParamName, ParamValue);
 }
 
-FName ULootTableComponent::GetNameParamForLootTable(const ULootTableDefinition *LootTable, FName ParamName, FName DefaultValue) const
+FName ULootGenerationComponent::GetNameParamForLootTable(const ULootTableDefinition *LootTable, FName ParamName, FName DefaultValue) const
 {
 	return LootTableData.GetNameParamFromLT(LootTable, ParamName, DefaultValue);
 }
 
-float ULootTableComponent::GetFloatParamForLootTable(const ULootTableDefinition *LootTable, FName ParamName, float DefaultValue) const
+float ULootGenerationComponent::GetFloatParamForLootTable(const ULootTableDefinition *LootTable, FName ParamName, float DefaultValue) const
 {
 	return LootTableData.GetFloatParamFromLT(LootTable, ParamName, DefaultValue);
 }
 
-void ULootTableComponent::SetNameParamForLootTable(const ULootTableDefinition *LootTable, FName ParamName, FName ParamValue)
+void ULootGenerationComponent::SetNameParamForLootTable(const ULootTableDefinition *LootTable, FName ParamName, FName ParamValue)
 {
 	if (LootTable)
 		LootTableData.SetNameParamForLT(LootTable, ParamName, ParamValue);
 }
 
-void ULootTableComponent::SetFloatParamForLootTable(const ULootTableDefinition *LootTable, FName ParamName, float ParamValue)
+void ULootGenerationComponent::SetFloatParamForLootTable(const ULootTableDefinition *LootTable, FName ParamName, float ParamValue)
 {
 	if (LootTable)
 		LootTableData.SetFloatParamForLT(LootTable, ParamName, ParamValue);

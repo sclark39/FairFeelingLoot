@@ -9,12 +9,12 @@
 
 
 UINTERFACE(Blueprintable)
-class FAIRFEELINGLOOTRUNTIME_API ULootTableSpecifier : public UInterface
+class FAIRFEELINGLOOTRUNTIME_API ULootSourceInterface : public UInterface
 {
 	GENERATED_BODY()
 };
 
-class FAIRFEELINGLOOTRUNTIME_API ILootTableSpecifier
+class FAIRFEELINGLOOTRUNTIME_API ILootSourceInterface
 {
 	GENERATED_BODY()
 public:
@@ -26,7 +26,7 @@ public:
 
 
 UCLASS(ClassGroup = ("Custom"), meta = (BlueprintSpawnableComponent))
-class FAIRFEELINGLOOTRUNTIME_API ULootTableComponent : public UActorComponent
+class FAIRFEELINGLOOTRUNTIME_API ULootGenerationComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
@@ -59,7 +59,7 @@ public:
 
 	// Generates an array of Loot Recipes based upon an object implementing LootSourceInterface
 	UFUNCTION(BlueprintCallable, Category = "Loot Table")
-	TArray<FLootRecipe> MakeRandomLootFromLootSource(TScriptInterface<ILootTableSpecifier> LootSource);
+	TArray<FLootRecipe> MakeRandomLootFromLootSource(TScriptInterface<ILootSourceInterface> LootSource);
 
 	// Gets the value of a global loot table name param (specific to this component)
 	UFUNCTION(BlueprintCallable, Category = "Loot Table")
