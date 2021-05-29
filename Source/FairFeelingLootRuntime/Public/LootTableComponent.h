@@ -8,7 +8,7 @@
 #include "LootTableComponent.generated.h"
 
 
-UINTERFACE()
+UINTERFACE(Blueprintable)
 class FAIRFEELINGLOOTRUNTIME_API ULootTableSpecifier : public UInterface
 {
 	GENERATED_BODY()
