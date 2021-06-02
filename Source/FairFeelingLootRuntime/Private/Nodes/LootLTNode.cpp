@@ -18,6 +18,12 @@ ULootLTNode::ULootLTNode()
 
 const void ULootLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, FMakeLootState State, TArray<FLootRecipe> &Loot) const
 {
+	if ( State.ActiveLoot )
+	{
+		UE_LOG(LogTemp, Error, TEXT("Nested Make Loot nodes are not allowed"));
+		return;
+	}
+
 	FLootRecipe NewLoot;
 
 	NewLoot.Name = LootName;

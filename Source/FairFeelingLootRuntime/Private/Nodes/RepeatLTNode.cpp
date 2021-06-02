@@ -19,7 +19,7 @@ const void URepeatLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable,
 {
 	if (MaxRepeats < MinRepeats)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Repeat node MinRepeats > MaxRepeats"));
+		UE_LOG(LogTemp, Warning, TEXT("Repeat node MinRepeats > MaxRepeats"));
 	}
 	int Times = State.RNG->RandRange(MinRepeats, MaxRepeats);
 
