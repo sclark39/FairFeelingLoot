@@ -34,9 +34,6 @@ class FAIRFEELINGLOOTRUNTIME_API ULootGenerationComponent : public UActorCompone
 
 public:
 
-	UPROPERTY(BlueprintAssignable)
-	FOnLootTableCallback OnLootTableCallback;
-
 	// The Loot Table Definition to use for generating Loot
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Loot Table")
 	ULootTableDefinition *DefaultLootTable = 0;
