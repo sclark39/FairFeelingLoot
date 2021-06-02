@@ -71,7 +71,7 @@ public:
 	virtual bool ShouldPickChildren() const { return true; }
 
 #if WITH_EDITOR
-	FText RangeToText(float Min, float Max) const;
+	FText RangeToText(float Min, float Max, bool bCanReorder = true) const;
 	virtual FText GetNodeTitle() const override;
 	virtual FText GetContextMenuDescription() const override;
 	virtual bool IsNameEditable() const override;

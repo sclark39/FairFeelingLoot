@@ -49,7 +49,7 @@ const void ULTGraphNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, 
 
 #if WITH_EDITOR
 
-FText ULTGraphNode::RangeToText(float Min, float Max) const
+FText ULTGraphNode::RangeToText(float Min, float Max, bool bCanReorder) const
 {
 	FFormatNamedArguments Args;
 	Args.Add(TEXT("Min"), FText::FromString(FString::SanitizeFloat(Min, 0)));
@@ -57,7 +57,7 @@ FText ULTGraphNode::RangeToText(float Min, float Max) const
 	
 	if (Min == Max)
 		return FText::Format(LOCTEXT("RangeOne","[{Min}]"), Args);
-	else if (Max < Min)
+	else if (bCanReorder && Max < Min)
 		return FText::Format(LOCTEXT("RangeTwoReversed", "[{Max},{Min}]"), Args);
 
 	return FText::Format(LOCTEXT("RangeTwo", "[{Min},{Max}]"), Args);

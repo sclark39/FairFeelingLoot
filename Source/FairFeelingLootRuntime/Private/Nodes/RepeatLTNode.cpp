@@ -6,8 +6,6 @@
 
 URepeatLTNode::URepeatLTNode()
 {
-	RepeatRange = FVector2D(1, 1);
-
 #if WITH_EDITORONLY_DATA
 	ContextMenuName = LOCTEXT("RepeatNode", "Repeat Multiple");
 	ContextMenuCategory = LTCATEGORY_FLOW;
@@ -19,18 +17,35 @@ URepeatLTNode::URepeatLTNode()
 
 const void URepeatLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, FMakeLootState State, TArray<FLootRecipe> &Loot) const
 {
-	int Times = FMath::RoundToInt( State.RNG->FRandRange(RepeatRange.X, RepeatRange.Y) );
+	if (MaxRepeats < MinRepeats)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Repeat node MinRepeats > MaxRepeats"));
+	}
+	int Times = State.RNG->RandRange(MinRepeats, MaxRepeats);
 
 	for ( int i = 0; i < Times; i++ )	
 		Super::TraverseNodesAndCollectLoot(LootTable, State, Loot);
 }
+
+void URepeatLTNode::PostLoad()
+{
+	Super::PostLoad(); 
+	
+	if (RepeatRange_DEPRECATED != FVector2D::ZeroVector)
+	{
+		MinRepeats = RepeatRange_DEPRECATED.X;
+		MaxRepeats = RepeatRange_DEPRECATED.Y;
+		RepeatRange_DEPRECATED = FVector2D::ZeroVector;
+	}	
+}
+
 
 #if WITH_EDITOR
 
 FText URepeatLTNode::GetNodeTitle() const
 {
 	FFormatNamedArguments Args;
-	Args.Add(TEXT("Range"), RangeToText(RepeatRange.X, RepeatRange.Y));
+	Args.Add(TEXT("Range"), RangeToText(MinRepeats, MaxRepeats, false));
 	return FText::Format(LOCTEXT("NestedTableNodeTitle", "Repeat {Range}"), Args); 
 }
 
