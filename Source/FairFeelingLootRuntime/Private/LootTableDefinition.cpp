@@ -209,11 +209,13 @@ const URootLTGraphNode* ULootTableDefinition::GetRootNode() const
 	return nullptr;
 }
 
+#if WITH_EDITOR
 bool ULootTableDefinition::ShouldAllowIncrementalRebuild()
 {
 	// TODO: Don't let rebuild during gameplay
 	return true;
 }
+#endif // #if WITH_EDITOR
 
 
 #undef LOCTEXT_NAMESPACE 
