@@ -2,6 +2,7 @@
 
 #include "CallbackLTNode.h"
 #include "LootTableComponent.h"
+#include "FairFeelingLootRuntime.h"
 
 #define LOCTEXT_NAMESPACE "LootTableDefinition"
 
@@ -22,7 +23,7 @@ const void UCallbackLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTabl
 	}
 	else
 	{
-		UE_LOG(LogTemp, Error, TEXT("Callback node requires Loot Table Component."));
+		UE_LOG(LogFairFeelingLoot, Error, TEXT("Callback node requires Loot Table Component."));
 	}
 
 	Super::TraverseNodesAndCollectLoot(LootTable, State, Loot);

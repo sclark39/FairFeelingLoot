@@ -1,6 +1,7 @@
 ﻿// Copyright 2021 Skyler Clark. All Rights Reserved.
 
 #include "RepeatLTNode.h"
+#include "FairFeelingLootRuntime.h"
 
 #define LOCTEXT_NAMESPACE "LootTableDefinition"
 
@@ -19,7 +20,7 @@ const void URepeatLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable,
 {
 	if (MaxRepeats < MinRepeats)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Repeat node MinRepeats > MaxRepeats"));
+		UE_LOG(LogFairFeelingLoot, Warning, TEXT("Repeat node MinRepeats > MaxRepeats"));
 	}
 	int Times = State.RNG->RandRange(MinRepeats, MaxRepeats);
 

@@ -2,6 +2,7 @@
 
 #include "AddStatLTNode.h"
 #include "LootTableBlueprintLibrary.h"
+#include "FairFeelingLootRuntime.h"
 
 #define LOCTEXT_NAMESPACE "LootTableDefinition"
 
@@ -36,7 +37,7 @@ const void UAddStatLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable
 	}
 	else
 	{
-		UE_LOG(LogTemp, Error, TEXT("No loot found to Add Stat. Add a Make Loot node first."));
+		UE_LOG(LogFairFeelingLoot, Error, TEXT("No loot found to Add Stat. Add a Make Loot node first."));
 	}
 
 	Super::TraverseNodesAndCollectLoot(LootTable, State, Loot);

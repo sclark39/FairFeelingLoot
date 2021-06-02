@@ -1,6 +1,7 @@
 ﻿// Copyright 2021 Skyler Clark. All Rights Reserved.
 
 #include "NestedTableLTNode.h"
+#include "FairFeelingLootRuntime.h"
 
 #define LOCTEXT_NAMESPACE "LootTableDefinition"
 
@@ -20,14 +21,14 @@ const void UNestedTableLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootT
 	{
 		if (LootTable.VisitedGraphs.Contains(LootTableDefinition))
 		{
-			UE_LOG(LogTemp, Error, TEXT("Can't enter nested loot table %s. Would create a cycle."), *LootTableDefinition->GetName());
+			UE_LOG(LogFairFeelingLoot, Error, TEXT("Can't enter nested loot table %s. Would create a cycle."), *LootTableDefinition->GetName());
 			return;
 		}
 
 		const URootLTGraphNode *RootNode = LootTableDefinition->GetRootNode();
 		if (!RootNode)
 		{
-			UE_LOG(LogTemp, Error, TEXT("Loot Table Definition is missing Root Node."));
+			UE_LOG(LogFairFeelingLoot, Error, TEXT("Loot Table Definition is missing Root Node."));
 			return;
 		}
 

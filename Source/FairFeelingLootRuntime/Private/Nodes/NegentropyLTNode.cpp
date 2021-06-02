@@ -2,6 +2,7 @@
 
 #include "NegentropyLTNode.h"
 #include "WeightedLTEdge.h"
+#include "FairFeelingLootRuntime.h"
 
 #define LOCTEXT_NAMESPACE "LootTableDefinition"
 
@@ -35,7 +36,7 @@ const ULTGenericGraphNode* UNegentropyLTNode::PickChild(FLootTableData &LootTabl
 		const UWeightedLTEdge *Edge1 = Cast<UWeightedLTEdge>(Edges[ChildrenNodes[1]]);
 		if (!Edge0 || !Edge1)
 		{
-			UE_LOG(LogTemp, Error, TEXT("Negentropy node requires two edges."));
+			UE_LOG(LogFairFeelingLoot, Error, TEXT("Negentropy node requires two edges."));
 			return nullptr;
 		}
 
@@ -70,7 +71,7 @@ const ULTGenericGraphNode* UNegentropyLTNode::PickChild(FLootTableData &LootTabl
 		const float denom = (EdgeWeight[0] + EdgeWeight[1]);
 		if (denom <= 0)
 		{
-			UE_LOG(LogTemp, Error, TEXT("Negentropy node edge weights must be greater than 0."));		
+			UE_LOG(LogFairFeelingLoot, Error, TEXT("Negentropy node edge weights must be greater than 0."));
 			return nullptr;
 		}
 		Probability = EdgeWeight[1] / denom;

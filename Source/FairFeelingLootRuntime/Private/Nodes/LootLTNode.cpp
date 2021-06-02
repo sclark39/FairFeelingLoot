@@ -1,6 +1,7 @@
 ﻿// Copyright 2021 Skyler Clark. All Rights Reserved.
 
 #include "LootLTNode.h"
+#include "FairFeelingLootRuntime.h"
 
 #define LOCTEXT_NAMESPACE "LootTableDefinition"
 
@@ -20,7 +21,7 @@ const void ULootLTNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, F
 {
 	if ( State.ActiveLoot )
 	{
-		UE_LOG(LogTemp, Error, TEXT("Nested Make Loot nodes are not allowed"));
+		UE_LOG(LogFairFeelingLoot, Error, TEXT("Nested Make Loot nodes are not allowed"));
 		return;
 	}
 

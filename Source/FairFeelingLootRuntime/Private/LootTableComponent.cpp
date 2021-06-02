@@ -2,7 +2,7 @@
 
 #include "LootTableComponent.h"
 #include "LootTableDefinition.h"
-
+#include "FairFeelingLootRuntime.h"
 
 TArray<FLootRecipe> ULootGenerationComponent::MakeRandomLootFromLootTable( const ULootTableDefinition *LootTableDefinition )
 {
@@ -12,7 +12,7 @@ TArray<FLootRecipe> ULootGenerationComponent::MakeRandomLootFromLootTable( const
 
 	if (LootTableDefinition == nullptr)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Loot Table has no definition specified."));
+		UE_LOG(LogFairFeelingLoot, Error, TEXT("Loot Table has no definition specified."));
 		return Loot;
 	}
 
@@ -32,7 +32,7 @@ TArray<FLootRecipe> ULootGenerationComponent::MakeRandomLootFromLootTable( const
 	const URootLTGraphNode *RootNode = LootTableDefinition->GetRootNode();
 	if (!RootNode)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Loot Table Definition is missing Root Node."));
+		UE_LOG(LogFairFeelingLoot, Error, TEXT("Loot Table Definition is missing Root Node."));
 		return Loot;
 	}
 
