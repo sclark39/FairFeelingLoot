@@ -4,6 +4,8 @@
 
 #define LOCTEXT_NAMESPACE "LTGenericGraph"
 
+ULTGenericGraph::FGenericGraphSimpleDelegate ULTGenericGraph::OnGraphChanged;
+
 ULTGenericGraph::ULTGenericGraph()
 {
 	NodeType = ULTGenericGraphNode::StaticClass();

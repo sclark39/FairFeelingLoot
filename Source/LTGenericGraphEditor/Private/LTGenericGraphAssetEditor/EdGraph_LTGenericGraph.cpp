@@ -126,6 +126,8 @@ void UEdGraph_LTGenericGraph::RebuildLTGenericGraph()
 		UEdNode_LTGenericGraphNode* EdNode_RNode = NodeMap[&R];
 		return EdNode_LNode->NodePosX < EdNode_RNode->NodePosX;
 	});
+
+	ULTGenericGraph::OnGraphChanged.Broadcast(Graph);
 }
 
 ULTGenericGraph* UEdGraph_LTGenericGraph::GetLTGenericGraph() const

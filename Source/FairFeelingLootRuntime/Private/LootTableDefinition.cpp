@@ -45,7 +45,15 @@ const void ULTGraphNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, 
 	}
 }
 
-
+void ULTGraphNode::ResetPayloadInitialization(FLootTableData &LootTable)
+{
+	uint32 *Offset = LootTable.NodeOffsetMap.Find(this);
+	if (Offset)
+	{
+		uint32*	RequiresInitialization = (uint32*)&LootTable.NodeData[*Offset];
+		*RequiresInitialization = 1;
+	}
+}
 
 #if WITH_EDITOR
 
@@ -212,7 +220,6 @@ const URootLTGraphNode* ULootTableDefinition::GetRootNode() const
 #if WITH_EDITOR
 bool ULootTableDefinition::ShouldAllowIncrementalRebuild()
 {
-	// TODO: Don't let rebuild during gameplay
 	return true;
 }
 #endif // #if WITH_EDITOR

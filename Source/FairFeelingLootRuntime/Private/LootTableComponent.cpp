@@ -4,6 +4,34 @@
 #include "LootTableDefinition.h"
 #include "FairFeelingLootRuntime.h"
 
+
+void ULootGenerationComponent::BeginPlay()
+{
+	Super::BeginPlay();
+
+	ULootTableDefinition::OnGraphChanged.AddUObject(this, &ULootGenerationComponent::OnLootTableDefinitionRebuilt);
+}
+
+
+void ULootGenerationComponent::EndPlay(const EEndPlayReason::Type Reason)
+{
+	Super::EndPlay(Reason);
+
+	ULootTableDefinition::OnGraphChanged.RemoveAll(this);
+}
+
+void ULootGenerationComponent::OnLootTableDefinitionRebuilt(const ULTGenericGraph *GenericGraph)
+{
+	for (auto Node : GenericGraph->AllNodes)
+	{
+		if (auto LTNode = Cast<ULTGraphNode>(Node))
+		{
+			LTNode->ResetPayloadInitialization( LootTableData );
+		}
+	}
+
+}
+
 TArray<FLootRecipe> ULootGenerationComponent::MakeRandomLootFromLootTable( const ULootTableDefinition *LootTableDefinition )
 {
 	TArray<FLootRecipe> Loot;
@@ -36,7 +64,7 @@ TArray<FLootRecipe> ULootGenerationComponent::MakeRandomLootFromLootTable( const
 		return Loot;
 	}
 
-	LootTableData.VisitedGraphs.Add(LootTableDefinition);
+	LootTableData.VisitedGraphs.Add(LootTableDefinition);	
 
 	FMakeLootState LootState;
 	LootState.RNG = &LootTableData.RNG;
@@ -47,6 +75,7 @@ TArray<FLootRecipe> ULootGenerationComponent::MakeRandomLootFromLootTable( const
 
 	return Loot;
 }
+
 
 TArray<FLootRecipe> ULootGenerationComponent::MakeRandomLootFromActor(AActor *Actor)
 {

@@ -67,7 +67,9 @@ public:
 
 	virtual const ULTGenericGraphNode* PickChild(FLootTableData &LootTable, const FMakeLootState &State) const;
 	virtual const void TraverseNodesAndCollectLoot(FLootTableData &LootTable, FMakeLootState State, TArray<FLootRecipe> &Loot) const;
-	
+
+	void ResetPayloadInitialization(FLootTableData &LootTable);
+
 	virtual bool ShouldPickChildren() const { return true; }
 
 #if WITH_EDITOR

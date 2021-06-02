@@ -7,6 +7,7 @@
 
 #include "LootTableComponent.generated.h"
 
+class ULTGenericGraph;
 
 UINTERFACE(Blueprintable)
 class FAIRFEELINGLOOTRUNTIME_API ULootSourceInterface : public UInterface
@@ -29,8 +30,6 @@ UCLASS(ClassGroup = ("Custom"), meta = (BlueprintSpawnableComponent))
 class FAIRFEELINGLOOTRUNTIME_API ULootGenerationComponent : public UActorComponent
 {
 	GENERATED_BODY()
-
-	DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnLootTableCallback, FName, Specifier);
 
 public:
 
@@ -90,7 +89,12 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Loot Table")
 	void SetFloatParamForLootTable(const ULootTableDefinition *LootTable, FName ParamName, float ParamValue);
 
+	virtual void BeginPlay() override;
+	virtual void EndPlay(const EEndPlayReason::Type Reason) override;
 protected:
+
+	void OnLootTableDefinitionRebuilt(const ULTGenericGraph *GenericGraph);
+
 	FLootTableData LootTableData;
 };
 
