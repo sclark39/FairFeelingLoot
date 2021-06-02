@@ -19,6 +19,7 @@ public:
 	UEdGraph_LTGenericGraph();
 	virtual ~UEdGraph_LTGenericGraph();
 
+	virtual void RebuildLTGenericGraphIncremental();
 	virtual void RebuildLTGenericGraph();
 
 	ULTGenericGraph* GetLTGenericGraph() const;

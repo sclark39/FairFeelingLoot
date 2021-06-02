@@ -8,6 +8,6 @@
 // add includes for headers that are used in most of your module's source files though.
 #include "LTGenericGraphEditor.h"
 
-#define LOG_INFO(FMT, ...) UE_LOG(LTGenericGraphEditor, Display, (FMT), ##__VA_ARGS__)
-#define LOG_WARNING(FMT, ...) UE_LOG(LTGenericGraphEditor, Warning, (FMT), ##__VA_ARGS__)
-#define LOG_ERROR(FMT, ...) UE_LOG(LTGenericGraphEditor, Error, (FMT), ##__VA_ARGS__)
+#define LOG_INFO(FMT, ...) UE_LOG(LogLTGenericGraph, Display, (FMT), ##__VA_ARGS__)
+#define LOG_WARNING(FMT, ...) UE_LOG(LogLTGenericGraph, Warning, (FMT), ##__VA_ARGS__)
+#define LOG_ERROR(FMT, ...) UE_LOG(LogLTGenericGraph, Error, (FMT), ##__VA_ARGS__)

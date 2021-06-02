@@ -1,6 +1,6 @@
 #include "LTGenericGraphRuntimePCH.h"
 
-DEFINE_LOG_CATEGORY(LTGenericGraphRuntime)
+DEFINE_LOG_CATEGORY(LogLTGenericGraph)
 
 class FLTGenericGraphRuntime : public ILTGenericGraphRuntime
 {

@@ -16,9 +16,18 @@ UEdGraph_LTGenericGraph::~UEdGraph_LTGenericGraph()
 
 }
 
+void UEdGraph_LTGenericGraph::RebuildLTGenericGraphIncremental()
+{
+	ULTGenericGraph* Graph = GetLTGenericGraph();
+	if (Graph->ShouldAllowIncrementalRebuild())
+	{
+		RebuildLTGenericGraph();
+	}
+}
+
 void UEdGraph_LTGenericGraph::RebuildLTGenericGraph()
 {
-	LOG_INFO(TEXT(GGS_REBUILD_GRAPH_LOG));
+	UE_LOG(LogLTGenericGraph, Verbose, TEXT(GGS_REBUILD_GRAPH_LOG));
 
 	ULTGenericGraph* Graph = GetLTGenericGraph();
 
@@ -79,7 +88,10 @@ void UEdGraph_LTGenericGraph::RebuildLTGenericGraph()
 			UEdNode_LTGenericGraphNode* EndNode = EdgeNode->GetEndNode();
 			ULTGenericGraphEdge* Edge = EdgeNode->LTGenericGraphEdge;
 
-			if (StartNode == nullptr || EndNode == nullptr || Edge == nullptr)
+			if (StartNode == nullptr || EndNode == nullptr || Edge == nullptr 
+				|| StartNode->LTGenericGraphNode == nullptr 
+				|| EndNode->LTGenericGraphNode == nullptr
+				|| Edge->EndNode == nullptr)
 			{
 				LOG_ERROR(TEXT(GGS_REBUILD_GRAPH_ERR_BAD_EDGE));
 				continue;
@@ -132,6 +144,8 @@ bool UEdGraph_LTGenericGraph::Modify(bool bAlwaysMarkDirty /*= true*/)
 	{
 		Nodes[i]->Modify();
 	}
+
+	RebuildLTGenericGraphIncremental();
 
 	return Rtn;
 }

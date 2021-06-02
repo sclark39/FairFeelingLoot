@@ -3,7 +3,7 @@
 #include "AssetTypeActions_LTGenericGraph.h"
 #include "LTGenericGraphAssetEditor/LTGenericGraphEditorStyle.h"
 
-DEFINE_LOG_CATEGORY(LTGenericGraphEditor)
+DEFINE_LOG_CATEGORY(LogLTGenericGraph)
 
 #define LOCTEXT_NAMESPACE "Editor_LTGenericGraph"
 

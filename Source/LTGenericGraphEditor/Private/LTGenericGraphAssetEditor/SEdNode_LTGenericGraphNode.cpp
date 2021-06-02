@@ -327,6 +327,9 @@ bool SEdNode_LTGenericGraphNode::IsNameReadOnly() const
 	UEdNode_LTGenericGraphNode* EdNode_Node = Cast<UEdNode_LTGenericGraphNode>(GraphNode);
 	check(EdNode_Node != nullptr);
 
+	if (EdNode_Node->LTGenericGraphNode == nullptr)
+		return true;
+
 	ULTGenericGraph* LTGenericGraph = EdNode_Node->LTGenericGraphNode->Graph;
 	check(LTGenericGraph != nullptr);
 

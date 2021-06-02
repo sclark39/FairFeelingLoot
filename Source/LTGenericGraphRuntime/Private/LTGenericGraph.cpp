@@ -15,6 +15,8 @@ ULTGenericGraph::ULTGenericGraph()
 	EdGraph = nullptr;
 
 	bCanRenameNode = true;
+
+	bRebuildAfterEveryChange = false;
 #endif
 }
 

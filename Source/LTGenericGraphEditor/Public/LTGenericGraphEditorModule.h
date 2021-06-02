@@ -1,6 +1,6 @@
 #include"Modules/ModuleManager.h"
 
-DECLARE_LOG_CATEGORY_EXTERN(LTGenericGraphEditor, Log, All);
+DECLARE_LOG_CATEGORY_EXTERN(LogLTGenericGraph, Log, All);
 
 /**
  * The public interface to this module

@@ -122,7 +122,12 @@ bool UEdNode_LTGenericGraphNode::CanUserDeleteNode() const
 
 void UEdNode_LTGenericGraphNode::PostEditUndo()
 {
-	UEdGraphNode::PostEditUndo();
+	Super::PostEditUndo();
+}
+
+bool UEdNode_LTGenericGraphNode::Modify(bool bAlwaysMarkDirty)
+{
+	return Super::Modify(bAlwaysMarkDirty);
 }
 
 #undef LOCTEXT_NAMESPACE

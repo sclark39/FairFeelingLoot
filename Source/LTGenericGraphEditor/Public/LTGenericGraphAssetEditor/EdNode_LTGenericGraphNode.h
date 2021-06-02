@@ -44,6 +44,8 @@ public:
 	virtual bool CanDuplicateNode() const override;
 	virtual bool CanUserDeleteNode() const override;
 
+	virtual bool Modify(bool bAlwaysMarkDirty = true) override;
+
 #if WITH_EDITOR
 	virtual void PostEditUndo() override;
 #endif

@@ -330,7 +330,7 @@ const FPinConnectionResponse UAssetGraphSchema_LTGenericGraph::CanCreateConnecti
 	UEdNode_LTGenericGraphNode* EdNode_Out = Cast<UEdNode_LTGenericGraphNode>(Out->GetOwningNode());
 	UEdNode_LTGenericGraphNode* EdNode_In = Cast<UEdNode_LTGenericGraphNode>(In->GetOwningNode());
 
-	if (EdNode_Out == nullptr || EdNode_In == nullptr)
+	if (EdNode_Out == nullptr || EdNode_In == nullptr || EdNode_Out->LTGenericGraphNode == nullptr || EdNode_In->LTGenericGraphNode == nullptr )
 	{
 		return FPinConnectionResponse(CONNECT_RESPONSE_DISALLOW, LOCTEXT("PinError", "Not a valid Node"));
 	}
@@ -396,6 +396,12 @@ bool UAssetGraphSchema_LTGenericGraph::TryCreateConnection(UEdGraphPin* A, UEdGr
 	{
 		// Always create connections from node A to B, don't allow adding in reverse
 		Super::TryCreateConnection(NodeA->GetOutputPin(), NodeB->GetInputPin());
+
+		if (auto Graph = NodeA->GetLTGenericGraphEdGraph())
+		{
+			Graph->RebuildLTGenericGraphIncremental();
+		}
+
 		return true;
 	}
 	else
@@ -447,6 +453,14 @@ void UAssetGraphSchema_LTGenericGraph::BreakNodeLinks(UEdGraphNode& TargetNode) 
 	const FScopedTransaction Transaction(NSLOCTEXT("UnrealEd", "GraphEd_BreakNodeLinks", "Break Node Links"));
 
 	Super::BreakNodeLinks(TargetNode);
+
+	if (auto GenericEdNode = Cast<UEdNode_LTGenericGraphNode>(&TargetNode))
+	{
+		if (auto Graph = GenericEdNode->GetLTGenericGraphEdGraph())
+		{
+			Graph->RebuildLTGenericGraphIncremental();
+		}
+	}
 }
 
 void UAssetGraphSchema_LTGenericGraph::BreakPinLinks(UEdGraphPin& TargetPin, bool bSendsNodeNotifcation) const
@@ -454,6 +468,17 @@ void UAssetGraphSchema_LTGenericGraph::BreakPinLinks(UEdGraphPin& TargetPin, boo
 	const FScopedTransaction Transaction(NSLOCTEXT("UnrealEd", "GraphEd_BreakPinLinks", "Break Pin Links"));
 
 	Super::BreakPinLinks(TargetPin, bSendsNodeNotifcation);
+
+	if (auto TargetNode = TargetPin.GetOwningNode())
+	{
+		if (auto GenericEdNode = Cast<UEdNode_LTGenericGraphNode>(TargetNode))
+		{
+			if (auto Graph = GenericEdNode->GetLTGenericGraphEdGraph())
+			{
+				Graph->RebuildLTGenericGraphIncremental();
+			}
+		}
+	}
 }
 
 void UAssetGraphSchema_LTGenericGraph::BreakSinglePinLink(UEdGraphPin* SourcePin, UEdGraphPin* TargetPin) const
@@ -461,6 +486,17 @@ void UAssetGraphSchema_LTGenericGraph::BreakSinglePinLink(UEdGraphPin* SourcePin
 	const FScopedTransaction Transaction(NSLOCTEXT("UnrealEd", "GraphEd_BreakSinglePinLink", "Break Pin Link"));
 
 	Super::BreakSinglePinLink(SourcePin, TargetPin);
+
+	if (auto TargetNode = TargetPin->GetOwningNode())
+	{
+		if (auto GenericEdNode = Cast<UEdNode_LTGenericGraphNode>(TargetNode))
+		{
+			if (auto Graph = GenericEdNode->GetLTGenericGraphEdGraph())
+			{
+				Graph->RebuildLTGenericGraphIncremental();
+			}
+		}
+	}
 }
 
 UEdGraphPin* UAssetGraphSchema_LTGenericGraph::DropPinOnNode(UEdGraphNode* InTargetNode, const FName& InSourcePinName, const FEdGraphPinType& InSourcePinType, EEdGraphPinDirection InSourcePinDirection) const

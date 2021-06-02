@@ -53,5 +53,13 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = "LTGenericGraph_Editor")
 	bool bCanBeCyclical;
+
+	UPROPERTY(EditDefaultsOnly, Category = "LTGenericGraph_Editor")
+	bool bRebuildAfterEveryChange;
+
+	virtual bool ShouldAllowIncrementalRebuild()
+	{
+		return bRebuildAfterEveryChange;
+	}
 #endif
 };
