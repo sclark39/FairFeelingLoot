@@ -155,5 +155,9 @@ public:
 	ULootTableDefinition();
 
 	const URootLTGraphNode* GetRootNode() const;
+
+#if WITH_EDITOR
+	virtual bool ShouldAllowIncrementalRebuild() override;
+#endif // #if WITH_EDITOR
 };
 
