@@ -88,6 +88,8 @@ public:
 #endif
 
 #if WITH_EDITOR
+	virtual void PostEditChangeProperty( FPropertyChangedEvent &PropertyChangedEvent ) override;
+
 	virtual TSubclassOf<ULTGenericGraphEdge> GetEdgeType() const;
 
 	virtual bool IsNameEditable() const;

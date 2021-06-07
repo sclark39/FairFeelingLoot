@@ -8,6 +8,8 @@
 #include "LootTableComponent.generated.h"
 
 class ULTGenericGraph;
+class ULTGenericGraphNode;
+class ULTGenericGraphEdge;
 
 UINTERFACE(Blueprintable)
 class FAIRFEELINGLOOTRUNTIME_API ULootSourceInterface : public UInterface
@@ -93,7 +95,9 @@ public:
 	virtual void EndPlay(const EEndPlayReason::Type Reason) override;
 protected:
 
-	void OnLootTableDefinitionRebuilt(const ULTGenericGraph *GenericGraph);
+	void OnLootTableNodeChanged(const ULTGenericGraphNode *Node);
+	void OnLootTableEdgeChanged(const ULTGenericGraphEdge *Edge);
+	void OnLootTableDefinitionRebuilt(const ULTGenericGraph *Graph);
 
 	FLootTableData LootTableData;
 };

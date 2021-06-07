@@ -1,4 +1,5 @@
 #include "LTGenericGraphEdge.h"
+#include "LTGenericGraph.h"
 
 ULTGenericGraphEdge::ULTGenericGraphEdge()
 {
@@ -16,6 +17,12 @@ ULTGenericGraph* ULTGenericGraphEdge::GetGraph() const
 }
 
 #if WITH_EDITOR
+void ULTGenericGraphEdge::PostEditChangeProperty(FPropertyChangedEvent &PropertyChangedEvent)
+{
+	Super::PostEditChangeProperty(PropertyChangedEvent);
+	ULTGenericGraph::OnEdgeChanged.Broadcast(this);
+}
+
 void ULTGenericGraphEdge::SetNodeTitle(const FText& NewTitle)
 {
 	NodeTitle = NewTitle;

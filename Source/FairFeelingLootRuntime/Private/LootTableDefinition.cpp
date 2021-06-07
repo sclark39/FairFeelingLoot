@@ -45,7 +45,7 @@ const void ULTGraphNode::TraverseNodesAndCollectLoot(FLootTableData &LootTable, 
 	}
 }
 
-void ULTGraphNode::ResetPayloadInitialization(FLootTableData &LootTable)
+void ULTGraphNode::ResetPayloadInitialization(FLootTableData &LootTable) const
 {
 	uint32 *Offset = LootTable.NodeOffsetMap.Find(this);
 	if (Offset)

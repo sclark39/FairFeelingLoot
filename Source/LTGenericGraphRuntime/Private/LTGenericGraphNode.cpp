@@ -27,6 +27,12 @@ FText ULTGenericGraphNode::GetDescription_Implementation() const
 }
 
 #if WITH_EDITOR
+void ULTGenericGraphNode::PostEditChangeProperty(FPropertyChangedEvent &PropertyChangedEvent)
+{
+	Super::PostEditChangeProperty(PropertyChangedEvent);
+	ULTGenericGraph::OnNodeChanged.Broadcast(this);
+}
+
 TSubclassOf<ULTGenericGraphEdge> ULTGenericGraphNode::GetEdgeType() const
 {
 	if (Graph->bEdgeEnabled)

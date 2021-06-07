@@ -9,7 +9,11 @@ void ULootGenerationComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
+#if WITH_EDITOR
 	ULootTableDefinition::OnGraphChanged.AddUObject(this, &ULootGenerationComponent::OnLootTableDefinitionRebuilt);
+	ULootTableDefinition::OnNodeChanged.AddUObject(this, &ULootGenerationComponent::OnLootTableNodeChanged);
+	ULootTableDefinition::OnEdgeChanged.AddUObject(this, &ULootGenerationComponent::OnLootTableEdgeChanged);
+#endif // #if WITH_EDITOR
 }
 
 
@@ -17,20 +21,55 @@ void ULootGenerationComponent::EndPlay(const EEndPlayReason::Type Reason)
 {
 	Super::EndPlay(Reason);
 
+#if WITH_EDITOR
 	ULootTableDefinition::OnGraphChanged.RemoveAll(this);
+	ULootTableDefinition::OnNodeChanged.RemoveAll(this);
+	ULootTableDefinition::OnEdgeChanged.RemoveAll(this);
+#endif // #if WITH_EDITOR
 }
 
-void ULootGenerationComponent::OnLootTableDefinitionRebuilt(const ULTGenericGraph *GenericGraph)
+
+#if WITH_EDITOR
+
+void ULootGenerationComponent::OnLootTableNodeChanged(const ULTGenericGraphNode *Node)
 {
-	for (auto Node : GenericGraph->AllNodes)
+	if (Node)
 	{
 		if (auto LTNode = Cast<ULTGraphNode>(Node))
 		{
-			LTNode->ResetPayloadInitialization( LootTableData );
+			LTNode->ResetPayloadInitialization(LootTableData);
 		}
 	}
-
 }
+
+
+void ULootGenerationComponent::OnLootTableEdgeChanged(const ULTGenericGraphEdge *Edge)
+{
+	if (Edge)
+	{
+		if (auto LTNode = Cast<ULTGraphNode>(Edge->StartNode))
+		{
+			LTNode->ResetPayloadInitialization(LootTableData);
+		}
+	}
+}
+
+
+void ULootGenerationComponent::OnLootTableDefinitionRebuilt(const ULTGenericGraph *Graph)
+{
+	if (Graph)
+	{
+		for (auto Node : Graph->AllNodes)
+		{
+			if (auto LTNode = Cast<ULTGraphNode>(Node))
+			{
+				LTNode->ResetPayloadInitialization(LootTableData);
+			}
+		}
+	}
+}
+
+#endif // #if WITH_EDITOR
 
 TArray<FLootRecipe> ULootGenerationComponent::MakeRandomLootFromLootTable( const ULootTableDefinition *LootTableDefinition )
 {

@@ -4,7 +4,11 @@
 
 #define LOCTEXT_NAMESPACE "LTGenericGraph"
 
+#if WITH_EDITOR
 ULTGenericGraph::FGenericGraphSimpleDelegate ULTGenericGraph::OnGraphChanged;
+ULTGenericGraph::FGenericGraphEdgeSimpleDelegate ULTGenericGraph::OnEdgeChanged;
+ULTGenericGraph::FGenericGraphNodeSimpleDelegate ULTGenericGraph::OnNodeChanged;
+#endif // #if WITH_EDITOR
 
 ULTGenericGraph::ULTGenericGraph()
 {

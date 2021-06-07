@@ -39,6 +39,8 @@ public:
 #endif
 
 #if WITH_EDITOR
+	virtual void PostEditChangeProperty(FPropertyChangedEvent &PropertyChangedEvent) override;
+
 	virtual FText GetNodeTitle() const { return NodeTitle; }
 	FLinearColor GetEdgeColour() { return EdgeColour; }
 

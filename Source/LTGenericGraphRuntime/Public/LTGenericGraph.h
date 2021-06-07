@@ -11,13 +11,19 @@ class LTGENERICGRAPHRUNTIME_API ULTGenericGraph : public UObject
 {
 	GENERATED_BODY()
 
-	DECLARE_MULTICAST_DELEGATE_OneParam(FGenericGraphSimpleDelegate, const ULTGenericGraph* )
+	DECLARE_MULTICAST_DELEGATE_OneParam(FGenericGraphSimpleDelegate, const ULTGenericGraph*)
+	DECLARE_MULTICAST_DELEGATE_OneParam(FGenericGraphNodeSimpleDelegate, const ULTGenericGraphNode*)
+	DECLARE_MULTICAST_DELEGATE_OneParam(FGenericGraphEdgeSimpleDelegate, const ULTGenericGraphEdge*)
 
 public:
 	ULTGenericGraph();
 	virtual ~ULTGenericGraph();
-	
+
+#if WITH_EDITOR
 	static FGenericGraphSimpleDelegate OnGraphChanged;
+	static FGenericGraphNodeSimpleDelegate OnNodeChanged;
+	static FGenericGraphEdgeSimpleDelegate OnEdgeChanged;
+#endif // #if WITH_EDITOR
 
 	UPROPERTY(EditDefaultsOnly, Category = "LTGenericGraph")
 	TSubclassOf<ULTGenericGraphNode> NodeType;
