@@ -1,6 +1,10 @@
 #include "LTGenericGraphNode.h"
 #include "LTGenericGraph.h"
 
+#if WITH_EDITOR
+#include "EditorStyleSet.h"
+#endif // #if WITH_EDITOR
+
 #define LOCTEXT_NAMESPACE "LTGenericGraphNode"
 
 ULTGenericGraphNode::ULTGenericGraphNode()

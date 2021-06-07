@@ -4,6 +4,10 @@
 #include "LootTableBlueprintLibrary.h"
 #include "FairFeelingLootRuntime.h"
 
+#if WITH_EDITOR
+#include "EditorStyleSet.h"
+#endif // #if WITH_EDITOR
+
 #define LOCTEXT_NAMESPACE "LootTableDefinition"
 
 UAddStatLTNode::UAddStatLTNode()

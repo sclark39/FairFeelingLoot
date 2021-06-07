@@ -2,6 +2,10 @@
 
 #include "EntropyControlLTNode.h"
 
+#if WITH_EDITOR
+#include "EditorStyleSet.h"
+#endif // #if WITH_EDITOR
+
 #define LOCTEXT_NAMESPACE "LootTableDefinition"
 
 
@@ -46,6 +50,7 @@ const void UEntropyControlLTNode::TraverseNodesAndCollectLoot(FLootTableData &Lo
 
 
 #if WITH_EDITOR
+
 FLinearColor UEntropyControlLTNode::GetBackgroundColor() const
 {
 	return FLinearColor(0.5f, 0.01f, 0.01f);

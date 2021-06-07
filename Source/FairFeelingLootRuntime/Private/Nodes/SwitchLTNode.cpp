@@ -3,6 +3,10 @@
 #include "SwitchLTNode.h"
 #include "NamedLTEdge.h"
 
+#if WITH_EDITOR
+#include "EditorStyleSet.h"
+#endif // #if WITH_EDITOR
+
 #define LOCTEXT_NAMESPACE "LootTableDefinition"
 
 static const FName DefaultName(TEXT("Default"));
