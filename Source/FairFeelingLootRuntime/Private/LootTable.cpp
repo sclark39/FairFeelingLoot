@@ -2,6 +2,7 @@
 
 #include "LootTable.h"
 #include "LootTableDefinition.h"
+#include "Engine/World.h"
 
 float FLootTableData::GetTime()
 {
