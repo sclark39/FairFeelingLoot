@@ -1,3 +1,5 @@
+// Copyright 2021 Skyler Clark. All Rights Reserved.
+
 #include "LTGenericGraph.h"
 #include "LTGenericGraphRuntimePCH.h"
 #include "Engine/Engine.h"

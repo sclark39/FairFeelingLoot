@@ -1,3 +1,5 @@
+// Copyright 2021 Skyler Clark. All Rights Reserved.
+
 #include "AutoLayout/LTAutoLayoutStrategy.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "LTGenericGraphAssetEditor/EdNode_LTGenericGraphNode.h"

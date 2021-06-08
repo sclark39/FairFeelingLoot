@@ -21,11 +21,11 @@ public:
 	FVector2D RepeatRange_DEPRECATED = FVector2D::ZeroVector;
 
 	// How many times to repeat, minimum?
-	UPROPERTY(EditDefaultsOnly, Category = "Loot")
+	UPROPERTY(EditDefaultsOnly, Category = "Repeat")
 	int MinRepeats = 1;
 
 	// Maximum number of times to repeat
-	UPROPERTY(EditDefaultsOnly, Category = "Loot")
+	UPROPERTY(EditDefaultsOnly, Category = "Repeat")
 	int MaxRepeats = 1;
 
 	virtual const void TraverseNodesAndCollectLoot(FLootTableData &LootTable, FMakeLootState State, TArray<FLootRecipe> &Loot) const override;

@@ -1,3 +1,5 @@
+// Copyright 2021 Skyler Clark. All Rights Reserved.
+
 #include"Modules/ModuleManager.h"
 
 DECLARE_LOG_CATEGORY_EXTERN(LogLTGenericGraph, Log, All);

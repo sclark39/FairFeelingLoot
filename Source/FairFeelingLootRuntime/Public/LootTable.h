@@ -22,7 +22,7 @@ public:
 	FGameplayTag StatType;
 
 	// Value for this Stat
-	UPROPERTY(BlueprintReadWrite, Category = "Loot")
+	UPROPERTY(BlueprintReadWrite, Category ="Loot")
 	float StatValue;
 };
 
@@ -139,8 +139,6 @@ public:
 		LocalNameParams[LootTable][ParamName] = ParamValue;
 	}
 
-
-
-
 	virtual ~FLootTableData() {};
 };
+

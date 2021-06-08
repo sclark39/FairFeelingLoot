@@ -139,19 +139,19 @@ public:
 	bool bAllowImplicitSequenceNodes = false;
 
 	// Should this loot table use its own random stream
-	UPROPERTY(EditDefaultsOnly, Category = "Random")
+	UPROPERTY(EditDefaultsOnly, Category = "Loot Table")
 	bool bTracksOwnRandomStream = false;
 
 	// If true, ignore InitialSeed and randomize the seed for the random number stream
-	UPROPERTY(EditDefaultsOnly, Category = "Random", meta = (EditCondition = "bTracksOwnRandomStream"))
+	UPROPERTY(EditDefaultsOnly, Category = "Loot Table", meta = (EditCondition = "bTracksOwnRandomStream"))
 	bool bShouldRandomizeSeed = true;
 
 	// If not randomizing the seed, this is what will be used to initialize the random number stream
-	UPROPERTY(EditDefaultsOnly, Category = "Random", meta = (EditCondition = "bTracksOwnRandomStream && !bShouldRandomizeSeed"))
+	UPROPERTY(EditDefaultsOnly, Category = "Loot Table", meta = (EditCondition = "bTracksOwnRandomStream && !bShouldRandomizeSeed"))
 	float InitialSeed = 0;
 
 	// Should this loot table track its own time?
-	UPROPERTY(EditDefaultsOnly, Category = "Time")
+	UPROPERTY(EditDefaultsOnly, Category = "Loot Table")
 	bool bTracksOwnTime = true;
 
 	ULootTableDefinition();

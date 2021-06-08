@@ -1,3 +1,5 @@
+// Copyright 2021 Skyler Clark. All Rights Reserved.
+
 #include "LTGenericGraphAssetEditor/SEdNode_LTGenericGraphEdge.h"
 #include "Widgets/SBoxPanel.h"
 #include "Widgets/Images/SImage.h"

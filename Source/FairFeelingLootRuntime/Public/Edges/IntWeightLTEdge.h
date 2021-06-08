@@ -15,7 +15,7 @@ class FAIRFEELINGLOOTRUNTIME_API UIntWeightLTEdge : public ULTGraphEdge
 	GENERATED_BODY()
 public:
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weighted Edge")
 	int Weight = 1;
 
 	UIntWeightLTEdge();

@@ -15,13 +15,13 @@ class FAIRFEELINGLOOTRUNTIME_API UWeightedLTEdge : public ULTGraphEdge
 	GENERATED_BODY()
 public:
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Loot", meta = (ClampMin = "0", EditCondition = "!bUseDynamicWeight"))
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weighted Edge", meta = (ClampMin = "0", EditCondition = "!bUseDynamicWeight"))
 	float Weight;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Loot", meta = (EditCondition = "bUseDynamicWeight"))
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weighted Edge", meta = (EditCondition = "bUseDynamicWeight"))
 	FName WeightParamName;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Loot")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weighted Edge")
 	bool bUseDynamicWeight = false;
 
 	UWeightedLTEdge();

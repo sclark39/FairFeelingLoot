@@ -18,27 +18,27 @@ public:
 	UEditFloatParamLTNode();
 
 	// Loot Table Param to Modify
-	UPROPERTY(EditDefaultsOnly, Category = "Loot Table")
+	UPROPERTY(EditDefaultsOnly, Category = "Edit Float Param")
 	FName ParamName;
 
 	// If the param doesn't exist, should it be created in local or global scope?
-	UPROPERTY(EditDefaultsOnly, Category = "Loot Table")
+	UPROPERTY(EditDefaultsOnly, Category = "Edit Float Param")
 	bool bShouldCreateLocalScopeOnly = false;
 
 	// Should this param only change for this Loot Table Definition?
-	UPROPERTY(EditDefaultsOnly, Category = "Loot Table")
+	UPROPERTY(EditDefaultsOnly, Category = "Edit Float Param")
 	bool bShouldModifyLocalScopeOnly = false;
 
 	// If the param hasn't been set yet, what should it be set to?
-	UPROPERTY(EditDefaultsOnly, Category = "Loot Table")
+	UPROPERTY(EditDefaultsOnly, Category = "Edit Float Param")
 	float DefaultValue = 0;
 
 	// How will the value be manipulated?
-	UPROPERTY(EditDefaultsOnly, Category = "Loot Table")
+	UPROPERTY(EditDefaultsOnly, Category = "Edit Float Param")
 	EAddParamLTType WriteMode;
 
 	// Random range for the number to apply using the specified WriteMode
-	UPROPERTY(EditDefaultsOnly, Category = "Loot Table")
+	UPROPERTY(EditDefaultsOnly, Category = "Edit Float Param")
 	FVector2D ValueRange = FVector2D::ZeroVector;
 
 	virtual const void TraverseNodesAndCollectLoot(FLootTableData &LootTable, FMakeLootState State, TArray<FLootRecipe> &Loot) const override;
