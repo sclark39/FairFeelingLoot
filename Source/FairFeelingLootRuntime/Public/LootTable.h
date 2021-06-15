@@ -119,24 +119,27 @@ public:
 
 	void SetFloatParam(FName ParamName, float ParamValue)
 	{
-		FloatParams[ParamName] = ParamValue;
+		FloatParams.Emplace(ParamName, ParamValue);
 	}
 
 	void SetNameParam(FName ParamName, FName ParamValue)
 	{
-		NameParams[ParamName] = ParamValue;
+		NameParams.Emplace(ParamName, ParamValue);
 	}
 
 	void SetFloatParamForLT(const ULootTableDefinition *LootTable, FName ParamName, float ParamValue)
 	{
 		ensure(LootTable);
-		LocalFloatParams[LootTable][ParamName] = ParamValue;
+		auto FloatParamsForLT = LocalFloatParams.FindOrAdd(LootTable);
+		FloatParamsForLT.Emplace(ParamName, ParamValue);
 	}
 
 	void SetNameParamForLT(const ULootTableDefinition *LootTable, FName ParamName, FName ParamValue)
 	{
 		ensure(LootTable);
-		LocalNameParams[LootTable][ParamName] = ParamValue;
+
+		auto NameParamsForLT = LocalNameParams.FindOrAdd(LootTable);
+		NameParamsForLT.Emplace(ParamName, ParamValue);
 	}
 
 
