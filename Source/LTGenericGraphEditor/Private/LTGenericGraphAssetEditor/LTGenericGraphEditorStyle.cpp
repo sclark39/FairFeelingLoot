@@ -4,6 +4,7 @@
 #include "Styling/SlateStyleRegistry.h"
 #include "Styling/SlateTypes.h"
 #include "Misc/Paths.h"
+#include "Interfaces/IPluginManager.h"
 
 #include "LTGenericGraphEditorStrings.h"
 
@@ -28,7 +29,8 @@ void FLTGenericGraphEditorStyle::Initialize()
 
 	StyleSet = MakeShareable(new FSlateStyleSet("LTGenericGraphEditorStyle"));
 
-	StyleSet->SetContentRoot(FPaths::ProjectPluginsDir() / TEXT(GGS_RESOURCES_DIRECTORY));
+	static FString ContentPath = IPluginManager::Get().FindPlugin(TEXT("FairFeelingLoot"))->GetBaseDir() + TEXT("/Resources");
+	StyleSet->SetContentRoot(ContentPath);
 
 	StyleSet->Set("LTGenericGraphEditor.AutoArrange", new IMAGE_BRUSH("AutoArrangeIcon", Icon40x40));
 	StyleSet->Set("LTGenericGraphEditor.AutoArrange.Small", new IMAGE_BRUSH( "AutoArrangeIcon", Icon20x20 ) );
