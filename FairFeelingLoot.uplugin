@@ -10,7 +10,7 @@
 	"DocsURL": "",
 	"SupportURL": "https://twitter.com/sclark39",
 	"CanContainContent": true,
-	"IsBetaVersion": true,
+	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
 	"Installed": false,
 	"Modules": [
