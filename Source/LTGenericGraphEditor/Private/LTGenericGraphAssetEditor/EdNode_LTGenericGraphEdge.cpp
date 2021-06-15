@@ -1,3 +1,5 @@
+// Copyright 2021 Skyler Clark. All Rights Reserved.
+
 #include "LTGenericGraphAssetEditor/EdNode_LTGenericGraphEdge.h"
 #include "LTGenericGraphEdge.h"
 #include "LTGenericGraphAssetEditor/EdNode_LTGenericGraphNode.h"

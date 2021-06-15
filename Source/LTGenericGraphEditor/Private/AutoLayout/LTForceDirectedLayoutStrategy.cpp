@@ -1,3 +1,5 @@
+// Copyright 2021 Skyler Clark. All Rights Reserved.
+
 #include "AutoLayout/LTForceDirectedLayoutStrategy.h"
 
 static inline float CoolDown(float Temp, float CoolDownRate)

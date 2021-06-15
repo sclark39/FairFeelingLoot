@@ -4,6 +4,10 @@
 #include "WeightedLTEdge.h"
 #include "FairFeelingLootRuntime.h"
 
+#if WITH_EDITOR
+#include "EditorStyleSet.h"
+#endif // #if WITH_EDITOR
+
 #define LOCTEXT_NAMESPACE "LootTableDefinition"
 
 
@@ -86,7 +90,7 @@ const ULTGenericGraphNode* UNegentropyLTNode::PickChild(FLootTableData &LootTabl
 	Entropy += Probability;
 	if (1.0f - SMALL_NUMBER < Entropy)
 	{
-		Entropy -= FMath::Floor(Entropy);
+		Entropy -= FMath::FloorToFloat(Entropy);
 		return ChildrenNodes[1];
 	}
 

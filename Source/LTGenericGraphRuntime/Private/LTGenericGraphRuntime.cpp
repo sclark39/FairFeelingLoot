@@ -1,3 +1,5 @@
+// Copyright 2021 Skyler Clark. All Rights Reserved.
+
 #include "LTGenericGraphRuntimePCH.h"
 
 DEFINE_LOG_CATEGORY(LogLTGenericGraph)

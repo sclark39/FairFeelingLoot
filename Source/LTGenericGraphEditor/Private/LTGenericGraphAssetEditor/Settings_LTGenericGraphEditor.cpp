@@ -1,3 +1,5 @@
+// Copyright 2021 Skyler Clark. All Rights Reserved.
+
 #include "LTGenericGraphAssetEditor/Settings_LTGenericGraphEditor.h"
 
 ULTGenericGraphEditorSettings::ULTGenericGraphEditorSettings()

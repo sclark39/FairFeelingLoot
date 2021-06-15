@@ -2,6 +2,10 @@
 
 #include "LootTableDefinition.h"
 
+#if WITH_EDITOR
+#include "EditorStyleSet.h"
+#endif // #if WITH_EDITOR
+
 #define LOCTEXT_NAMESPACE "LootTableDefinition"
 
 ULTGraphNode::ULTGraphNode()

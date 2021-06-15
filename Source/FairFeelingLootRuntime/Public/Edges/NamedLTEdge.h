@@ -13,7 +13,7 @@ class FAIRFEELINGLOOTRUNTIME_API UNamedLTEdge : public ULTGraphEdge
 	GENERATED_BODY()
 public:
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Loot")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Named Edge")
 	FName Value;
 
 	UNamedLTEdge();

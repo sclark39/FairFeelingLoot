@@ -3,6 +3,7 @@
 #include "LootTableComponent.h"
 #include "LootTableDefinition.h"
 #include "FairFeelingLootRuntime.h"
+#include "GameFramework/Actor.h"
 
 
 void ULootGenerationComponent::BeginPlay()

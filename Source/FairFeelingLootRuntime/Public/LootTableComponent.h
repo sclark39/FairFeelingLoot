@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "LootTable.h"
+#include "UObject/Interface.h"
+#include "Components/ActorComponent.h"
 
 #include "LootTableComponent.generated.h"
 

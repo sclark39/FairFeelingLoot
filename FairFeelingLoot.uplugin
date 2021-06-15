@@ -1,19 +1,20 @@
 {
-	"FileVersion": 3,
-	"Version": 4,
-	"VersionName": "1.0",
-	"FriendlyName": "Fair Feeling Loot",
-	"Description": "Visual Loot Table Designer for Fair-Feeling Loot Drops",
-	"Category": "Other",
-	"CreatedBy": "Skyler Clark",
-	"CreatedByURL": "http://skylerclark.com",
-	"DocsURL": "",
-	"SupportURL": "https://twitter.com/sclark39",
-	"CanContainContent": true,
+  "FileVersion": 3,
+  "Version": 5,
+  "VersionName": "1.1",
+  "FriendlyName": "Fair Feeling Loot",
+  "Description": "Visual Loot Table Designer for Fair-Feeling Randomized Loot Drops in UE4",
+  "Category": "Other",
+  "CreatedBy": "Skyler Clark",
+  "CreatedByURL": "http://skylerclark.com",
+  "DocsURL": "https://github.com/sclark39/FairFeelingLoot/wiki",
+  "MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/c946095b18b44367adb2b76175b464e7",
+  "SupportURL": "https://twitter.com/sclark39",
+  "CanContainContent": true,
 	"IsBetaVersion": false,
-	"IsExperimentalVersion": false,
-	"Installed": false,
-	"Modules": [
+  "IsExperimentalVersion": false,
+  "Installed": false,
+  "Modules": [
     {
       "Name": "FairFeelingLootRuntime",
       "Type": "Runtime",
@@ -26,41 +27,41 @@
         "Switch"
       ]
     },
-		{
-			"Name": "LTGenericGraphRuntime",
-			"Type": "Runtime",
-			"LoadingPhase": "Default",
-			"WhitelistPlatforms": [
-				"Win64",
-				"Win32",
-				"XboxOne",
-				"PS4",
-				"Switch"
-			]
-		},
-		{
-			"Name": "FairFeelingLootEditor",
-			"Type": "Editor",
-			"LoadingPhase": "PreDefault",
-			"WhitelistPlatforms": [
-				"Win64",
-				"Win32",
-				"XboxOne",
-				"PS4",
-				"Switch"
-			]
-		},
-		{
-			"Name": "LTGenericGraphEditor",
-			"Type": "Editor",
-			"LoadingPhase": "PreDefault",
-			"WhitelistPlatforms": [
-				"Win64",
-				"Win32",
-				"XboxOne",
-				"PS4",
-				"Switch"
-			]
-		}
-	]
+    {
+      "Name": "LTGenericGraphRuntime",
+      "Type": "Runtime",
+      "LoadingPhase": "Default",
+      "WhitelistPlatforms": [
+        "Win64",
+        "Win32",
+        "XboxOne",
+        "PS4",
+        "Switch"
+      ]
+    },
+    {
+      "Name": "FairFeelingLootEditor",
+      "Type": "Editor",
+      "LoadingPhase": "PreDefault",
+      "WhitelistPlatforms": [
+        "Win64",
+        "Win32",
+        "XboxOne",
+        "PS4",
+        "Switch"
+      ]
+    },
+    {
+      "Name": "LTGenericGraphEditor",
+      "Type": "Editor",
+      "LoadingPhase": "PreDefault",
+      "WhitelistPlatforms": [
+        "Win64",
+        "Win32",
+        "XboxOne",
+        "PS4",
+        "Switch"
+      ]
+    }
+  ]
 }

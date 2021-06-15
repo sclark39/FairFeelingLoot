@@ -1,3 +1,5 @@
+// Copyright 2021 Skyler Clark. All Rights Reserved.
+
 #include "LTGenericGraphAssetEditor/EditorCommands_LTGenericGraph.h"
 
 #define LOCTEXT_NAMESPACE "EditorCommands_LTGenericGraph"

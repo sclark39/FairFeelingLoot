@@ -17,15 +17,15 @@ public:
 	ULootLTNode();
 
 	// Name for the Loot
-	UPROPERTY(EditDefaultsOnly, Category = "Loot")
+	UPROPERTY(EditDefaultsOnly, Category = "Make Loot")
 	FName LootName;
 
 	// Gameplay Tag Loot Type Identifier
-	UPROPERTY(EditDefaultsOnly, Category = "Loot")
+	UPROPERTY(EditDefaultsOnly, Category = "Make Loot")
 	FGameplayTag LootType;
 
 	// Color of Loot in the Graph (dev only)
-	UPROPERTY(EditDefaultsOnly, Category = "Loot")
+	UPROPERTY(EditDefaultsOnly, Category = "Make Loot")
 	FLinearColor LootColor;
 
 	virtual const void TraverseNodesAndCollectLoot(FLootTableData &LootTable, FMakeLootState State, TArray<FLootRecipe> &Loot) const override;

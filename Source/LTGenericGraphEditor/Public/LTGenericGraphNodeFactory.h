@@ -1,3 +1,5 @@
+// Copyright 2021 Skyler Clark. All Rights Reserved.
+
 #pragma once
 #include <EdGraphUtilities.h>
 #include <EdGraph/EdGraphNode.h>

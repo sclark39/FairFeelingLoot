@@ -1,3 +1,5 @@
+// Copyright 2021 Skyler Clark. All Rights Reserved.
+
 #include "LTGenericGraphNodeFactory.h"
 #include <EdGraph/EdGraphNode.h>
 #include "LTGenericGraphAssetEditor/SEdNode_LTGenericGraphEdge.h"

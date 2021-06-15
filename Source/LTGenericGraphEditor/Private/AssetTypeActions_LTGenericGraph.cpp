@@ -1,3 +1,5 @@
+// Copyright 2021 Skyler Clark. All Rights Reserved.
+
 #include "AssetTypeActions_LTGenericGraph.h"
 #include "LTGenericGraphEditorPCH.h"
 #include "LTGenericGraphAssetEditor/AssetEditor_LTGenericGraph.h"

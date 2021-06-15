@@ -3,6 +3,10 @@
 #include "LootLTNode.h"
 #include "FairFeelingLootRuntime.h"
 
+#if WITH_EDITOR
+#include "EditorStyleSet.h"
+#endif // #if WITH_EDITOR
+
 #define LOCTEXT_NAMESPACE "LootTableDefinition"
 
 ULootLTNode::ULootLTNode()
@@ -46,7 +50,7 @@ FText ULootLTNode::GetNodeTitle() const
 
 void ULootLTNode::SetNodeTitle(const FText& NewTitle)
 {
-	LootName = FName(NewTitle.ToString());
+	LootName = FName(*NewTitle.ToString());
 }
 
 const FSlateBrush*  ULootLTNode::GetNodeIcon() const

@@ -1,4 +1,6 @@
-﻿#include "AssetTypeActions_LootTableDefinition.h"
+﻿// Copyright 2021 Skyler Clark. All Rights Reserved.
+
+#include "AssetTypeActions_LootTableDefinition.h"
 #include "LootTableDefinition.h"
 #include "LTGenericGraphAssetEditor/AssetEditor_LTGenericGraph.h"
 

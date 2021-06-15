@@ -1,4 +1,5 @@
-﻿
+﻿// Copyright 2021 Skyler Clark. All Rights Reserved.
+
 using UnrealBuildTool;
 
 public class FairFeelingLootEditor : ModuleRules

@@ -15,7 +15,7 @@ class FAIRFEELINGLOOTRUNTIME_API UPriorityLTEdge : public ULTGraphEdge
 	GENERATED_BODY()
 public:
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Priority Edge" )
 	float Priority = 1;
 
 	UPriorityLTEdge();

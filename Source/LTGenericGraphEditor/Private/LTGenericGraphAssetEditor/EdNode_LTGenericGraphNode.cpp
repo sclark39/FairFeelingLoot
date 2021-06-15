@@ -1,3 +1,5 @@
+// Copyright 2021 Skyler Clark. All Rights Reserved.
+
 #include "LTGenericGraphAssetEditor/EdNode_LTGenericGraphNode.h"
 #include "LTGenericGraphAssetEditor/EdGraph_LTGenericGraph.h"
 #include "Kismet2/Kismet2NameValidators.h"

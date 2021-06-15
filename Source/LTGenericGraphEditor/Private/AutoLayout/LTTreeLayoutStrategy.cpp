@@ -1,3 +1,5 @@
+// Copyright 2021 Skyler Clark. All Rights Reserved.
+
 #include "AutoLayout/LTTreeLayoutStrategy.h"
 #include "LTGenericGraphEditorPCH.h"
 #include "LTGenericGraphAssetEditor/SEdNode_LTGenericGraphNode.h"

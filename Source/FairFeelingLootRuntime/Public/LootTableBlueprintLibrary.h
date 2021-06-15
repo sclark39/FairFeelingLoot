@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 
 #include "LootTable.h"
+#include "Kismet/BlueprintFunctionLibrary.h"
 #include "LootTableBlueprintLibrary.generated.h"
 
 UCLASS()

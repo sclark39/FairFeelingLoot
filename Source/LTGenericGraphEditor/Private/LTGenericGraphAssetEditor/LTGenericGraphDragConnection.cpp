@@ -1,5 +1,4 @@
-﻿// Copyright Epic Games, Inc. All Rights Reserved.
-
+﻿// Copyright 2021 Skyler Clark. All Rights Reserved.
 
 #include "LTGenericGraphAssetEditor/LTGenericGraphDragConnection.h"
 #include "LTGenericGraphAssetEditor/EdNode_LTGenericGraphNode.h"
