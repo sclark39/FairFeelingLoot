@@ -113,6 +113,8 @@ TArray<FLootRecipe> ULootGenerationComponent::MakeRandomLootFromLootTable( const
 
 	LootTableData.LastTime = LootTableData.GetTime();
 
+	LootTableData.VisitedGraphs.Remove(LootTableDefinition);
+
 	return Loot;
 }
 
