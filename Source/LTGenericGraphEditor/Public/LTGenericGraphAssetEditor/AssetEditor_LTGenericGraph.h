@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Settings_LTGenericGraphEditor.h"
 #include "LTGenericGraph.h"
+#include "UObject/ObjectSaveContext.h"
 
 class FGGAssetEditorToolbar;
 
@@ -41,6 +42,15 @@ public:
 	// FSerializableObject interface
 	virtual void AddReferencedObjects(FReferenceCollector& Collector) override;
 	// End of FSerializableObject interface
+
+#if ENGINE_MAJOR_VERSION == 5
+	// FGCObject interface
+	virtual FString GetReferencerName() const
+	{
+		return TEXT("FAssetEditor_LTGenericGraph");
+	}
+	// ~FGCObject interface
+#endif // #if ENGINE_MAJOR_VERSION == 5
 
 	ULTGenericGraphEditorSettings* GetSettings() const;
 
@@ -98,7 +108,11 @@ protected:
 
 	void OnFinishedChangingProperties(const FPropertyChangedEvent& PropertyChangedEvent);
 
+#if ENGINE_MAJOR_VERSION == 4
 	void OnPackageSaved(const FString& PackageFileName, UObject* Outer);
+#else
+	void OnPackageSaved(const FString& PackageFileName, UPackage* Package, FObjectPostSaveContext ObjectSaveContext);
+#endif
 
 protected:
 	ULTGenericGraphEditorSettings* GenricGraphEditorSettings;

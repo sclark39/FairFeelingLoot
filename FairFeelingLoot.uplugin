@@ -18,50 +18,22 @@
     {
       "Name": "FairFeelingLootRuntime",
       "Type": "Runtime",
-      "LoadingPhase": "Default",
-      "WhitelistPlatforms": [
-        "Win64",
-        "Win32",
-        "XboxOne",
-        "PS4",
-        "Switch"
-      ]
+      "LoadingPhase": "Default"
     },
     {
       "Name": "LTGenericGraphRuntime",
       "Type": "Runtime",
-      "LoadingPhase": "Default",
-      "WhitelistPlatforms": [
-        "Win64",
-        "Win32",
-        "XboxOne",
-        "PS4",
-        "Switch"
-      ]
+      "LoadingPhase": "Default"
     },
     {
       "Name": "FairFeelingLootEditor",
       "Type": "Editor",
-      "LoadingPhase": "PreDefault",
-      "WhitelistPlatforms": [
-        "Win64",
-        "Win32",
-        "XboxOne",
-        "PS4",
-        "Switch"
-      ]
+      "LoadingPhase": "PreDefault"
     },
     {
       "Name": "LTGenericGraphEditor",
       "Type": "Editor",
-      "LoadingPhase": "PreDefault",
-      "WhitelistPlatforms": [
-        "Win64",
-        "Win32",
-        "XboxOne",
-        "PS4",
-        "Switch"
-      ]
+      "LoadingPhase": "PreDefault"
     }
   ]
 }
