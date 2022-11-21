@@ -146,17 +146,17 @@ void FAssetEditor_LTGenericGraph::RegisterTabSpawners(const TSharedRef<FTabManag
 	InTabManager->RegisterTabSpawner(FLTGenericGraphAssetEditorTabs::ViewportID, FOnSpawnTab::CreateSP(this, &FAssetEditor_LTGenericGraph::SpawnTab_Viewport))
 		.SetDisplayName(LOCTEXT("GraphCanvasTab", "Viewport"))
 		.SetGroup(WorkspaceMenuCategoryRef)
-		.SetIcon(FSlateIcon(FEditorStyle::GetStyleSetName(), "GraphEditor.EventGraph_16x"));
+		.SetIcon(FSlateIcon(FAppStyle::GetAppStyleSetName(), "GraphEditor.EventGraph_16x"));
 
 	InTabManager->RegisterTabSpawner(FLTGenericGraphAssetEditorTabs::LTGenericGraphPropertyID, FOnSpawnTab::CreateSP(this, &FAssetEditor_LTGenericGraph::SpawnTab_Details))
 		.SetDisplayName(LOCTEXT("DetailsTab", "Property"))
 		.SetGroup(WorkspaceMenuCategoryRef)
-		.SetIcon(FSlateIcon(FEditorStyle::GetStyleSetName(), "LevelEditor.Tabs.Details"));
+		.SetIcon(FSlateIcon(FAppStyle::GetAppStyleSetName(), "LevelEditor.Tabs.Details"));
 
 	InTabManager->RegisterTabSpawner(FLTGenericGraphAssetEditorTabs::LTGenericGraphEditorSettingsID, FOnSpawnTab::CreateSP(this, &FAssetEditor_LTGenericGraph::SpawnTab_EditorSettings))
 		.SetDisplayName(LOCTEXT("EditorSettingsTab", GGS_SETTINGS_TAB_NAME))
 		.SetGroup(WorkspaceMenuCategoryRef)
-		.SetIcon(FSlateIcon(FEditorStyle::GetStyleSetName(), "LevelEditor.Tabs.Details"));
+		.SetIcon(FSlateIcon(FAppStyle::GetAppStyleSetName(), "LevelEditor.Tabs.Details"));
 }
 
 void FAssetEditor_LTGenericGraph::UnregisterTabSpawners(const TSharedRef<FTabManager>& InTabManager)

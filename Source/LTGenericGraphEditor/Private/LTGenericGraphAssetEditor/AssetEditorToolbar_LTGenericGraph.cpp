@@ -30,7 +30,7 @@ void FAssetEditorToolbar_LTGenericGraph::FillLTGenericGraphToolbar(FToolBarBuild
 			NAME_None,
 			LOCTEXT("GraphSettings_Label", "Graph Settings"),
 			LOCTEXT("GraphSettings_ToolTip", "Show the Graph Settings"),
-			FSlateIcon(FEditorStyle::GetStyleSetName(), "LevelEditor.GameSettings"));
+			FSlateIcon(FAppStyle::GetAppStyleSetName(), "LevelEditor.GameSettings"));
 	}
 	ToolbarBuilder.EndSection();
 

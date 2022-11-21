@@ -87,7 +87,7 @@ void SEdNode_LTGenericGraphEdge::UpdateGraphNode()
 			+ SOverlay::Slot()
 			[
 				SNew(SImage)
-				.Image(FEditorStyle::GetBrush("Graph.TransitionNode.ColorSpill"))
+				.Image(FAppStyle::GetBrush("Graph.TransitionNode.ColorSpill"))
 				.ColorAndOpacity(this, &SEdNode_LTGenericGraphEdge::GetEdgeColor)
 			]
 			+ SOverlay::Slot()
@@ -180,7 +180,7 @@ FSlateColor SEdNode_LTGenericGraphEdge::GetEdgeColor() const
 
 const FSlateBrush* SEdNode_LTGenericGraphEdge::GetEdgeImage() const
 {
-	return FEditorStyle::GetBrush("Graph.TransitionNode.Icon");
+	return FAppStyle::GetBrush("Graph.TransitionNode.Icon");
 }
 
 EVisibility SEdNode_LTGenericGraphEdge::GetEdgeImageVisibility() const

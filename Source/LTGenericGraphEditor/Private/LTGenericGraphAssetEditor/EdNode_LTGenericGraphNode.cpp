@@ -92,7 +92,7 @@ FLinearColor UEdNode_LTGenericGraphNode::GetBackgroundColor() const
 
 const FSlateBrush *UEdNode_LTGenericGraphNode::GetNodeIcon() const
 {
-	return LTGenericGraphNode? LTGenericGraphNode->GetNodeIcon() : FEditorStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Icon"));
+	return LTGenericGraphNode? LTGenericGraphNode->GetNodeIcon() : FAppStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Icon"));
 }
 
 UEdGraphPin* UEdNode_LTGenericGraphNode::GetInputPin() const
