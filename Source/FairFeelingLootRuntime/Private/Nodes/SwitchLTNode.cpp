@@ -51,7 +51,11 @@ FText USwitchLTNode::GetNodeTitle() const
 
 const FSlateBrush*  USwitchLTNode::GetNodeIcon() const
 {
+#if ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 1
+	return FAppStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Decorator.DoesPathExist.Icon"));
+#else // #if ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 1
 	return FEditorStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Decorator.DoesPathExist.Icon"));
+#endif // #else ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 1
 }
 
 TSubclassOf<ULTGenericGraphEdge> USwitchLTNode::GetEdgeType() const

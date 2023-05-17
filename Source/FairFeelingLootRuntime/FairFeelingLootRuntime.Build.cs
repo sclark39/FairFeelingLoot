@@ -39,11 +39,15 @@ public class FairFeelingLootRuntime : ModuleRules
 			);
 
 		if (Target.Type == TargetRules.TargetType.Editor)
-		{
-			PrivateDependencyModuleNames.Add("EditorStyle");
-		}
+        {
+#if UE_5_1_OR_LATER
+            PrivateDependencyModuleNames.Add("SlateCore");
+#else
+            PrivateDependencyModuleNames.Add("EditorStyle");
+#endif
+        }
 
-		PrivateDependencyModuleNames.AddRange(
+        PrivateDependencyModuleNames.AddRange(
 			new string[]
 			{
 				"LTGenericGraphRuntime",

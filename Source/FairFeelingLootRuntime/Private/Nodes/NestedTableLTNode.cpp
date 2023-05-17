@@ -58,7 +58,11 @@ FText UNestedTableLTNode::GetNodeTitle() const
 
 const FSlateBrush*  UNestedTableLTNode::GetNodeIcon() const
 {
+#if ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 1
+	return FAppStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Decorator.Optional.Icon"));
+#else // #if ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 1
 	return FEditorStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Decorator.Optional.Icon"));
+#endif // #else ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 1
 }
 
 FLinearColor UNestedTableLTNode::GetBackgroundColor() const

@@ -135,7 +135,11 @@ bool ULTGenericGraphNode::CanCreateConnectionFrom(ULTGenericGraphNode* Other, in
 
 const FSlateBrush* ULTGenericGraphNode::GetNodeIcon() const
 {
+#if ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 1
+	return FAppStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Icon"));
+#else // #if ENGINE_MINOR_VERSION >= 1
 	return FEditorStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Icon"));
+#endif // #else ENGINE_MINOR_VERSION >= 1
 }
 
 void ULTGenericGraphNode::GetChildrenLimit(ELTGenericGraphNodeLimit &LimitType, int32 &LimitCount) const

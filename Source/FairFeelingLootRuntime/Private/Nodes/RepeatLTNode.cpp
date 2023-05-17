@@ -56,7 +56,11 @@ FText URepeatLTNode::GetNodeTitle() const
 
 const FSlateBrush*  URepeatLTNode::GetNodeIcon() const
 {
+#if ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 1
+	return FAppStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Decorator.Loop.Icon"));
+#else // #if ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 1
 	return FEditorStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Decorator.Loop.Icon"));
+#endif // #else ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 1
 }
 
 FLinearColor URepeatLTNode::GetBackgroundColor() const

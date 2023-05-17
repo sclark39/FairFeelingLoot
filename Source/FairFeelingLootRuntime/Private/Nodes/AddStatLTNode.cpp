@@ -66,7 +66,11 @@ FText UAddStatLTNode::GetNodeTitle() const
 
 const FSlateBrush*  UAddStatLTNode::GetNodeIcon() const
 {
+#if ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 1
+	return FAppStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Task.Icon"));
+#else // #if ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 1
 	return FEditorStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Task.Icon"));
+#endif // #else ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 1
 }
 
 FLinearColor UAddStatLTNode::GetBackgroundColor() const

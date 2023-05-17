@@ -131,7 +131,11 @@ UNoopLTGraphNode::UNoopLTGraphNode()
 
 const FSlateBrush*  UNoopLTGraphNode::GetNodeIcon() const
 {
+#if ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 1
+	return FAppStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Task.Wait.Icon"));
+#else // #if ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 1
 	return FEditorStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Task.Wait.Icon"));
+#endif // #else ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 1
 }
 
 #endif // #if WITH_EDITOR
@@ -196,7 +200,11 @@ FLinearColor URootLTGraphNode::GetBackgroundColor() const
 
 const FSlateBrush*  URootLTGraphNode::GetNodeIcon() const
 {
+#if ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 1
+	return FAppStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Index"));
+#else // #if ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 1
 	return FEditorStyle::GetBrush(TEXT("BTEditor.Graph.BTNode.Index"));
+#endif // #else ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 1
 }
 
 #endif // #if WITH_EDITOR
